@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam07 here</title>
+<link type="text/css" rel="stylesheet" href="external.css">
+<style type="text/css">
+/* @import url("external.css"); */
+
+p {
+	color: blue;
+	font-size: 12pt;
+}
+</style>
+</head>
+<body>
+
+<h3>p 태그에 스타일 중첩</h3>
+<hr/>
+<p> Hello, Students! </p>
+<p style="font-size: 25pt"> 안녕하세요, 길동님! </p>
+
+</body>
+</html>
+
+
+<!-- 
+* 스타일 시트가 중첩되었을 때 순위
+- 1순위 : 태그 안
+- 2순위 : <style> 태그
+- 3순위 : 파일 스타일 시트
+<link rel="stylesheet" href="myStyle.css">
+<style type="text/css">@import url("myStyle.css")</style>
+* 단, link는 style tag 밖, import는 style tag 안에서 선언
+
+font-size를 pt로 주기도 하고 em 방식을 사용하기도 한다.
+em 방식은 현재 글자 크기에서 몇 배의 크기로 해라 하는 뜻이다.
+만일 font-size: 1.4em 라고 하면 1.4배의 크기로 만들어라 하는 뜻이다.
+
+opacity
+: 요소에 투명도를 부여할수 있는 속성
+opacity: 0.5;
+속성 값은 투명(0)에서 불투명(1)까지를 0 ~ 1로 표현 하므로 0.5는 반투명에 해당된다 
+ -->

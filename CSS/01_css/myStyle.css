@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+body {
+	background-color: linen;
+	color: blueviolet;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+/*
+padding: 안쪽 여백
+margin: 바깥쪽 여백
+*/
+
+h3 {
+	text-align: center;
+	color: darkred;
+}
