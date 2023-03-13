@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.num:link {color: black; text-decoration: none;}
+.num:visited {color: black; text-decoration: none;}
+.num:hover {color: cyan; text-decoration: underline;}
+.num:active {color: black; text-decoration: none;}
+
+</style>
+</head>
+<body>
+
+<div id="content">
+	<!-- 게시판 제목 -->
+	<div id="title">
+		<h1>NOTICE</h1>
+		<h2>WE ANNOUNCE THE NEWS ON OUR WEB SITE.</h2>
+	</div>
+	<hr/>
+	
+	<div id="list">
+		<table border="1" width="800" align="center">
+			<!-- 표 제목 -->
+			<thead>
+				<tr>
+					<th width="50">No</th>
+					<th>Subject</th>
+					<th width="100">ID</th>
+					<th width="70">Hit</th>
+					<th width="120">LogTime</th>
+				</tr>
+			</thead>
+			
+			<!-- 본문 영역(글 목록) -->
+			<tbody>
+				<tr>
+					<td align="center">3</td>
+					<td><a href="#" id="subjectA">Web Standards & Web Accessibility Practical Completion Instructions</a></td>
+					<!-- #: 클릭 시, 가장 위로 -->
+					<td align="center">Admin</td>
+					<td align="center">123</td>
+					<td align="center">2020-05-01</td>
+				</tr>
+				
+				<tr>
+					<td align="center">2</td>
+					<td><a href="#" id="subjectB">Guide to HTML5 & Dynamic Web Course</a></td>
+					<!-- #: 클릭 시, 가장 위로 -->
+					<td align="center">Admin</td>
+					<td align="center">123</td>
+					<td align="center">2020-05-01</td>
+				</tr>
+				
+				<tr>
+					<td align="center">1</td>
+					<td><a href="#" id="subjectㅊ">Guide to JavaScript+jQuery+Ajax</a></td>
+					<!-- #: 클릭 시, 가장 위로 -->
+					<td align="center">Admin</td>
+					<td align="center">123</td>
+					<td align="center">2020-05-01</td>
+				</tr>
+				
+			</tbody>
+			
+			<!-- 하단 영역(페이지 번호, 쓰기 링크) -->
+			<tfoot>
+				<tr>
+					<td colspan="5" align="center">
+						<a href="#" class="num">1</a>
+						<!-- #: 페이지 이동 없이 맨 위로 이동 -->
+						<a href="#" class="num">2</a>
+						<a href="#" class="num">3</a>
+						<a href="#" class="num">4</a>
+						<a href="#" class="num">5</a>
+					</td>
+				</tr>	
+				<tr>
+					<td colspan="5" align="right">
+						<a href="#">Write a new post</a>
+					</td>
+				</tr>
+			</tfoot>
+			
+		</table>
+		
+	</div>
+	
+	
+</div>
+
+</body>
+</html>

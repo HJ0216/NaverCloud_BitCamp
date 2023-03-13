@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form>
+	<fieldset>
+		<div>
+			<!-- Dropdown(single type) -->
+			<label for="telecom">이통사 선택</label>
+			<select name="telecom" id="telecom">
+				<option> ----- 선택 ----- </option>
+				<option value="SKT">SKT</option>
+				<option value="KT">KT</option>
+				<option value="U+">U+</option>
+			</select>
+		</div>
+	</fieldset>
+
+	<fieldset>
+		<legend>스마트폰 운영체제 선택하기</legend>
+		<div>
+		<!-- Dropdown(multi type) -->
+		<label for="smartphone">스마트폰 운영체제</label>
+		<select name="smartphone" id="smartphone" multiple size="2">
+			<option value="android">Android</option>
+			<option value="iOS">iOS</option>
+			<option value="window">Window</option>
+		</select>
+		</div>
+	</fieldset>
+
+
+</form>
+
+</body>
+</html>

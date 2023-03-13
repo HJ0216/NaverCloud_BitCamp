@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam09 here</title>
+</head>
+<body>
+
+<form action="result.html">
+	<fieldset>
+		<legend>이름 입력하기</legend>
+			<div>
+				<label for="user_name">이름: </label>
+				<input type="text" name="user_name" id="user_name" />
+			</div>
+			<br/>
+			
+			<div>
+				<input type="submit" value="입력 완료" /> <!-- action=""으로 이동 -->
+				<input type="reset" value="초기화" />
+				<input type="button" value="입력 완료" onclick="javascript:location.href='result.html'" />
+				<!-- button: js와 연동 -->
+				<input type="image" src="../img/ok.png" alt="확인" />
+				<!-- type="image" 자동으로 submit
+					 img scr와는 다른 타입 -->
+				<input type="image" src="../img/ok.png" alt="확인" onclick="return false;" />
+				<!-- return false: summit 동작 수행 중지 -->
+				<!-- button -->
+			</div>
+	</fieldset>
+
+</form>
+
+</body>
+</html>
+
+
+
+<!-- 
+submit ~ action
+- <form>태그 안에 있는 입력상자의 데이터를 들고 페이지 이동
+
+button ~ onclick
+
+ -->
