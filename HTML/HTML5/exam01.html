@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML 문서 구조와 시맨틱 태그 사용 </title>
+
+<style type="text/css">
+.header {
+	width: 100%; height: 15%;
+	background: yellow;
+}
+
+.nav {
+	width: 15%; height: 70%; float: left;
+	background: orange;
+	/* width, height를 %로 선언하여 화면 창에 따라 변경되는 반응형 웹으로 구성 */
+}
+
+.section {
+	width: 70%; height: 70%; float: left;
+	background: olivedrab;
+}
+
+.aside {
+	width: 15%; height: 70%; float: left;
+	background: orange;
+}
+
+.footer {
+	width: 100%; height: 15%;
+	/*clear: both;*/
+	/*
+	nav, section, aside에서 float을 left로 선언하여
+	footer도 flaot을 선언하지 않았음에도 왼쪽으로 정렬되는 경우가 발생
+	이를 방지하기 위해서 clear: both; 선언
+	diplay: flex; 와 동일 */
+	background: plum;
+}
+
+</style>
+
+</head>
+<body>
+
+<header class="header">header</header>
+<header class="nav">nav</header>
+<header class="section">section</header>
+<header class="aside">aside</header>
+<header class="footer">footer</header>
+
+</body>
+</html>
