@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam04 here</title>
+</head>
+<body>
+
+<form action="">
+	<fieldset>
+		<legend>내용 입력하기</legend> <!-- 범례 -->
+		<div>
+			<label for="user_id">아이디</label>
+			<!-- for=""와 id=""는 동일해야 함
+				 label contents 클릭 시, label for로 이동 -->
+			<input type="text" name="user_id" id="user_id" maxlength="5" placeholder="아이디 입력" />
+		</div>
+		
+		<div>
+			<label for="user_pw">비밀번호</label>
+			<input type="password" name="user_pw" id="user_pw" maxlength="20" />
+		</div>
+		
+		<div>
+			<label for="memo">자기소개</label>
+			<textarea name="memo" id="memo" maxlength="100"></textarea>
+		</div>
+		
+		<div>
+			<label for="data">숨겨진 항목</label>
+			<input type="hidden" name="data" id="data" value="숨겨진 데이터" />
+			<!-- hidden data는 summit 시, action page로 param과 함께 넘어감 -->
+		</div>
+		
+	</fieldset>
+</form>
+
+</body>
+</html>
+
+
+
+<!-- 
+	FORM이란? 
+  - 정보를 입력 또는 선택하고 버튼을 클릭하며 정보를 서버에 전달하고 응답받는 양방향의 
+    의사소통을 지원하는 입력양식이다.
+  - form 의 내부에는 <input>, <select>, <textarea> 등의 태그들이 포함된다.
+  - name 속성의 값과 유저가 입력한 값이 한 쌍이 되어 서버측에 전달된다.
+ -->
