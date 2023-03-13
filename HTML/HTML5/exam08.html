@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>video 요소를 이용한 동영상 삽입</h1>
+	<video style="width: 576; height: 360" controls autoplay muted loop>
+	<!-- Chrome은 저작권 문제로 muted를 써야 autoplay 속성이 됨 -->
+	<source src="../video/BigBuck.mp4" type="video/mp4">
+	video 요소를 지원하지 않음
+	</video>
+
+</body>
+</html>
+
+
+
+<!-- 
+HTML5 이전에는 웹 페이지에서 비디오(video)를 보여주기 위한 표준안이 없었다.
+따라서 비디오를 삽입하기 위해서는 플래시(flash)와 같은 외부 플러그인(plug-in)에 의존해야만 했다.
+하지만 HTML5에서는 <video>태그를 이용하여 웹 페이지에 비디오를 삽입하는 표준화된 방식을 제공한다.
+
+control 속성
+- 재생, 정지 및 소리의 조절 등 비디오의 기본적인 동작을 조절할 수 있는 패널을 생성한다.
+- height와 width 속성을 이용하여 웹 브라우저에 삽입되는 비디오의 크기를 명시할 수 있습니다.
+
+<video>태그 사이에 존재하는 텍스트는 해당 웹 브라우저가 <video>태그를 지원하지 않을 때만 화면에 표시된다.
+
+autoplay 속성
+- 웹 페이지가 로드(load) 될 때 비디오를 자동으로 재생할지 않을지를 설정한다.
+
+loop 속성
+- 비디오의 재생이 끝나도 계속적으로 반복해서 비디오를 재생한다.
+ -->
+ 

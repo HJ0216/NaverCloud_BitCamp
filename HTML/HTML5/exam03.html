@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form action=""
+	  oninput="total.value=parseInt(value01.value) + parseInt(value02.value)">
+	  <input type="number" id="value01" name="num01" value="20"> <!-- 수량 조절 -->
+	  /
+	  ( 0
+	  <input type="range" id="value02" name="num02" value="50" min="0" max="100"> <!-- 범위 조정 -->
+      100 )
+      <output name="total" for="value01 value02"></output><br/><br/>
+      <input type="submit" value="전송">
+</form>
+
+</body>
+</html>
+
+
+
+<!-- 
+for 속성을 사용하여 해당 결과에 영향을 줄 수 있는 HTML 문서 내의 요소를 명시할 수 있다.
+ -->

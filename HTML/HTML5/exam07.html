@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>required 속성을 이용한 필수 입력 설정</h1>
+<form action="">
+	이름: <input type="text" name="name" placeholder="이름 입력" required> (이름은 반드시 입력해야 해요!) <br>
+	<!-- required or js function 활용 -->
+	나이: <input type="number" name="age" min="1" max="120" placeholder="나이 입력"><br/><br/>
+	<input type="submit" value="전송">
+	<!-- 전송 버튼 클릭 시, data가 query로 넘어감 -->
+</form>
+
+</body>
+</html>
+
+
+
+<!-- 
+required 속성
+- 반드시 입력되어야 할 필수 input 요소를 명시한다.
+
+placeholder 속성
+- input 요소에 입력되어야 할 값에 대한 힌트를 제공한다.
+- 이러한 힌트는 예시가 될 수도 있고, 입력 형식에 대한 설명이 될 수도 있다.
+- placeholder 속성값은 해당 입력 필드에 포커스가 오게 되면 더 이상 표시되지 않는다.
+ -->
