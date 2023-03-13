@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+<style type="text/css">
+h3, li { /* 2개 이상의 style 지정: , */
+	color: brown;
+}
+div > div > strong { /* 자식 셀렉터 */
+	background: yellow;
+}
+
+ul strong { /* 후손 셀렉터: 띄어쓰기를 통해 부모를 지정하지 않고 바로 접근 */
+	color: dodgerblue;
+}
+
+.warning {
+	color: red;
+}
+
+body.main {
+	background: aliceblue;
+}
+
+#list {
+	background: mistyrose;
+}
+
+#list span { /* 후손 셀렉터 */
+	color: forestgreen;
+}
+
+h3:first-letter { /* 가상 클래스: 첫번째 문자 선택*/
+	color: red;
+	font-size: 25px;
+}
+
+li:hover { /* 가상 클래스, hover: 마우스를 올릴 경우 */
+	background: yellowgreen;
+}
+
+::selection { /* 가상 요소: 마우스로 드래그하면 글자는 빨간색, 바탕은 노란색 */
+	color: red;
+	background: yellow;
+}
+
+</style>
+</head>
+<body class="main">
+
+<h3>Web Programming</h3>
+<hr/>
+<div>
+	<div>2학기 <strong>학습 내용</strong>입니다.</div>
+	<ul id="list">
+		<li><span>HTML5</span></li>
+		<li><strong>HTML5</strong></li>
+		<li>JAVASCRIPT</li>
+	</ul>
+	<div class="warning">60점 이하는 F</div>
+</div>
+
+<!-- id: 유일 / class: 다중 -->
+
+</body>
+</html>
+
+
+<!-- 
+* 가상 선택자
+: 가상 클래스(:pseudo-class, ::), 가상 요소(:pseudo-element, :)
+콜론 한 개(:)만 써도 대부분의 브라우저에서 작동
+
+* 가상 요소
+가상 클래스: 실제로 존재하는 요소에 클래스 추가 없이 디자인을 입히기 위한 것 
+가상 요소: 실제로 존재하지 않는 요소를 만듦
+
+tag에 id or class 선언없이 바로 스타일을 직접 적용할 수 있는 간편함이 장점
+
+* 가상 클래스 기법
+-------------------------------------------------------------
+가상 클래스      의미
+-------------------------------------------------------------
+:first-child     여러 개의 반복되는 태그들중에서 첫 번째 요소
+:last-child      여러 개의 반복되는 태그들중에서 마지막 요소
+:link            링크의 기본 상태
+:active          요소 위에서 마우스가 눌려져 있는 상태
+:hover           요소에 마우스가 올라가 있는 상태
+:visited         방문했던 경험이 있는 링크
+:focus           요소에 포커스가 지정된 상태
+:checked         체크박스나 라디오버튼 등이 체크된 상태
+:selected        드롭다운에서 선택된 요소
+-->
