@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+<style type="text/css">
+div {
+	border: 1px solid red;
+}
+
+span {
+	border: 1px dotted blue;
+	font-weight: bold;
+	color: #0000ff;
+	font-style: italic;
+	text-decoration: underline;
+}
+</style>
+
+</head>
+<body>
+
+	<div><!-- div: block 방식: 화면의 1줄 영역을 다 차지하는 경우 -->
+		<font size="1"> size=1 </font><br/>
+		<font size="3" color="##ff6600"> size=3, color=orange </font><br/>
+		<font size="5" face="맑은고딕"> size=5, font=맑은 고딕</font><br/>
+		<font size="7" color="#0000ff" face="궁서"> size=7, color=blue, font=궁서 </font><br/>
+	</div>
+	<hr/>
+
+	<!-- font tag 중첩: child attribute 먼저 적용 -->
+	<div><!-- div: block 방식: 화면의 1줄 영역을 다 차지하는 경우 -->
+		<font size="3" color="##003300" face="굴림">
+			Font tag can be 
+			<font size="5" color="##ff0000" face="궁서"> Overlapping </font>
+			used
+		</font>
+	</div>
+	<hr/>
+	
+	<div>
+		<strong>Bold</strong><br/>
+		<u>UnderLine</u><br/>
+		<i>Italic</i><br/>
+		<strong><u><i>Overlapping</i></u></strong>
+	</div>
+	<hr/>
+	
+	<!-- 단어나 문장의 영역 지정 -->
+	<!-- 전체 적용보다 부분 적용이 적용 우선권을 가짐 -->
+	<div> <!-- 1줄: width, height 지정 가능 -->
+		<span>SPAN</span> 태그는 <!-- 글자: width, height 지정 X -->
+		<span>문장 단위로 텍스트 영역을 지정하는 것</span>인데,
+		그 자체로는 아무 역할도 하지 않고,
+		문장의 특정 구역에 <span>CSS 스타일</span>을 지정할 때 사용합니다.
+	</div>
+
+</body>
+</html>
