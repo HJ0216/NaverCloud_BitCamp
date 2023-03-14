@@ -1,0 +1,84 @@
+import numpy as np
+import pandas as pd
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
+
+
+# 1. Data
+path = './_data/ddarung/'
+train_csv = pd.read_csv(path+'train.csv', index_col=0)
+test_csv = pd.read_csv(path+'test.csv', index_col=0)
+submission = pd.read_csv(path+'submission.csv', index_col=0)
+train_csv = train_csv.dropna()
+print(train_csv.shape) # (1459, 10) -> (1328, 10)
+
+x = train_csv.drop(['count'], axis=1)
+print(x.shape) # [1459 rows x 9 columns]: dropna() count column 삭제
+
+y = train_csv['count']
+print(y.shape) # (1328,)
+
+
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y,
+    shuffle=True,
+    train_size=0.7,
+    random_state=111
+)
+
+print(x_train.shape, x_test.shape) # (929, 9) (399, 9)
+print(y_train.shape, y_test.shape) # (929,) (399,)
+
+
+# 2. Model Construction
+model = Sequential()
+model.add(Dense(64, input_shape=(9,)))
+model.add(Dense(64))
+model.add(Dense(32))
+model.add(Dense(1))
+
+
+# 3. Compile and train
+model.compile(loss='mse', optimizer='adam')
+hist = model.fit(x_train, y_train,
+          epochs=300,
+          batch_size=16,
+          validation_split=0.2,
+          verbose=1)
+
+
+# 4. evaluate and predict
+loss = model.evaluate(x_test, y_test)
+print("loss", loss)
+
+print(hist)
+print(hist.history)
+print(hist.history['loss'])
+print(hist.history['val_loss'])
+
+
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(9, 6)) 
+plt.plot(hist.history['loss'], c='red', marker='.', label='loss')
+plt.plot(hist.history['val_loss'], c='blue', marker='.', label='val_loss')
+
+plt.title('Seoul Ddarung loss')
+plt.xlabel('epochs')
+plt.ylabel('loss')
+plt.grid()
+plt.legend(loc='upper right')
+plt.show()
+
+
+
+'''
+Result
+loss 3518.984130859375
+
+'''
