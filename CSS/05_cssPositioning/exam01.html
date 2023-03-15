@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+
+<style type="text/css">
+
+div {
+	border: 2px solid yellowgreen;
+	color: blue;
+	background: aliceblue;
+}
+
+span {
+	border: 3px dotted red;
+	background: yellow;
+}
+
+</style>
+
+</head>
+<body>
+
+<h3>인라인, 인라인 블록, 블록</h3>
+<hr/>
+나는 <div>div</div>입니다. <br/><br/>
+<!-- div: block 단위, 1줄 영역 차지 -->
+나는 <div style="display: none;">div(none)</div>입니다. <br/><br/>
+나는 <div style="visibility: hidden;">div(visibility: hidden)</div>입니다. <br/><br/>
+<!--
+	display: none DIV 영역조차 잡히지 않은 상태로 보이지 않음
+	visibility: hidden DIV 영역은 잡히지만 보이지 않음
+-->
+나는 <div style="display: inline;">div(inline)</div>입니다. <br/><br/>
+<!-- span tag처럼 옆으로 배열할 수 있음, block 단위 해제, width, height 지정 X -->
+나는 <div style="display: inline-block; height: 50px;">div(inline-block)</div>입니다. <br/><br/>
+<!-- inline-block 옆으로 배열할 수 있음, width, height 지정 가능 -->
+나는 <div>div<span>span(block)</span>입니다. <br/><br/></div>
+나는 <div>div<span style="display: block">span(block)</span>입니다. <br/><br/></div>
+<!-- display: block, 1줄 단위 처리 -->
+
+</body>
+</html>
+
+<!--
+	div: block tag, width, height 지정 가능
+	span: inline tag, width, height 지정 불가능
+	inline + block: inline + block 장점 합체
+-->
+
+<!--
+	inline
+	- 줄바꿈 없이 순서대로 한 줄에 다른 엘리먼트들과 나란히 배치된다
+	- 컨텐트의 크기 만큼만 공간을 차지하므로 width, height 속성을 지정해도 무시된다
+	- padding, margin 속성은 좌우 간격만 반영이 되고 상하 간격은 반영되지 않는다
+	- <span>, <a>, <em> 등
+
+	block
+	- 혼자 한 줄을 차지한다
+	- 매번 줄바꿈이 되어 여러 줄에 보이게 된다
+	- width, height, padding, margin 속성이 모두 반영된다
+	- <div>, <p>, <h1> 등
+
+	inline-block
+	- inline 엘리먼트처럼 전후 줄바꿈 없이 한 줄에 다른 엘리먼트들과 나란히 배치된다.
+	- inline에서 불가능하던 width, height, padding, margin 속성의 상하 간격 지정이 가능하다.
+	- inline-block을 이용하면 여러 개의 엘리먼트를 한 줄에 정확히 원하는 너비만큼 배치할 수 있기 때문에 레이아웃에 활용할 수 있다.
+	- <button>, <select> 등
+
+	visibility 속성
+  - 기본값은 ‘visible'이며 'hidden'을 지정할 경우에는 지정된 요소가 보이지 않게 된다.
+  - 'display: none;'은 원래 없었던 것처럼 표현되지만, 
+    'visibility: hidden'은 보이지만 않고 공간은 유지된다.
+-->
