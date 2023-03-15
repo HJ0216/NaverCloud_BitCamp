@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam05 here</title>
+
+<style type="text/css">
+
+div {
+	display: inline-block; /*한 줄 단위가 아닌 옆쪽으로 나열*/
+	width: 50px;
+	height: 50px;
+	border: 1px solid lightgray;
+	text-align: center;
+	color: ghostwhite;
+	background: salmone;
+}
+div#down:hover { /*:hover 가상 클래스, 마우스가 올라갔을 때*/
+	position: relative;
+	left: 20px;
+	top: 20px;
+	background: green;
+	/*나의 위치를 기준으로 left에서 20px 이동 + top 20px 이동 시, hover event 발생*/
+}
+div#up:hover { /*:hover 가상 클래스, 마우스가 올라갔을 때*/
+	position: relative;
+	left: -20px;
+	/*right: 20px;*/
+	top: -20px;
+	/*bottom: 20px;*/
+	background: green;
+	/*나의 위치를 기준으로 right에서 20px 이동 + bottom 20px 이동 시, hover event 발생*/
+}
+
+</style>
+
+</head>
+<body>
+
+<h3>상대 배치, relative</h3>
+<hr/>
+<div>T</div>
+<div id="down">h</div>
+<div>a</div>
+<div>n</div>
+<div id="up">k</div>
+<div>s</div>
+
+</body>
+</html>
+
+<!-- 
+	position 속성
+	value: absolute, relative, fixed
+	position attribute: left, right, top, bottom
+	(1) position: absolute;
+	  - Parent tag location을 기준으로 상대적 배치
+	  - HTML 문서에 2개 이상의 요소가 나열되면, 뒤에 배치되는 요소는 앞에 놓인 요소를 기준으로 배치
+		‘position: absolute’으로 지정 시, 다음 요소가 이 블록을 인지하지 못한 채 주어진 절대값을 기준으로 배치된다.
+	  - ‘position: absolute’ 지정한 후, left, right, top, bottom 속성으로 그 위치를 지정할 수 있다.
+
+	(2) position: relative;
+	  - 자기 자신을 기준으로 상대적 배치
+	  - 기준값 기준으로 상대적으로 배치된다.
+	  - ‘position: relative’로 지정된 후, left, right, top, bottom의 위치 값들은 relative가 지정된 블록 그
+	    자신의 위치에서 지정한 값만큼 이동하게 된다.
+	  - ‘position: absolute’를 지정하는 경우, 이를 감싸는 블록에는 ‘position: relative’로 지정해야 한다.
+
+	(3) position: fixed;
+	  - view port(현재 보여지는 browser 화면)을 기준으로 상대적 배치
+	  - 위치는 항상 <body>를 기준으로 위치
+	  - 위치는 고정
+	  	  
+	(4) z-index
+	  - position을 지정한 여러 블록이 겹치게 되면, 나중에 작성한 블록이 위로 올라가게 된다.
+	  - z-index 속성으로 블록의 위, 아래의 위치를 조정할 수 있다.
+	  - z-index의 큰 값이 위로 올라간다.
+	  - 기본값이 0, 음수 ~ 양수까지 줄 수 있다
+ 	  - div가 겹칠 때, 누구를 제일 앞쪽에 배치할 것인가
+ -->

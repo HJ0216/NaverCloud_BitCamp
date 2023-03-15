@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam03 here</title>
+
+<style type="text/css">
+
+p#float {
+	float: right;
+	border: 1px dotted black;
+	width: 7em; /* em: 1글자 단위 */
+	padding: 0.25em; /*padding: 안쪽 여백*/
+	margin: 1em; /*margin: 바깥쪽 여백*/
+}
+
+p.text1 {
+	margin-right: 10em;
+	text-align: justify;
+}
+
+p.text2 {
+	clear: both;
+	/*
+	p#float{float: right;}으로 인해 나머지 text가 오른쪽 정렬이된 p#float에 맞춰짐
+	float 삽입 후 줄바꿈을 진행하고자 할 경우, clear: both 선언 필요
+	 */
+}
+
+</style>
+
+</head>
+<body>
+<h3>학기말 공지</h3>
+<hr/>
+<div>
+	<p id="float">24일은 피아니스트 조성진의 크리스마스 특별 연주가 있습니다.</p>
+	<!-- p tag: 줄간 공백 존재 -->
+	<p class="text1">
+	이제 곧 겨울 방학이 시작됩니다. 학기 중 못다한 Java, C++, 프로그래밍 열심히 하기 바랍니다.
+	인턴을 준비하는 학생들은 프로젝트 개발에 더욱 힘쓰세요. 그럼 다음 학기에 만나요.
+	</p>
+	<p class="text2">
+	이제 곧 겨울 방학이 시작됩니다. 학기 중 못다한 Java, C++, 프로그래밍 열심히 하기 바랍니다.
+	인턴을 준비하는 학생들은 프로젝트 개발에 더욱 힘쓰세요. 그럼 다음 학기에 만나요.
+	</p>
+</div>
+</body>
+</html>
+
+<!-- 
+	float 속성
+  	1) left, right
+     - float를 지정하면 다음에 오는 컨텐츠가 float를 지정한 블록 주위를 감싸게 된다.
+     - html 요소 중에서 인라인 요소나 블록 요소는 그 결과가 무척 다르다. 
+      그러나, float를 지정하면 두 요소는 같은 결과를 보여준다. 
+      인라인 요소가 블록 요소처럼 크기를 지정할 수 있게 된다.
+     
+  	2) clear 속성
+  	 - float를 해지한다.
+  	 * 이후 코드에 영향을 미치므로 사용 후 clear 필수
+     - clear: left;      /* float: left; 해지 */
+     - clear: right;      /* float: right; 해지 */
+     - clear: both;      /* float: left;, float: right; 둘 다 해지 */
+ -->
