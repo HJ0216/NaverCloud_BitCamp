@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam07 here</title>
+<style type="text/css">
+div {position: absolute;}
+img {position: absolute;}
+/*부모 tag인 div를 기준으로 정렬*/
+
+#spadeA {left: 10px; top: 20px; z-index: -3;}
+/*z-index: tag 속성의 우선순위 부여
+		   값이 클수록 가장 앞쪽에 배치*/
+#spade2 {left: 40px; top: 30px; z-index: 2;}
+#spade3 {left: 70px; top: 40px; z-index: 3;}
+#spade7 {left: 100px; top: 50px; z-index: 7;}
+
+</style>
+</head>
+<body>
+
+<h3>z-index property</h3>
+
+<hr>
+<div>
+	<img id="spadeA" src="../img/spade-A.png" width="100" height="140" alt="spadeA">
+	<img id="spade2" src="../img/spade-2.png" width="100" height="140" alt="spade2">
+	<img id="spade3" src="../img/spade-3.png" width="100" height="140" alt="spade3">
+	<img id="spade7" src="../img/spade-7.png" width="100" height="140" alt="spade7">
+</div>
+
+</body>
+</html>

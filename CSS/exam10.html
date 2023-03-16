@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam10 here</title>
+
+<style type="text/css">
+.imgDiv {
+	border: 1px solid blue;
+	width: 150px;
+	height: 150px;
+	margin: 100px;
+	overflow: hidden; /*img 사이즈 지정 후 해당 사이즈를 넘는 영역 hidden*/
+}
+img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover; /*상위 div에 맞게 들어가도록 설정*/
+}
+.imgDiv:hover img {
+	transform: scale(1.4) /*마우스 올릴 시, 사이즈 확대*/
+}
+.imgDiv img{
+	/*애니메이션 효과: 마우스 오버 시, 이미지가 즉시 커지지 않고 2.0sec의 시간에 걸쳐 커짐*/
+	transition: all 0.20s linear;
+}
+</style>
+
+</head>
+<body>
+
+<div class="imgDiv">
+	<img src="../img/christmastree.png" alt="ChristMas Tree">
+</div>
+
+
+</body>
+</html>
+
+<!-- 
+transform: scale
+- box안의 이미지를 확대할 때 사용한다.
+
+transition
+- 시간의 흐름을 줘서 부드럽게 확대되도록 설정한다.
+- ease : 기본값, 느리게 시작해서 빠르게 전환한 다음 다시 천천히 종료
+  linear : 처음부터 끝까지 같은 속도로 전환
+ -->

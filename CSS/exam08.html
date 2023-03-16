@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam08 here</title>
+
+<style type="text/css">
+.item span {
+	visibility: hidden;
+	/* visibility: hidden; - span tag 영역 존재
+	   display: none; - span tag 영역 삭제		*/
+}
+.item:hover span {
+/*
+가상 클래스 활용: hover, 마우스가 올라가면 visible로 변경
+				  hidden: 내부 span <- 가상클래스(hover) 적용 X
+				  hover: 외부 span(hidden 처리되지 않음)
+				  -> hover: 외부 span, visible: 내부 span
+*/
+	visibility: visible;
+	color: blue;
+}
+
+</style>
+
+</head>
+<body>
+
+<h3>다음 빈 곳에 숨은 단어는?</h3>
+
+<hr/>
+<ul>
+	<li>I (<span class="item">___<span>love</span></span>) you.
+	<li>CSS is Cascading
+		(<span class="item"><span>Style</span></span>) Sheet.
+	<li>응답하라 (<span class="item"><span>1998</span></span>).
+</ul>
+
+</body>
+</html>
+
+
+<!-- 
+span: 
+ -->
