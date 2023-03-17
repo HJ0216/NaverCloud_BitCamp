@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam02 here</title>
+<style type="text/css">
+div {
+	width: 150px;
+	height: 70px;
+	/* margin: top&bottom left&right */	
+	padding: 10px;
+	border: 10px solid gold;
+	background-image: url("../img/spongebob.png");
+	background-size: 150px 100px; /* width, height */
+	background-repeat: no-repeat;
+	background-position: center;
+}
+div.redBox {
+	box-shadow: 10px 10px red;
+}
+div.blurBox {
+	box-shadow: 10px 10px 5px skyBlue;
+}
+.multiEffect {
+	box-shadow: 2px 2px 2px black,
+				0px 0px 25px blue,
+				0px 0px 5px darkblue;
+}
+
+</style>
+</head>
+<body>
+
+<h3>박스 그림자 만들기</h3>
+<hr/>
+<div class="redBox">스펀지밥과 함께</div>
+<div class="blurBox">뚱이와 함께</div>
+<div class="multiEffect">징징이와 함께</div>
+
+</body>
+</html>
