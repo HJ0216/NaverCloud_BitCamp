@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+<style type="text/css">
+@keyframes bomb {
+	from {font-size: 500%;}
+	to {font-size: 100%;}
+}
+h3 {
+	animation-name: bomb;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+}
+</style>
+</head>
+<body>
+
+<h3>꽝!</h3>
+<hr/>
+<p>꽝! 글자가 3초동안 500%에서 시작하여 100%로 바뀌는 애니메이션입니다. <br/>
+무한 반복합니다.</p>
+
+</body>
+</html>
+
+<!-- 
+@keyframes
+- @keyframes로 어떤 모양에서 어떤 모양으로 변할지를 지정한다.
+- IE는 버전 10 이상에서 사용할 수 있다.
+
+@keyframes name {
+    0% { ... }
+    n% { ... }
+    100% { ... }
+}
+name : 애니메이션의 이름을 정합니다.
+0% : 시작할 때의 모양을 정합니다. 0% 대신 from을 사용해도 됩니다.
+n% : n% 일 때의 모양을 정합니다.
+100% : 끝날 때의 모양을 정합니다. 100% 대신 to를 사용해도 됩니다.
+ -->
