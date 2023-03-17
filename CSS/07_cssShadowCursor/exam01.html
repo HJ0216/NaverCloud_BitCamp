@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+<style type="text/css">
+div {
+	font: normal 24px Verdana;
+}
+div.dropText {
+	text-shadow: 3px 3px;
+}
+div.redText {
+	text-shadow: 3px 3px red;
+}
+div.blurText {
+	text-shadow: 3px 3px 5px skyBlue;
+}
+div.glowEffect {
+	text-shadow: 0px 0px 3px dodgerblue;
+}
+div.wordArtEffect {
+	color: white;
+	text-shadow: 0px 0px 3px darkBlue; /*좌 우 투명도*/
+}
+div.threeDEffect {
+	color: white;
+	text-shadow: 2px 2px 4px black;
+}
+div.multiEffect {
+	color: yellow;
+	text-shadow: 2px 2px 4px black,
+				 0px 0px 25px blue,
+				 0px 0px 5px darkblue;
+}
+
+</style>
+
+</head>
+<body>
+
+<h3>텍스트 그림자 만들기</h3>
+<hr/>
+<div class="dropText">Drop Shadow</div>
+<div class="redText">Red Shadow</div>
+<div class="blurText">Blur Shadow</div>
+<div class="glowEffect">Glow Effect</div>
+<div class="wordArtEffect">WordArt Effect</div>
+<div class="threeDEffect">3D Effect</div>
+<div class="multiEffect">Multiple Shadow Effect</div>
+
+</body>
+</html>
+
+<!-- 
+text-shadow: offset-x offset-y blur-radius color | none | initial | inherit
+
+offset-x : 그림자의 수평 거리를 정합니다. (필수)
+         offset-x의 값을 증가시키면 그림자의 위치가 오른쪽으로 이동합니다.
+
+offset-y : 그림자의 수직 거리를 정합니다. (필수)
+         offset-y의 값을 증가시키면 그림자의 위치가 아래로 이동합니다.
+
+blur-radius : 흐림 정도를 정합니다. (선택 : 값을 정하지 않으면 0)
+            blur-radius의 값을 증가시키면 그림자가 흐려집니다.
+
+color : 색을 정합니다. (선택 : 값을 정하지 않으면 브라우저 기본값)
+
+none : 글림자 효과를 없앱니다.
+
+initial : 기본값으로 설정합니다.
+
+inherit : 부모 요소의 속성값을 상속받습니다.
+-->
