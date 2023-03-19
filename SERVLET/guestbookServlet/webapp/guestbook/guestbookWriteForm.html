@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+div {
+	color: red;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+</style>
+
+</head>
+<body>
+
+<form name="guestbookWriteForm" method="post" action="/guestbookServlet/GuestbookWriteServlet">
+<!-- http://localhost:8080 생략 가능 -->
+
+	<table border="1" cellpadding="5" cellspacing="0">
+
+	
+	<tr>
+		<th width="70">작성자</th>
+		<td><input type="text" name="name" id="name" placeholder="작성자 입력">
+		<div id="nameDiv"></div>
+		</td>
+	</tr>
+
+
+	<tr>
+		<th width="70">이메일</th>
+		<td><input type="text" name="email" id="email" placeholder="이메일 입력" size="25">
+		<div id="emailDiv"></div>
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<th width="70">홈페이지</th>
+		<td><input type="text" name="homepage" id="hoomepage" value="http://" size="35">
+		<div id="homepageDiv"></div>
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<th width="100">제목</th>
+		<td><input type="text" name="subject" id="subject" placeholder="제목 입력" size="100">
+		<div id="subjectDiv"></div>
+		</td>
+	</tr>
+
+
+	<tr>
+		<th width="70">내용</th>
+		<td><textarea name="content" id="content" cols="50" rows="10" placeholder="내용 입력" ></textarea>
+		<div id="contentDiv"></div>
+		</td>
+	</tr>
+
+
+	<tr>
+		<td colspan="2" align="center">
+			<input type="button" value="글작성" onclick="checkWrite()">
+			<input type="reset" value="다시작성">
+			<input type="button" value="글조회" onclick="location.href='guestbookSearch.html'">
+			<!-- onclick 시, 무조건 js로 가서 해당 함수를 찾음, js가 아닌 경우, locaiton 입력 -->
+			<input type="button" value="글목록" onclick="location.href='/guestbookServlet/GuestbookListServlet?pg=1'">
+			<!-- URL ? PARAMETER, PAGE는 지정어로 사용 불가 PG사용, 시작은 무조건 1이므로 PARAMETER를 직접 작성(GET 방식) -->
+		</td>
+	</tr>
+
+<!-- http://localhost:8080/geustbookServlet/guestbook/guestbookSearch.html
+     /guestbookServlet/guestbook/guestbookSearch.html
+     ./guestbookSearch.html
+     guestbookSearch.html -->
+
+	</table>
+
+</form>
+
+
+<script src="http://localhost:8080/guestbookServlet/js/guestbook.js">
+</script>
+
+</body>
+</html>
