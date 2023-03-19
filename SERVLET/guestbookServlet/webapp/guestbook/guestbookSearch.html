@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+#seqDiv {
+	color: red;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+</style>
+
+</head>
+<body style="background-color: white;">
+
+<form name="guestbookSearchForm" method="get" action="/guestbookServlet/guestbookSearchServlet">
+	<table border="1" cellpadding="5" cellspacing="0">	
+	
+	<div style="border: 1px solid red; text-align: center;">
+	<tr>
+		<th width="150">글번호 입력: </th>
+		<td><input type="text" name="seq" id="seq" placeholder="글번호 입력">
+		<div id="seqDiv" style="border: 1px solid blue;"></div>
+		<!-- div 영역에 소속된 div는 상위 div 속성을 적용받음 -->
+		</td>
+		<td><input type="button" value="검색" onclick="checkSearch()">
+		<!-- input type: "submit"으로 할 경우, 유효성 검사를 진행하지 않음 -->
+		</td>
+	</tr>
+	</div>
+	
+	</table>
+</form>
+
+
+<script src="http://localhost:8080/guestbookServlet/js/guestbook.js">
+</script>
+
+</body>
+</html>
