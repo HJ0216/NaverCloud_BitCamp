@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+div {
+	color: red;
+	font-size: 8pt;
+	font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<!-- http://localhost:8080/memberServlet/member/writeForm.html -->
+<body>
+
+<form name="writeForm" method="post" action="http://localhost:8080/memberServlet/WriteServlet">
+
+
+<!--
+
+post method: url에 key=value param을 넘길 때, 정보가 공개되므로 해당 param을 숨기고자할 때 사용
+html: post -> 입력값이 숨겨진 query의 param 형태로 Servlet에 전달
+
+Servlet 역할 1. 쿼리에서 넘어온 데이터 받기 // 2. DB에 저장하기 // 3. 데이터 받고 저장 후 응답하기
+
+Servlet 역할이 과중: MemberDAO*.java에게 2. DB 저장 업무를 넘김
+* DAO: Data Access Object, DTO: Data Transfer Object, VO: Value Object
+
+MemberDAO.java: 일반 java or Servlet
+일반 java(extends Object // new -> 객체 생성 필요)
+Servlet(extends HttpServlet // tomcat: new 수행 -> 기재 필요 X // + 요청에 대한 응답 필요)
+DB와의 연동을 위한 MemberDAO: 일반 java 
+-> 일반 java 파일과 SQL 연동: JDBC
+JDBC 사용을 위한 과정:
+1. driver loading: ojdbc8.jar 파일 /lib에 저장
+2. Connection(SQL: URL, SQL: USERNAME, SQL: PASSWORD)
+3. PreparedStatement를 통한 java 내 SQL문 시행
+
+ -->
+
+	<table border="1" cellpadding="5" cellspacing="0">
+	
+	<tr>
+		<th width="70">이름</th>
+		<td><input type="text" name="name" id="name" placeholder="이름 입력">
+		<div id="nameDiv"></div>
+		<!-- 유효성검사 시, 입력 요청 문구 위치 지정 -->
+		</td>
+	</tr>
+
+
+	<tr>
+		<th width="70">아이디</th>
+		<td><input type="text" name="id" id="id" placeholder="아이디 입력">
+		<div id="idDiv"></div>
+		</td>
+	</tr>
+	
+
+	<tr>
+		<th width="70">비밀번호</th>
+		<td><input type="password" name="pwd" id="pwd">
+		<!-- input type = password: 입력 글자 비공개 -->
+		<div id="pwdDiv"></div>
+	</tr>
+
+
+	<tr>
+		<th width="70">재확인</th>
+		<td><input type="password" name="repwd" id="repwd">
+		<div id="repwdDiv"></div>
+		</td>
+	</tr>
+
+
+	<tr>
+		<th width="70">성별</th>
+		<td><input type="radio" name="gender" id="gender_m" value="0" checked="checked">
+		<label for="gender_m">남자</label>
+		
+		&nbsp; &nbsp; &nbsp; <!-- 띄어쓰기 -->
+						
+		<input type="radio" name="gender" id="gender_w" value="1">
+		<label for="gender_w">여자</label>
+		</td>
+	</tr>
+
+
+	<tr>
+		<th width="70">이메일</th>
+			<td><input type="text" name="email1" style="width: 120px;">
+			@ <!-- http 줄바꿈: 문자와 입력칸간 공백 부여 -->
+			<input type="text" name="email2" style="width: 120px;">
+			<select name="email3" style="width: 120px;" onChange="javascript:select()">
+			<!-- input type="button": onClick / "select": onChange / "submit": action -->
+			<option value="" selected>직접입력</option>
+			<option value="naver.com">naver.com</option>
+			<option value="gmail.com">gmail.com</option>
+			<option value="nate.com">nate.com</option>
+		</select>
+		<div id="emailDiv"></div>
+		</td>
+	</tr>
+
+
+	<tr>
+		<th width="70">휴대폰</th>
+		<td><select name="tel1" style="width: 60px;">
+			<option value="010" selected>010</option>
+			<option value="011">011</option>
+			<option value="019">019</option>
+			<option value="070">070</option>
+			</select>
+			- <!-- 줄바꿈: text 박스와 문자 간격 부여 -->
+			<input type="text" name="tel2" style="width: 60px;">
+			-
+			<input type="text" name="tel3" style="width: 60px;">
+			<div id="telDiv"></div>
+		</td>
+	</tr>
+
+
+	<tr>
+		<th width="70">주소</th>
+		<td><input type="text" name="zipcode" id="zipcode" size="5" placeholder="우편번호" readonly>
+			<input type="button" value="우편번호검색" onclick="execDaumPostcode()"><br/>
+			<input type="text" name="addr1" id="addr1" placeholder="주소" style="width: 400px;" readonly><br/>
+			<input type="text" name="addr2" id="addr2" placeholder="상세주소" style="width: 400px;">
+			<div id="addressDiv"></div>
+		</td>
+	</tr>
+
+
+	<tr>
+		<td colspan="2" align="center">
+			<input type="button" value="회원가입" onclick="checkWrite()">
+			<!-- button ~ onclick: js를 사용하므로 'javascript:' 생략 가능 -->
+			<input type="reset" value="다시작성">
+		</td>
+	</tr>
+
+
+	</table>
+</form>
+
+
+<!-- 다음 우편번호 검색 open source 사용 -->
+
+<!--
+html + js 코드를 함께 작성 시, 문서가 과도하게 길어지는 것을 방지하기 위해 js 코드 파일을 따로 만듦
+
+순서 유의하여 script src 작성
+member.js src를 먼저 기재할 경우, function execDaumPostcode() 실행을 위한 js 코드를 알 수 없는 문제 발생
+그러므로 src 작성 순서: daum.js -> member.js
+-->
+
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="http://localhost:8080/memberServlet/js/member.js">
+// <script type = "text/javascript" src="http://localhost:8080/memberServlet/js/member.js">
+// type = "text/javascript" 생략 가능
+
+// 절대주소: "http://localhost:8080/memberServlet/js/member.js"
+// 상대주소: "../js/member.js"
+
+</script>
+
+
+</body>
+</html>
