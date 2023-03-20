@@ -1,0 +1,266 @@
+
+@charset "UTF-8";
+@import url("reset.css"); /*.css import*/
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); /*나눔고딕 import*/
+
+/*hidden css*/
+hr {
+	display: none;
+	/*visibility: hidden;*/
+}
+
+.blind, legend {
+	display: block;
+	overflow: hidden; /*넘치면 hidden*/
+	position: absolute;
+	left: 0;
+	top: -1000em; /*화면 밖으로 설정*/
+}
+
+/*skip css*/
+.skip a {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: -1000em;
+	z-index: 9999; /*z-index: 우선순위 부여*/
+	width: 100%;
+	background-color: navy;
+	color: white;
+	font: bold 1.3em Tahoma, sans-serif;
+	text-decoration: none;
+	text-align: center;
+}
+
+.skip a:hover, .skip a:active, .skip a:focus {
+	top: 0;
+	padding: 0.5em 0;
+}
+
+#wrap {
+	width: 760px;
+	margin: 0 auto; /*auto: 가운데 정렬*/
+}
+
+
+/*header start*/
+#header {
+	position: relative; /*top nav의 absolute를 위해 설정*/
+	/* 어떤 영역에 'position: absolute'를 지정할 경우에는,
+   	   그 영역을 감싸는 부분에 반드시 'position: relative'를 지정한다. 
+       그 상위 영역이 'absolute' 위치의 기준이 된다. */
+    padding-bottom: 99px;
+    border-bottom: 1px solid #cccccc; /*이미지 아래 밑줄*/
+    background: url("../img/bg_header.png") no-repeat 50% 100%;
+}
+
+
+.logo {
+	padding: 12px 0px 12px 26px; /*top right bottom left*/
+}
+
+.logo a {
+	display: block;
+	overflow: hidden;
+	width: 90px;
+	height: 30px;
+	background: url("../img/logo.png") no-repeat;
+	text-indent: -999em; /*양수: 들여쓰기, 음수: 내어쓰기*/
+}
+
+
+.topnav {
+	position: absolute;
+	right: 35px;
+	top: 18px;	
+}
+
+.topnav dd {
+	float: left;
+	padding-right: 11px;
+	margin-right: 10px;
+	background: url("../img/bg_topnav.png") no-repeat 100% 50%;
+}
+.topnav dd:last-child { /*마지막 막대기 이미지 삭제*/
+	padding-right: 0;
+	margin-right: 0;
+	background: none;
+}
+
+.topnav dd a {
+	color: black;
+	font-size: 0.9em;
+}
+
+.mainnav {
+	padding-left: 50px;
+	background-color: #005B9B;
+}
+
+.mainnav:after { /*상위 영역인 메뉴바의 float 해제*/
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.mainnav li {
+	float: left;
+}
+
+.mainnav li a {
+	display: block;
+	padding: 0px 13px;
+	background-color: #005B9B;
+	color: #ffffff;
+	font: bold 16px/40px 'Nanum Gothic', sans-serif;
+	/*'16px/': 줄의 높이(line height) */
+	text-transform: uppercase;
+	text-decoration: none;
+	
+}
+
+.mainnav li a:hover {
+	color: #660000;
+	background-color: #ffcc00;
+}
+
+/*header end*/
+
+
+/*container start*/
+#container {
+	background: url(../img/bg_snb.png) repeat-y 170px 0;
+	/*snb 왼쪽 경계선 추가, 이미지를 170px로 y축 반복*/
+}
+
+#container:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+
+/*snb(navigation) start*/
+.snb {
+	float: left; /*왼쪽 정렬*/
+	width: 170px;
+}
+.snb h2 {
+	padding: 28px 14px 8px 0px;
+	margin-left: 11px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #cccccc; /*About 밑선*/
+	color: #005B9B;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: right;
+}
+.snb ul {
+	margin-left: 11px;
+}
+.snb ul a {
+	display: block; /*block: 1줄 단위*/
+	padding-right: 14px;
+	color: #005B9B;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: right;
+	text-decoration: none;
+	line-height: 30px; /*줄 간격*/
+}
+.snb ul a:hover {
+	color: #660000;
+	text-decoration: underline;
+}
+
+/*snb(navigation) end*/
+
+
+/*content start*/
+#content {
+	position: relative; /*position: absolute 기준으로 relative*/
+	float: right;
+	width: 560px;	
+}
+.locate {
+	position: absolute;
+	right: 28px;
+	top: 26px;
+	color: #ccc;
+	font-size: 0.9em;
+	word-spacing: 0.3em;
+}
+.locate a {
+	color: #666666;
+}
+.locate strong {
+	font-weight: normal; /*strong tag를 font-weight로 변경*/
+	color: #666666;
+	word-spacing: 0em;
+}
+
+#content h2 {
+	padding: 24px 0;
+	color: #005B9B;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#content .thum { /*snb와 그림 사이의 간격*/
+	float: left;
+	margin-left: 14px;
+}
+
+#content .thum img {
+	width: 114px;
+	height: 111px;
+	border: 1px solid #cccccc;
+}
+#content .text {
+	margin-left: 148px;
+}
+#content .text p {
+	margin-bottom: 15px;
+	line-height: 1.4; /*현재 글자의 1.4배*/
+}
+
+/*content end*/
+/*container end*/
+
+/*footer start*/
+#footer {
+	border-top: 1px solid #cccccc;
+	padding: 18px 30px 40px 20px;
+	color: #666;
+	font-size: 0.9em;
+}
+#footer:after {
+	content: '';
+	display: block;
+	clear: both; /*float 사용 시, clear: both; 기재*/
+}
+.btmnav {
+	float: right;
+}
+.btmnav dd {
+	float: left;
+}
+.btmnav dd:after {
+	content: 'ㅣ';
+	padding: 0 0.7em; /*top&bottom left&right*/
+	color: #999;
+}
+.btmnav dd:last-child:after {
+	content: ''; /*content를 비우면 last-child:after 공란 출력*/
+	padding: 0 0;
+}
+.copy {
+	float: left;
+	line-height: 1.8;
+}
+/*footer end*/
+
