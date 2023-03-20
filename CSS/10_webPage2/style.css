@@ -1,0 +1,238 @@
+@charset "UTF-8";
+@import url("reset.css"); /*.css import*/
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
+
+
+/*hidden css*/
+hr {
+	display: none;
+	/*visibility: hidden;*/
+}
+
+.blind {
+	display: none;
+}
+
+/*skip css*/
+.skip a {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: -1000em;
+	z-index: 9999; /*z-index: 우선순위 부여*/
+	width: 100%;
+	background-color: navy;
+	color: white;
+	font: bold 1.3em Tahoma, sans-serif;
+	text-align: center;
+}
+
+.skip a:hover, .skip a:active, .skip a:focus {
+	top: 0;
+	padding: 0.5em 0;
+}
+
+#wrap {
+	margin: 0 auto; /*auto: 가운데 정렬*/
+	width: 1200px;
+}
+
+
+/*header start*/
+.mainnav {
+	padding-left: 50px;
+	background-color: #005B9B;
+}
+
+.mainnav:after { /*상위 영역인 메뉴바의 float 해제*/
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.mainnav li {
+	float: left;
+	padding-right: 100px;
+	padding-top: 20px;
+}
+
+.mainnav li a {
+	display: inline-block;
+	padding: 0px 13px;
+	background-color: #005B9B;
+	color: #ffffff;
+	font: bold 16px 'Nanum Gothic', sans-serif;
+	/*'16px/': 줄의 높이(line height) */
+	
+}
+
+.mainnav li a:hover {
+	color: #000000;
+}
+
+#logo {
+	font-family: 'Merienda', sans-serif;
+	font-size: 32px;
+	float: left;
+}
+#menu {
+	padding-top: 30px;
+	padding-bottom: 5px;
+	float: right;
+}
+
+/*header end*/
+
+
+/*thum start*/
+.thum { /*snb와 그림 사이의 간격*/
+	float: center;
+}
+
+.thum img {
+	width: 100%;
+	height: 100%;
+}
+/*thum end*/
+
+
+/*container start*/
+#container {
+	
+}
+
+#container:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+
+/*snb(navigation) start*/
+.snb {
+	float: left; /*왼쪽 정렬*/
+	width: 600px;
+}
+.snb h2 {
+	display: inline-block;
+	padding: 10px 10px 10px 10px;
+	margin-left: 10px;
+	margin-bottom: 0px;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: right;
+	background:silver;
+}
+
+.snb div {
+	border-bottom:1px solid black;
+}
+
+.snb ul {
+	margin-left: 20px;
+}
+.snb ul a {
+	display: block; /*block: 1줄 단위*/
+	padding-right: 14px;
+	padding-left: 10px;
+	color: #005B9B;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	line-height: 30px; /*줄 간격*/
+	color: black;
+}
+.snb ul a:hover {
+	color: #660000;
+	text-decoration: underline;
+}
+/*snb(navigation) end*/
+
+
+#snb_icon {
+	float: right;
+	width: 600px;
+}
+
+.snb_icon1 {
+	margin-top: 28px;
+	display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.snb_icon2 {
+	display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.snb_icon3 {
+	display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+
+.icon {
+	display: inline-block; /*block: 1줄 단위*/
+	width: 120px;
+    height: 120px;
+    border-radius: 70%;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*container end*/
+
+/*footer start*/
+#footer {
+	border-top: 2px solid #000000;
+	padding: 18px 30px 40px 20px;
+	color: #666;
+	font-size: 0.9em;
+	margin-top: 10px;
+}
+#footer:after {
+	content: '';
+	display: block;
+	clear: both; /*float 사용 시, clear: both; 기재*/
+}
+.btmnav {
+	float: left;
+}
+.btmnav dd {
+	float: left;
+	color: gray;
+}
+.btmnav dd:after {
+	content: 'ㅣ';
+	padding: 0 0.7em; /*top&bottom left&right*/
+	color: #999;
+}
+.btmnav dd:last-child:after {
+	content: ''; /*content를 비우면 last-child:after 공란 출력*/
+	padding: 0 0;
+}
+.btmnav2 dd {
+	float: left;
+	color: gray;
+	font-size: 10px;
+}
+.sns {
+	float: right;
+	line-height: 3.0;
+}
+/*footer end*/
