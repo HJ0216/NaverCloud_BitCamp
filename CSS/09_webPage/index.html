@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index here</title>
+
+<link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+
+<dl class="skip"><!-- dl: dt(용어)와 dd(설명) 그룹의 목록을 감싸서 설명 목록 생성 -->
+	<dt class="blind">skip navigation</dt><!-- dt: 용어 -->
+	<dd><a href="#content">skip to content</a></dd>
+	<!-- dd: 용어 설명 -->
+	<!-- a: href 특성을 통해 다른 페이지나 같은 페이지의 어느 위치,
+	        파일, 이메일 주소와 그 외 다른 URL로 연결할 수 있는 하이퍼링크를 만듦
+	 -->
+</dl><!-- //skip -->
+<hr/>
+
+<div id="wrap">
+	<div id="header">
+		<h1 class="logo"><a href="#">LOGO</a></h1>
+		
+		<dl class="topnav">
+			<dt class="blind">top navigation</dt>
+			<dd><a href="#">Login</a></dd>
+			<dd><a href="#">Member Join</a></dd>
+			<dd><a href="#">Site Map</a></dd>
+		</dl>
+		
+		<h2 class="blind">main navigation</h2>
+		<ul class="mainnav"><!-- ul: 정렬되지 않은 목록 -->
+			<li><a href="#">About</a></li>
+			<!-- li: 정렬 목록(<ol>), 비정렬 목록(<ul>, 혹은 메뉴(<menu>) 안에서 목록의 항목을 나타냄 -->
+			<li><a href="#">Services</a></li>
+			<li><a href="#">Portfolio</a></li>
+			<li><a href="#">Contact us</a></li>
+		</ul>
+	</div><!-- //header -->
+<hr/>
+		
+	
+	<div id="container">
+		<div class="snb"><!-- side navigation bar -->
+			<h2>About</h2>
+			<ul>
+				<li><a href="#">Company Info</a></li>
+				<li><a href="#">History</a></li>
+				<li><a href="#">Location</a></li>
+			</ul>
+		</div><!-- //snb -->
+		<hr/>
+		
+		<div id="content">
+			<p class="locate">
+				<a href="#">Home</a> &gt;
+				<a href="#">About</a> &gt;
+				<strong>Company Info</strong>
+			</p>
+			<!-- p: 하나의 문단, 보통 인접 블록과의 여백과 첫 줄의 들여쓰기로 구분 -->
+			
+			<h2>Company Info</h2>
+			<p class="thum">
+				<img src="../img/treethum.png" alt="tree thumnail photo">
+				<!--
+					img: 이미지 삽입,
+					src: 이미지 경로,
+					alt: 이미지의 텍스트 설명
+				-->
+			</p>
+			
+			<div class="text">
+				<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, ea, impedit ut 
+		        perspiciatis assumenda ipsam minus veritatis tenetur nisi commodi laboriosam 
+		        quae sint nulla? Obcaecati, corrupti, placeat, quasi repudiandae deleniti quod 
+		        aliquam facere vitae cumque sapiente sequi qui asperiores eos ipsum perferendis 
+		        tenetur veritatis nesciunt dolores corporis sint nisi numquam excepturi dolor 
+		        aspernatur natus provident et itaque quaerat saepe unde quo quidem odit sunt 
+		        soluta animi incidunt beatae. Quod, amet recusandae earum iste debitis! Amet, 
+		        expedita, aperiam, sint omnis fuga magnam eos quidem alias soluta nobis sunt 
+		        unde incidunt! Ratione, autem eligendi molestiae saepe et numquam facilis 
+		        pariatur voluptates ipsum!</p>
+		        
+		        <p>
+		        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, velit illum 
+		        omnis ipsam quibusdam blanditiis iusto obcaecati nihil ab in! Iure, natus, magni, 
+		        similique aut laudantium omnis a non quisquam aliquid numquam libero pariatur 
+		        ipsa optio doloribus temporibus impedit ratione quam. Deserunt, quisquam, ad, 
+		        provident officiis nostrum praesentium blanditiis quidem sapiente voluptate 
+		        asperiores eius rerum dignissimos minima consequatur voluptatum odio fuga 
+		        soluta! In, odio eos numquam veniam odit ratione dolorum architecto sint. Qui, 
+		        harum, eveniet recusandae vitae perferendis sunt dolores distinctio alias eius 
+		        quibusdam maxime id sed velit iusto cupiditate excepturi facilis odio voluptatibus 
+		        dignissimos quidem aperiam vel corporis iure nam laboriosam ratione perspiciatis. 
+		        Ut, repellendus numquam aspernatur voluptatum doloremque blanditiis quis quam 
+		        quisquam aperiam illo impedit similique accusamus at.
+	        	</p>
+        	</div>
+		</div><!-- //content -->
+	</div><!-- container -->
+	<hr/>
+	
+	
+	<div id="footer">
+		<dl class="btmnav">
+			<dt class="blind">bottom navigation</dt>
+			<dd><a href="#">About</a></dd>
+			<dd><a href="#">Services</a></dd>
+			<dd><a href="#">Portfolio</a></dd>
+			<dd><a href="#">Contact us</a></dd>
+			<dd><a href="#">Location</a></dd>
+		</dl>
+		
+		<p class="copy">
+			CopyRight &copy; COMPANY Design<br/>
+			<!-- &copy;: 저작권을 의미하는 기호 표시 -->
+			Powered by Webazit, e-mail: <a href="mailto:webmaster@company.com">webmaster@company.com</a>
+		</p>
+	</div><!-- //footer -->
+</div><!-- wrap -->
+
+</body>
+</html>
