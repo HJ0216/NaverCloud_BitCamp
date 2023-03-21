@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Input</title>
+
+<style type="text/css">
+#xDiv {
+   font-size: 10pt;
+   color: red;
+   font-weight: bold;
+}
+
+#yDiv {
+   font-size: 10pt;
+   color: red;
+   font-weight: bold;
+}
+</style>
+
+
+</head>
+<body>
+
+<form name="calcForm" method="get" action="http://localhost:8080/testServlet/CalcServlet">
+
+	<table border="1" cellpadding="10" cellspacing="0">
+	
+	<tr>
+		<td width="70" align="center">X</td>
+		<td><input type="text" name="x" placeholder="숫자를 입력하세요">
+		<div id="xDiv"></div>
+		</td>
+	</tr>
+
+
+	<tr>
+		<td width="70" align="center">Y</td>
+		<td><input type="text" name="y" placeholder="숫자를 입력하세요">
+		<div id="yDiv"></div>
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td colspan="2" align="center">
+			<input type="submit" value="계산">
+			<input type="reset" value="취소">
+		</td>
+	</tr>
+	
+	</table>
+	
+</form>
+
+</body>
+</html>
