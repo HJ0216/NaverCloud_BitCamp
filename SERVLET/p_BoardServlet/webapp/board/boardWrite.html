@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Board Write</title>
+
+<style type="text/css">
+
+div {
+	color: red;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+</style>
+
+</head>
+<body>
+
+<form name="boardWriteForm" method="post" action="http://192.168.0.213:8080/p_BoardServlet/BoardWriteServlet">
+
+
+<table border="1">
+
+<tr>
+	<th width="100">작성자</th>
+	<td><input type="text" name="name_Name" id="id_Name" value="Author " size="30">
+	<!-- input: /input 필요 X -->
+	<div id="nameDiv"></div>
+	</td>
+</tr>
+
+
+<tr>
+	<th width="100">이메일</th>
+	<td><input type="text" name="name_Email" id="id_Email" placeholder="이메일 주소 입력" size="30">
+	<div id="emailDiv"></div>
+	</td>
+</tr>
+
+
+<tr>
+	<th width="100">제목</th>
+	<td><input type="text" name="name_Subject" id="id_Subject" placeholder="제목 입력" size="30">
+	<div id="subjectDiv"></div>
+	</td>
+</tr>
+
+
+<tr>
+	<th width="100">내용</th>
+	<td><textarea name="name_Content" id="id_Content" cols="32" rows="10" placeholder="내용 입력"></textarea>
+	<!-- textarea: /textarea 필요 -->
+	<div id="contentDiv"></div>
+	</td>
+</tr>
+
+
+<tr>
+	<td colspan="2" align="center">
+		<input type="button" value="글작성" onclick="checkWrite()">
+		<!-- checkWrite(): js를 통한 유효성 검사 -->
+		<input type="reset" value="다시작성">
+		<input type="button" value="글조회" onclick="location.href='boardSearch.html'">
+		<!-- onclick 시, 무조건 js로 가서 해당 함수를 찾음 / js가 아닌 경우, locaiton 입력 -->
+		<input type="button" value="글목록" onclick="location.href='/p_BoardServlet/BoardListServlet?pg=1'">
+		<!-- URL ? PARAMETER, PAGE는 지정어로 PARAM에 사용 불가 -> PG사용,
+			 시작은 무조건 1이므로 PARAMETER를 직접 작성(GET 방식) -->
+	</td>
+</tr>
+
+
+</table>
+
+</form>
+
+<script src="http://localhost:8080/p_BoardServlet/javaScript/board.js"></script>
+
+</body>
+</html>
