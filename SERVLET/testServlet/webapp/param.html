@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Parameter</title>
+
+		<style type="text/css">
+			td {color : blue;}
+			h3 {color : violet;}
+
+			#nameDiv { 
+				font-size: 20pt;
+				color: red;
+				font-weight: bold;
+			}
+	
+			#ageDiv { 
+				font-size: 20pt;
+				color: blue;
+				font-weight: bold;
+			}
+
+		</style>
+		<!-- #nameDiv: id 속성이 nameDiv에게만 CSS 부여-->
+
+	</head>
+
+
+	<body>
+	
+<form name="paramForm" method="get" action="http://localhost:8080/testServlet/ParamServlet">
+<!-- form: web상 구역 설정 -->
+<!-- method.get: value를 url에 return, method.post: value를 url에 return X -->
+<!-- action="input type="submit" 수행 시, 이동되어지는 주소" -->
+
+
+<h3>연령 제한</h3>
+
+<table border="1" cellpadding="10" cellspacing="0">
+<!-- cellpadding: 박스와 내용간 간격, cellspacing: 박스와 박스간 간격 -->
+
+	<tr>
+		<td width="70" align="center"><div id="nameDiv">이름</div></td>
+		<td><input type="text" name="name" placeholder="이름을 입력하세요">
+		<!-- input type="text" : "text"라는 input type 반환 -->
+		<!-- name="name": 입력된 데이터를 저장할 변수 = name -->
+		<!-- placeholder: 클릭 전 안내 구문 -->
+		</td>
+	</tr>
+
+	<tr>
+		<td align="center"><div id="ageDiv">나이</div></td>
+		<td><input type="text" name="age" size="7" maxlength="3">
+		<!-- name="age": 입력된 데이터를 저장할 변수 = age -->
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="2" align="center">
+			<input type="button" value="보내기" onclick="javascript:check()">
+			<!-- input type="button" ~ onclick="button을 클릭 시 수행" -->
+			<!-- input type="button" ~ onclick: js에서만 실행되므로 javascript: 생략 가능 -->
+
+
+			<!-- input type="submit": <form></forms> 안에 들어있는 입력 상자의 데이터들(parameter)을 들고 이동 -->
+			<!-- input type="submit" ~ action="이동되어질 주소" -->
+			<!-- input type="submit": 1. 자동으로 데이터를 전송할 수 있는 버튼 생성
+									  2. 버튼 클릭 시, 지정 URL로 <form>태그 안에 입력된 값들이 'action' 속성으로 지정된 서버 페이지로 전송 -->
+
+			<input type="reset" value="취소">
+			<!-- input type="reset": 입력 데이터 초기화(삭제) -->
+		</td>
+	</tr>
+
+
+</table>
+
+</form>
+
+
+
+<!-- script: 가장 마지막에 동작하므로 /body 전에 최종 선언 -->
+		<script type="text/javascript">
+		// javascipt로 선언된 공간은 js 문법에 따라야 함
+		// 단, *.java에서 html type 선언과는 의미가 다름
+
+
+		// 유효성 검사: 데이터가 입력되었는지 먼저 확인 후, 웹 페이지 이동
+		
+		/* 미 입력 시, alert(팝업창)
+			function check() {
+				if(document.paramForm.name.value == "") {alert("이름을 입력하세요!");}
+				// if(Current_document.Form_name.Value_name.value == "") true_수행문 ;
+				else if(document.paramForm.age.value == "") {alert("나이를 입력하세요!");}
+				else {document.paramForm.submit();}
+				// document: 현재 문서의 body 부분
+				// paramForm: form 이름
+				// submit(): 동적으로 폼을 생성하고 서버(action="서버_주소")에 보내고자 할 때 사용
+			}
+			*/
+			
+			function check() {
+				document.getElementById("nameDiv").innerText="";
+				document.getElementById("ageDiv").innerText="";
+				// check() 호출 시, 입력 요청 문구 사라지는 것으로 초기화 진행
+				if(document.paramForm.name.value == "") {document.getElementById("nameDiv").innerText="이름 입력";}
+				else if(document.paramForm.age.value == "") {document.getElementById("ageDiv").innerText="나이 입력";}
+			else {document.paramForm.submit();}
+				// name.value!="" && age.value!="" 일 경우, action="Server_address"에 form data 전송
+			} // check()
+			
+		</script>
+	</body>
+</html>
