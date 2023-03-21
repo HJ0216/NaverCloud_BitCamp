@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Person</title>
+</head>
+
+
+<body>
+<!-- 접속 주소: http://localhost:8080/testServlet2/person.html -->
+	<form name="personForm" method="get" action="http://localhost:8080/testServlet2/PersonServlet">
+	<!-- web.xml을 통해 url-pattern: /com.person.PersonServlet -> /PersonServlet -->
+
+		<table border="1" cellpadding="5" cellspacing="0">
+			<tr>
+				<th width="70">이름</th>
+				 <!-- <th></th>: 중간 정렬 굵게 표시, table header -->
+				<td><input type="text" name="name" placeholder="이름 입력">
+					<div id="nameDiv"></div>
+					<!-- 유효성 검사 시, 출력되는 문구 위치 지정: js function 활용-->
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<th width="70">성별</th>
+				<td>
+					<fieldset>
+					<!-- <fieldset>: <form> 요소에서 연관된 요소들을 하나의 그룹으로 묶을 때 사용
+					하나의 그룹으로 묶인 <fieldset> 요소들 주변으로 박스 모양의 선을 그려줌
+					<legend> 요소를 사용 시, <fieldset> 요소의 캡션(caption)을 정의할 수 있음 -->
+					
+						<legend>성별</legend> <!-- 그룹 이름 묶어주기 -->
+						<input type="radio" name="gender" id="gender_m" value="0" checked="checked">
+						<label for="gender_m">남자</label>
+						<!-- label for: 글자를 클릭해도 체크박스 선택, name attribute로는 지정할 수 없고 id 속성으로 지정해야 함 -->
+						
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						<!-- &nbsp; 한 칸 띄우기 -->
+						
+						<input type="radio" name="gender" id="gender_w" value="1">
+						<label for="gender_w">여자</label>
+						<div id="genderDiv"></div>
+					</fieldset>
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<th>색깔</th>
+				<td><select name="color" style="width: 80px;">
+					<optgroup label="색깔">
+					<!-- option 상단에 목록 제목 표시 -->
+						<option value="red">빨강</option>
+						<!-- form method="get" : url ket-value값으로 넘어감 -->
+						<option value="green">초록</option>
+						<option value="blue">파랑</option>
+						<option value="magenta">보라</option>
+						<option value="cyan">하늘</option>
+					</optgroup>
+					</select>
+						<div id="colorDiv"></div>					
+				</td>
+			</tr>
+		
+
+			<tr>
+				<th>취미</th>
+				<td> <!-- name이 동일할 경우, 배열로 자동 생성됨 -->
+					<input type="checkbox" name="hobby" id="hobby_read" value="독서">
+					<label for="hobby_read">독서</label>
+					<!-- label for: 글자를 입력해도 checkbox가 선택되도록 함 -->
+					<!-- label for="hobby_movie" 입력 시, 독서 누르면 영화 선택됨 -->
+					<input type="checkbox" name="hobby" id="hobby_movie" value="영화">
+					<label for="hobby_movie">영화</label>
+					<input type="checkbox" name="hobby" id="hobby_music" value="음악">
+					<label for="hobby_music">음악</label>
+					<input type="checkbox" name="hobby" id="hobby_game" value="게임">
+					<label for="hobby_game">게임</label>
+					<input type="checkbox" name="hobby" id="hobby_shopping" value="쇼핑">
+					<label for="hobby_shopping">쇼핑</label>
+					<div id="hobbyDiv"></div>
+				</td>
+			</tr>
+
+
+			<tr>
+				<th>과목</th>
+				<td><select name="subject" multiple size=5 style="width: 80px;" multiple="multiple">
+					<option value="Java" selected>Java</option>
+					<option value="Servlet">Servlet</option>
+					<option value="JSP">JSP</option>
+					<option value="Spring">Spring</option>					
+					</select>
+					<div id="subjectDiv"></div>					
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="SEND" onclick="check()">
+					<!-- input type="button" -> onclick: js 호출 -->
+					<!-- input type="submit": <form></forms> 안에 들어있는 입력 상자의 데이터들(parameter)을 들고 이동 -->
+					<!-- input type="submit" ~ action="이동되어질 주소" -->
+					<!-- input type="submit": 1. 자동으로 데이터를 전송할 수 있는 버튼 생성
+											  2. 버튼 클릭 시, 지정 URL로 <form>태그 안에 입력된 값들이 'action' 속성으로 지정된 서버 페이지로 전송 -->
+					<!-- input type="select" -> onChange: js 호출 -->
+					
+					<input type="reset" value="CANCEL">
+					<!-- input type="reset": 입력 데이터 초기화(삭제) -->
+					
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+			<script type="text/javascript">
+/*				function check() {
+			       const frm = document.forms[0];
+			       frm.hobby.forEach(element => { //alert(`배열요소 ${element.value} : ${element.checked}`)
+			           if(element.checked) cnt++;
+			       });
+			       
+					
+					document.getElementById("nameDiv").innerText="";
+					document.getElementById("genderDiv").innerText="";
+					document.getElementById("colorDiv").innerText="";
+					document.getElementById("hobbyDiv").innerText="";
+					document.getElementById("subjectDiv").innerText="";
+					// check() 호출 시, 입력 요청 문구 사라지는 것으로 초기화 진행
+					if(document.personForm.name.value == "") {
+						document.getElementById("nameDiv").innerText="이름 입력";
+					} else if(document.personForm.hobby.value == ""){
+						document.getElementById("hobbyDiv").innerText="취미 입력";
+					} else {document.personForm.submit();}
+					  // name.value!="" && age.value!="" 일 경우, action="Server_address"에 form data 전송
+				} // check()
+*/
+				
+				function check() {
+					if(document.personForm.name.value=="")
+						{alert("Please Enter the Name");
+						return;} // return: 함수 종료
+				 	
+					var check = document.getElementsByName("hobby");
+				 	// getElementById: Id속성, getElementsByName: name 속성들(배열)
+					// name attribute가 동일할 경우, js에서는 자동으로 배열 생성
+				 	var count = 0;
+				 	for(i=0; i<check.length; i++) {
+				 		if(check[i].checked) // check 여부 확인
+				 			{count++;}
+				 	} // for
+				 	
+				 	if(count==0) {
+				 		alert("Please select the hobby.");
+				 		return;
+					}
+				 	
+				 	else {document.personForm.submit();} // submit -> action
+				 	
+				} // check()
+				
+			
+			</script>
+	
+	</body>
+</html>
