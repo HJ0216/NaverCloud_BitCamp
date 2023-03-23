@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+<style type="text/css">
+html {height: 100%;}
+body {height: 100%; margin: 0; padding: 0;}
+#map {width: 100%; height: 100%;}
+</style>
+</head>
+<body>
+<!-- 카카오 지도 연결 -->
+<div id="map"></div>
+
+<script type="text/javascript"
+	     src="//dapi.kakao.com/v2/maps/sdk.js?appKey=2bb08e58f3411f191fcc2cc751626b60"></script>
+<script type="text/javascript">
+window.onload=function() {
+	var position = new daum.maps.LatLng(37.49940627069669, 127.0290991424769); // (위도, 경도)
+	var container = document.getElementById("map"); // 지도를 표시할 div
+	var options = {
+			center: position,
+			level: 3, // 지도의 확대 레벨
+			draggable: true // false: 마우스 드래그를 통한 확대/축소
+	};
+	var map = new daum.maps.Map(container, options); // 지도 생성
+	
+	var marker = new daum.maps.Marker({
+		position: position // 지도 중심 좌표에 마커 생성
+	}); // 마커 생성
+	
+	marker.setMap(map); // 마커 표시
+}
+</script>
+
+</body>
+</html>
+
+
+
+<!-- 
+1. 뷰포트 선언
+   <meta name="viewport"
+2. 컨텐트 선언
+   content="width=device-width (디바이스 크기에 맞추겠다고 선언)
+            initial-scale=1.0 (초기 크기 스케일 설정)
+            minimum-scale=1.0 (최소 크기 설정 / 범위: 0~10.0)
+            maximum-scale=1.0 (최대 크기 설정 / 범위: 0~10.0)
+            user-scalable=no (사용자 기기 확대기능 사용 유/무 설정, yes/no)
+            
+Kakao Maps API 
+- 다양한 기능과 소스를 알려준다
+https://apis.map.kakao.com/web/sample/enableDisableZoomInOut/            
+  -->
+
+<!-- 
+카카오 API키 발급 및 적용
+
+1. 카카오 개발자 페이지 접속하기
+ 1) 카카오 개발자사이트 (https://developers.kakao.com) 접속
+ 2) 오른쪽 상단 로그인 버튼을 클릭해 카카오 계정으로 로그인 합니다. 
+    카카오 계정이 없는 경우 새롭게 계정을 생성합니다.
+ 3) 서비스 이용 동의 페이지가 나타나는 경우 필수 항목에 동의하고, 개발자 이름을 입력한 다음 
+    회원가입 버튼을 클릭해 다음 단계로 넘어갑니다.
+    (기존에 서비스 이용 동의한 경우 표시되지 않을 수 있습니다.)
+
+2. 내 애플리케이션 만들기
+ 1) 상단 메뉴에서 내 애플리케이션을 클릭합니다.
+ 2) 전체 애플리케이션 페이지가 나타나면, 애플리케이션 추가하기를 클릭합니다.
+ 3) 앱 아이콘(로고)을 업로드하고, 앱 이름, 회사 이름을 작성합니다.
+ 4) 저장 버튼을 클릭합니다.
+
+3. 플랫폼 설정하기
+ 1) 전체 애플리케이션 목록으로 돌아가면, 새로 추가한 앱을 클릭합니다.
+ 2) 플랫폼 항목에서 플랫폼 설정하기를 클릭합니다.
+ 3) Web 항목의 Web 플랫폼 등록 버튼을 클릭합니다.
+ 4) 운영 중인 사이트 주소(URL)를 입력합니다. 
+    여러 개의 도메인을 사용하고 계신 경우 모두 입력합니다.
+    (예: http://localhost:8080)
+ 5) 저장 버튼을 클릭해 적용합니다.
+
+4. 발급 받은 Javascript 키 복사하기
+ 1) 왼쪽 탭 메뉴에서 앱 키를 클릭합니다.
+ 2) JavaScript 키 오른쪽 복사 버튼을 클릭합니다.
+	2bb08e58f3411f191fcc2cc751626b60
+ -->
+  
+  
+<!-- 
+1. 구글 - [위도 경도] 검색 - 위도경도 찾기
+http://map.esran.com
+
+2. GPS 좌표
+https://coordinates-gps.gosur.com/ko/?ll=37.58017836585978,126.97734714607873&z=16.240494476606926&t=streets
+ -->
