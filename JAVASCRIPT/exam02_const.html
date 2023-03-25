@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam02_const here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+// const: 재할당 X, let처럼 구역단위
+const a = 250;
+// a = 100;
+//Uncaught TypeError: Assignment to constant variable.
+console.log(a);
+{
+	const a = 200;
+	console.log(a); // 200
+	{
+		const a = 300;
+		console.log(a); // 300
+		{
+			const a = 400;
+			console.log(a); // 400
+		}
+		console.log(a); // 300
+		// let은 지역변수처럼 해당 구역을 벗어날 경우, 설정값이 사라짐
+	}
+	console.log(a); // 200
+}
+console.log(a); // 250
+
+</script>
+
+</body>
+</html>

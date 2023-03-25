@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam07 here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+// switch
+let score = prompt("점수 입력:");
+
+switch(Math.floor(score/10)){
+// javaScript class: Math, Date, ...
+case 10:
+case 9: grade = "A학점"; break;
+case 8: grade = "B학점"; break;
+case 7: grade = "C학점"; break;
+case 6: grade = "D학점"; break;
+default: grade = "F학점";
+}
+
+document.write("점수: " + score + ", 학점: " + grade + "<hr/>");
+
+let num = 85.9875643;
+console.log(num.toFixed(0)); // 소수점 이하: 0자리로 반올림
+console.log(num.toFixed(3)); // 소수점 이하: 3자리로 반올림
+// console.log: F12 개발자 도구 console 창 확인
+
+var a = "1.7";
+//var: 전역변수
+console.log(a+3);
+// 문자열의 결합 "1.7" + 3 = "1.73"
+console.log(parseInt(a) + 3);
+// int type으로 변환 a: 1.7 > 1
+console.log(Math.floor(a) + 3);
+console.log(Number(a) + 3);
+console.log(~~(a) + 3); // Math.floor(a)와 비슷
+
+/*
+Math.ceil() : 소수점 올림, 정수 반환
+Math.floor() : 소수점 버림, 정수 반환
+Math.round() : 소수점 반올림, 정수 반환
+toFixed() : 숫자에서 원하는 소수점 길이만큼만 반올림하여서 반환
+
+parseInt() : 문자 -> 정수     "123" -> 123
+parseFloat() : 문자 -> 실수     "45.3" -> 45.3
+
+Number() : 문자 -> 정수&실수
+문자에 담긴 숫자형태가 정수면 정수로, 실수면 실수로 변환
+*/
+
+</script>
+
+</body>
+</html>

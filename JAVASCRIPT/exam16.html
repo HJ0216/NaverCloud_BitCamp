@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam16 here</title>
+</head>
+<body>
+
+<h1 onmouseover="showResult()" onmouseout="hidResult()" style="border: 1px solid red;">
+<!-- onmouseover: 마우스가 영역으로 들어갈 때, onmouseout: 마우스가 영역을 벗어날 때 -->
+	10 + 50 = <span id="question">?</span>
+</h1>
+<p>결과를 보시려면 수식 위에 마우스를 올려주세요.</p>
+
+<script type="text/javascript">
+function sum(x, y) {
+	var z = x + y;
+	return z;
+}
+function showResult() {
+	// 함수가 작동하는지 확인하기 위해서 alert 창 이용
+	// alert("마우스 Over")
+	var result = sum(10, 50);
+	var myTag = document.getElementById("question"); // document.getElementById: 해당 id의 tag 반환
+	myTag.innerHTML = "<font color='red'>" + result + "</font>";
+	// "question"을 id 값으로 갖는 span tag에 안에 HTML 코드 삽입
+
+}
+function hidResult() {
+	// alert("마우스 Out")
+	var myTag = document.getElementById("question");
+	myTag.innerHTML = "<font color='black'>?</font>";
+	// document.getElementById("question").innerHTML = "?";
+	
+	
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam12 here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+document.write("*** eval 내장함수 ***<br>");
+var str = "100 + 1";
+document.write(str + "<br/>"); // "100 + 1", 문자열
+var result = eval("100 + 1"); // eval: 문자열 > 수식: 100 + 1
+// parseInt("25+1"); 사용 불가, 문자형식의 숫자가 입력되어야하며, 수식이 입력되어서는 안됨
+document.write(result + "<br/><br/>")
+
+document.write("*** Number, parseInt 내장함수 ***<br/>");
+var value1 = "100";
+var num1 = Number(value1); // 100
+var num2 = parseInt(value1); // 100
+// 숫자 O, 수식 X
+
+var r1 = value1 + 1; // 1001
+var r2 = num1 + 1;  // 101
+var r3 = num2 + 1; // 101
+
+document.write("r1: " + r1 + "<br/>");
+document.write("r2: " + r2 + "<br/>");
+document.write("r3: " + r3 + "<br/>");
+
+var value2 = "100.6";
+var num3 = Number(value2); // 100.6
+var num4 = parseInt(value2); // 100
+var num5 = parseFloat(value2); // 100.6
+
+var r4 = value2 + 1; // 100.61
+var r5 = num3 + 1;  // 101.6
+var r6 = num4 + 1; // 101
+var r7 = num5 + 1; // 101.6
+
+document.write("r4: " + r4 + "<br/>");
+document.write("r5: " + r5 + "<br/>");
+document.write("r6: " + r6 + "<br/>");
+document.write("r7: " + r7 + "<br/>");
+
+</script>
+
+</body>
+</html>
+
+
+<!-- 
+내장함수
+1. eval(문자열) : 문자열 > 수식
+2. Number(문자열) : 문자열 > 숫자
+3. parseInt(문자열) : 문자열>  정수
+
+4. isNaN(문자열) : 문자열이 숫자형식이 아니면 true, 숫자형식이면 false -> Not-A-Number(숫자가 아님)
+5. alert(문자열) : 문자열을 대화상자로 출력
+6. confirm(문자열) : 문자열을 확인/취소 대화상자로 출력
+7. prompt(문자열) : 문자열이 제목으로 표시되는, 값을 입력받기 위한 대화상자 호출
+ -->

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam19 here</title>
+<style type="text/css">
+#myid {
+	background: #ff0;
+	font-size: 20px;
+	font-weight: bold;
+	color: #00f;
+	/*색: 빛의 3요소(1byte, 8bit)
+	(255, 255, 255) > 흰색
+	(  0,   0,   0) > 검정색*/
+}
+</style>
+
+</head>
+<body>
+
+<h1 id="myid">안녕</h1>
+<h1 id="myid">자바스크립트</h1>
+<h1 id="myid">강의</h1>
+<!-- 태그가 반복될 때는 id값으로 부여하기보다는 class를 부여 -->
+<a href="#" onclick="doPrint()">JS 함수 호출</a>
+
+<script type="text/javascript">
+document.getElementById("myid").innerHTML = "스크립트가 실행되었습니다."
+// document.getElementById("myid"): h1 tag 반환
+// id가 동일할 경우, JS를 통한 innerHTML 실행 시, 제일 먼저 실행되는 id만 변경됨
+// * 중복 ID를 인식하지 못함
+
+</script>
+
+</body>
+</html>

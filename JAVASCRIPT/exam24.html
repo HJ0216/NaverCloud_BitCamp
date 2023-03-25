@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam24 here</title>
+</head>
+<body onload="authNo()">
+
+<p>
+	고객님의 인증번호는 <strong id="auth">00000</strong>입니다.
+</p>
+
+<input type="button" value="인증번호 새로 받기" onclick="refresh()"/>
+<input type="button" value="네이버로 이동하기" onclick="goNaver()"/>
+
+<script type="text/javascript">
+function random(x, y) {
+	return Math.floor(Math.random() * (y-x+1) + x); // 난수 발생
+}
+
+function authNo() {
+	var value=""; // NaN처리: 문자열 결합
+	// var value;
+	// JS에서는 변수 타입이 지정되지 않았기때문에 들어오는 값에 따라 변수 타입이 결정됨
+	// undefined; false; NaN; "undefined"
+	// 숫자임을 지정하지 않은 상태에서 "+="를 사용할 경우, "undefined"된 상태에서 숫자에 더하는 과정이 실행됨
+	// results in a NaN error
+	// 초기값을 "" 문자열 선언
+	
+	for(i=0; i<5; i++){
+		value += random(0, 9);
+		// value값 지정을 하지 않은 상태: value: undefined(어떤 값도 할당되지 않아서 자료형을 알 수 없음, NaN)
+		// 그 상태에서 숫자와 더하면 NaN error 발생
+		console.log(value); // 개발자 도구에서 확인
+	}
+	
+	document.getElementById("auth").innerText = value;
+}
+function refresh() {
+	location.reload(); // 새로고침(F5)처럼 현재의 리소스를 다시 불러오기
+}
+function goNaver() {
+	if(confirm("정말로 네이버로 이동하시겠습니까?")){
+		location.href="https://naver.com"
+	} // 동의 구하기
+}
+</script>
+
+</body>
+</html>

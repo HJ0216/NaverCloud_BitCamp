@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam08 here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+let sum = 0;
+let i;
+for(i=1; i<=10; i++) {
+	document.write("i: " + i + "<br/>");
+	sum += i;
+} // for
+
+document.write("FINAL i: " + i + "<br/>");
+// Uncaught ReferenceError: i is not defined, let: 지역변수
+// JS의 경우, error가 화면 or console에서 나타나지 않으므로 web상 개발자 도구 확인 필요
+// 1. let i > var i
+// 2. let 선언 위치 변경
+document.write("<h1>SUM(1:10): " + sum + "</h1>");
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam14 here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+var user_id = prompt("아이디를 입력하세요.", "HONG");
+// prompt("msg", "초기값");
+
+if(user_id != ""){
+	alert("안녕하세요, " + user_id +  "님");
+	
+	if(confirm("정말 로그아웃 하시겠습니까?")){ // confirm: 동의 구하기, 확인=true
+		alert("로그아웃");
+	} else {
+		alert("로그아웃 취소");
+	}
+	
+}
+
+
+</script>
+
+</body>
+</html>
+
+
+
+<!-- 
+내장함수
+1. eval(문자열) : 문자열을 수식으로 변환
+2. Number(문자열) : 문자열을 숫자로 변환
+3. parseInt(문자열) : 문자열을 정수로 변환
+4. isNaN(문자열) : 문자열이 숫자형식이 아니면 true, 숫자형식이면 false -> Not-A-Number(숫자가 아님)
+5. alert(문자열) : 문자열을 대화상자로 출력
+6. confirm(문자열) : 문자열을 확인/취소 대화상자로 출력
+7. prompt(문자열) : 문자열이 제목으로 표시되는, 값을 입력받기 위한 대화상자 호출
+ -->

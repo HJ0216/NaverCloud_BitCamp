@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam11 here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+function f(x, y) { // 함수 정의, 구현
+	var z = x + y;
+	
+	if(z<10){return;}
+	return z;
+}
+
+let a = f(2, 1);
+
+let b = f(5, 7); // 12
+let c = f(10, 5); // 15
+
+document.write("<h3>" + a + "</h3>");
+// undefined: return value가 없음
+// return value가 없을 때, java: null, javaScript: undefined(!=null)
+document.write("<h3>" + b + "</h3>");
+document.write("<h3>" + c + "</h3>");
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam02_let here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+// let: 지역변수(구역 단위)
+let a = 100;
+a = 250;
+console.log(a); // 250
+// F12 > console 확인
+{
+	let a = 200;
+	console.log(a); // 200
+	{
+		let a = 300;
+		console.log(a); // 300
+		{
+			let a = 400;
+			console.log(a); // 400
+		}
+		console.log(a); // 300
+		// let은 지역변수처럼 해당 구역을 벗어날 경우, 설정값이 사라짐
+	}
+	console.log(a); // 200
+}
+console.log(a); // 250
+
+</script>
+
+</body>
+</html>

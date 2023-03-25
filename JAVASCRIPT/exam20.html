@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam20 here</title>
+</head>
+<body>
+
+<script type="text/javascript" src="./calc.js"></script>
+<!-- script 태그를 내부에서 막으면 외부에서 script가 못들어옴< /> -->
+
+<script type="text/javascript">
+document.write("<h3>calc</h3>");
+calc.setValue(25, 36); // 호출
+
+document.write("덧셈: " + calc.plus() + "<br>");
+document.write("뺄셈: " + calc.minus() + "<br>");
+
+document.write();
+calc.result(); // 호출
+
+</script>
+
+</body>
+</html>
+
+
+<!-- 
+객체
+- 변수와 함수의 집합
+- Javascript는 Prototype 기반의 객체지향언어이다.
+  객체를 원형(prototype) 형태로 생성하고, 그 안에 기능을 위한 변수나 함수를 추가하는 방법으로 그룹화 하는 개념
+   
+  객체는 자주 사용하게 될 기능들을 묶어서 외부의 스크립트 파일로 분리해 내는 용도로 주로 사용한다.
+  이렇게 만든 스크립트 파일은 여러개의 HTML파일에 의해서 참조하여 재사용할 수 있다.
+
+
+-->

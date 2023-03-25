@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam17 here</title>
+
+<script type="text/javascript">
+function insertQuestion(num) {
+	alert(num);
+	
+	var str = prompt("사칙연산의 수식을 입력하세요. (예: 100+50)", "");
+	var answer = eval(str); // 입력받은 문자열을 수식으로 변환
+	var result = "<font color='red'>" + str + "=" + answer + "</font>";
+	
+	document.getElementById("question").innerHTML = result; // <h1 id="question"></h1> 사이에 삽입
+	// Cannot set properties of null (setting 'innerHTML') at insertQuestion
+	// <h1 id="question"></h1>를 읽기 전에 호출된 자리로 돌아가서 인식이 되지 않음
+}
+
+</script>
+
+</head>
+<body onload="insertQuestion(222)">
+<!-- body tag를 모두 읽고 나서 onload 수행 -->
+
+<script type="text/javascript">
+	insertQuestion(111);
+</script>
+
+<h1 id="question"></h1>
+
+</body>
+</html>
+
+<!-- 
+1. body tag를 읽던 중 js의 insertQuestion(111); 호출
+2. document.getElementById("question").innerHTML = result;: Uncaught TypeError 발생
+* 아직 body tag의 <h1 id="question"></h1>를 읽지 않아서 error 발생
+3. 이후, function 진행
+4. body tag안의 모든 내용 실행 후 onload() 처리
+5. onload="insertQuestion(222)": onload에 의해서 호출될 경우, 이미 body tag가 모두 읽혔기때문에 error 발생 X
+
+ -->

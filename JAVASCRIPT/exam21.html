@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam21 here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+// 배열
+
+var myArray1 = new Array("홍길동", "자바스크립트", "학생"); // 내장 객체
+// var myArray1 = ["홍길동", "자바스크립트", "학생"];
+document.write(myArray1[0] + "<br/>");
+document.write(myArray1[1] + "<br/>");
+document.write(myArray1[2] + "<br/>");
+document.write("<hr/>");
+
+myArray1[0] = "HongGilDong";
+myArray1[1] = "JavaScript";
+myArray1[2] = "Student";
+document.write(myArray1[0] + "<br/>");
+document.write(myArray1[1] + "<br/>");
+document.write(myArray1[2] + "<br/>");
+document.write("<hr/>");
+
+
+// 빈 배열 생성
+var myArray2 = new Array();
+// var myArray2 = [];
+
+// 배열의 크기를 선언하지 않아도 됨
+
+for(var i=0; i<25; i++) {
+	myArray2[i] = i + 1;
+}
+
+document.write("배열의 길이: " + myArray2.length + "<br/>")
+for(var i=0; i<myArray2.length; i++) {
+	document.write(myArray2[i] + " ");
+}
+</script>
+
+</body>
+</html>

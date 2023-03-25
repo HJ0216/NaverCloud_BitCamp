@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam23 here</title>
+</head>
+<body>
+
+<h1>window 객체</h1>
+<h3>open method 확인</h3>
+<div>
+	<a href="#" onclick="open1(); return false;">새 창 열기</a>
+	<br/>
+	<a href="#" onclick="open2(); return false;">팝업 창 열기(1)</a>
+	<br/>
+	<a href="#" onclick="open3('https://google.com'); return false;">팝업 창 열기(2-1)</a>
+	<!-- google.com 불가 -->
+	<br/>
+	<a href="#" onclick="open3('https://naver.com'); return false;">팝업 창 열기(2-2)</a>
+	<br/>	
+</div>
+
+<script type="text/javascript">
+function open1() {
+	// 새 창이 열림(팝업X)
+	window.open("open.html");
+}
+function open2() {
+	// 너비, 높이 지정: 클릭할 때마다 새로운 팝업창이 계속 열림
+	window.open("open.html", "", "width=300, height=500, scrollbars=no, toolbar=no, menubar=no, status=no, location=no");
+	// window.open("html 파일", "팝업창 이름", "팝업창 속성")
+}
+function open3(url) {
+	// 팝업창 이름 부여: 클릭할 때마다 새로운 팝업창이 계속 열림
+	window.open(url, "aaa", "width=300, height=500, scrollbars=no, toolbar=no, menubar=no, status=no, location=no");
+}
+</script>
+
+</body>
+</html>
+
+
+
+<!-- 
+1번 - a태그에서 onclick 이 있을 경우에는 onclick를 먼저 수행하고 href로 이동하는 액션을 취한다.
+<a href="http://www.naver.com" onclick="alert('hi');">TEST1</a>
+
+2번 - onclick에서 return false가 있을 경우 href로 이동하는 액션을 취하지 않게 된다.
+<a href="http://www.naver.com" onclick="alert('hi'); return false;">TEST2</a>
+
+3번 - a태그에서 onclick 이 있을 경우에는 onclick를 먼저 수행하고 href로 이동하는 액션을 취하는데 
+     href="#"로 호출 함수를 숨겨버렸기 때문에 페이지가 이동하지 않게 된다.
+         갈 곳을 잃어버린 브라우저는 페이지의 상단으로 이동해버린다.
+<a href="#" onclick="alert('hi');">TEST1</a>
+
+ -->

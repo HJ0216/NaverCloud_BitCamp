@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam05 here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+// 증감 연산자
+let num = 5;
+
+num++;
+document.write("num: " + num + "<br/>");
+++num;
+document.write("num: " + num + "<br/>");
+// 3항 연산자: num = num + 1;
+// 2항 연산자: num += 1;
+// 단항 연산자: num++;
+
+let num2 = num++;
+document.write("num: " + num + "&emsp; num2: " + num2 + "<br/>") // 8 7
+// 증감 연산자를 타 연산자와 사용 시 유의할 점
+// 연산의 우선순위: () > ++/--
+// 1. let num2 = num;
+// 2. num++;
+// num++;의 경우 연산 순서가 찾아왔을 때 연산을 하지 않고 먼저 넘김
+
+let num3 = --num;
+document.write("num: " + num + "&emsp; num3: " + num3 + "<br/>") // 7 7
+// 1. num++;
+// 2. let num2 = num;
+// num++;의 경우 연산 순서가 찾아왔을 때 연산을 하고 넘김
+
+
+</script>
+
+</body>
+</html>
