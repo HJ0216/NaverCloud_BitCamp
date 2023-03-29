@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam04 here</title>
+</head>
+<body>
+<h1 id="hello"></h1>
+<p id="text">안녕하세요.</p>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+// $ 객체 생략 가능
+	var h1 = $('#hello');
+	h1.css('color', 'red');
+	h1.html('Hello jQuery');
+	
+	alert($('#text').text()); // 값 불러오기 <- ()안에 인자가 없을 경우, 값 출력
+	// cf. 값 저장하기: h1.text('Hello World'); <- ()안에 인자가 있을 경우, 값 입력
+	
+	
+
+});
+// js: onload와 동일
+// $: jQuery
+
+</script>
+
+</body>
+</html>
