@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+</head>
+<body>
+
+<h1>회원 가입</h1>
+
+<form name="form1" id="join">
+	<div id="input">
+		<h3>ID</h3>
+		<input type="text" name="user_id"/>
+
+		<h3>PWD</h3>
+		<input type="password" name="user_pw"/>
+
+		<h3>ID_no</h3>
+		<input type="password" name="user_id_no"/>
+
+		<h3>Gender</h3>
+		<label><input type="radio" name="gender" value="Male"/>Male</label>
+		<label><input type="radio" name="gender" value="Female"/>Female</label>
+
+		<h3>Email</h3>
+		<input type="email" name="email"/>
+		<!-- input type="email" 자체 유효성 검사 -->
+
+		<h3>URL</h3>
+		<input type="url" name="url"/>
+		<!-- input type="url" 자체 유효성 검사 -->
+
+		<h3>Phone</h3>
+		<input type="tel" name="phno"/>
+
+		<h3>Hobby</h3>
+		<label><input type="checkbox" name="hobby" value="soccer"/>soccer</label>
+		<label><input type="checkbox" name="hobby" value="basketball"/>basketball</label>
+		<label><input type="checkbox" name="hobby" value="baseball"/>baseball</label>
+
+		<h3>Job</h3>
+		<select name="job">
+			<option>Choice</option>
+			<option value="programmer">Programmer</option>
+			<option value="publisher">Publisher</option>
+			<option value="designer">Designer</option>
+			<option value="manager">Manager</option>
+		</select>
+		
+		<input type="submit" value="Sign in" class="myButton">
+		<input type="reset" value="Reset" class="myButton">
+
+	</div>
+</form>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript" src="../js/member.js"></script>
+
+</body>
+</html>
+
+
+
+<!-- 
+jQuery 이벤트 정의
+$(function() {
+   $("셀렉터").이벤트이름(function() {
+      ... 처리 내용 ...
+   });
+});
+ -->
