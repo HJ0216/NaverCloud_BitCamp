@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam12 here</title>
+
+<link rel="stylesheet" type="text/css" href="../css/scroll.css">
+
+</head>
+<body>
+
+<div class="gradientStyle">
+	<h1>Scroll Event</h1>
+	<div id="console">??????</div>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(window).scroll(function(){
+		$('#console').html('scroll move');
+		
+		setTimeout(function(){
+			$('#console').html('Initialize');
+		}, 3000); // 3초 뒤 초기화
+	});
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+
+</body>
+</html>

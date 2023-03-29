@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam11 here</title>
+
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+
+</head>
+<body>
+
+<h1>창 크기 조절 이벤트 확인</h1>
+<div id="input">
+	<input type="text" />
+</div>
+
+<h2>결과</h2>
+<div id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(window).resize(function(){
+		$('#result').html('<p>' + $(window).width() + ' x ' + $(window).height() + '</p>');
+	});
+	// 스크롤바가 일정 위치에 도달할 때, 스크롤 바가 자동으로 늘어남 > 이때 윈도우 창의 크기를 계산해서 reload
+	
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>

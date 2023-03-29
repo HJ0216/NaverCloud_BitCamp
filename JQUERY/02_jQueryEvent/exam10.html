@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam10 here</title>
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+
+</head>
+<body>
+
+<h1>회원 가입</h1>
+
+<form name="form1" action="form_okay.html">
+	<div id="input">
+		<h3>당신의 이름은 무엇입니까?</h3>
+		<input type="text" name="user_name" />
+		<input type="submit" value="save" class="myBtn" />
+		<input type="reset" value="reset" class="myBtn" />
+	</div>
+</form>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('form[name="form1"]').submit(function(){ // input type="submit" or submit()
+		if(!confirm('저장 확인 요청')){
+		// confirm: 확인 요청, 확인 = true, 취소 = false
+		// 1. confirm > 확인 click > false > if문 실행 X, 함수 종료 > submit 실행
+		// 2. confirm > 취소 click > true > if문 실행 O, 함수 실행 > return false 반환(submit 실행 X)
+			return false;
+		}
+	});
+	
+	$('input[type="reset"]').click(function(){
+		if(!confirm('취소 확인 요청')){
+			return false;
+		}
+	})
+	
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>

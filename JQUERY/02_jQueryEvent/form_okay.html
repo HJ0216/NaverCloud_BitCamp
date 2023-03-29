@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form_okay here</title>
+
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+
+</head>
+<body>
+
+<h1>회원 가입</h1>
+
+<form name="form1">
+	<div id="input">
+		<h2>저장 완료</h2>
+		<input type="button" id="backBtn" value="back" class="myBtn" />
+	</div>
+</form>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.myBtn').click(function(){
+		// history.back(); // go(-1) 가능
+		// 이전 페이지로 이동이므로 입력된 이름값이 그대로 남아있음
+
+		location.href='exam10.html'
+		// 새로고침 효과
+	});
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>

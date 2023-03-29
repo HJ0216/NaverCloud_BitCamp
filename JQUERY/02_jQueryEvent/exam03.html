@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam03 here</title>
+
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+
+</head>
+<body>
+
+<h1>클릭 이벤트 확인</h1>
+<div id="input">
+	Click or Double Click Here!
+</div>
+
+<h2>결과</h2>
+<div id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#input').click(function(){
+		$('#result').html("click event here");
+	});
+	
+	$('#input').dblclick(function(){
+		$('#result').html("Double click event here");
+	});
+});
+</script>
+
+</body>
+</html>

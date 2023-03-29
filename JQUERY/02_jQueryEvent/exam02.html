@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam02 here</title>
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+</head>
+<body>
+
+<h1>마우스 이벤트 확인</h1>
+<div id="input">
+	Do in it Here!
+</div>
+
+<h2>결과</h2>
+<div id="result"></div>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#input').mousedown(function(){ // 마우스 클릭
+		$('#result').html('Mouse Down Event');
+	});
+	$('#input').mouseup(function(){ // 마우스 클릭을 제거
+		$('#result').html('Mouse Up Event');		
+	});
+	$('#input').mouseenter(function(){ // 포인터가 영역 안으로
+		$('#result').html('Mouse Enter Event');
+	});
+	$('#input').mouseleave(function(){
+		$('#result').html('Mouse Leave Event'); // 포인터가 영역 밖으로
+	});
+});
+</script>
+</body>
+</html>

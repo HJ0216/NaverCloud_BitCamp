@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam07 here</title>
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+
+</head>
+<body>
+
+<h1>Key 이벤트 확인</h1>
+<div id="input">
+	<input type="text" />
+</div>
+
+<h2>결과</h2>
+<div id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var count = 0;
+	
+	$('#input > input[type="text"]').keypress(function(event){ // event: press 시 발생하는 event
+		count++;
+		$('#result').html("key_count: " + count + " 개 &gt;&gt; " + event.which);
+		// event.which: ASCII 반환
+	});
+	
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>
+
+<!-- 
+* keyup / keydown / keypree 마다 인식되는 범위가 다르므로 선택하여 사용
+.keypress – 대소문자 구별 / ctrl, shift, 한글, ... 인식 X
+.keyup/keydown - 대소문자 구분 X
+ -->

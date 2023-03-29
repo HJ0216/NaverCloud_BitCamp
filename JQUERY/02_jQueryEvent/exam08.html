@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam08 here</title>
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+
+</head>
+<body>
+
+<h1>Focus / Blur 이벤트 확인</h1>
+<div id="input">
+	<input type="text" />
+</div>
+
+<h2>결과</h2>
+<div id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 페이지 로드 시, 자동으로 focus 설정
+	$('#input > input[type="text"]').focus();
+	// id: input >(자식) <input type="text" />
+
+	$('#input > input[type="text"]').focus(function(){
+		$('#result').html('focus in');
+	});
+
+	$('#input > input[type="text"]').blur(function(){ // focusout과 동일
+		$('#result').html('focus out');
+	});
+
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>

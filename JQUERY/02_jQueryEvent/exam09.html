@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam09 here</title>
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+
+</head>
+<body>
+
+<h1>Change 이벤트 확인</h1>
+
+<div id="input">
+	<h3>Name</h3>
+	<input type="text" name="user_name"/>
+
+
+	<h3>Gender</h3>
+	<label><input type="radio" name="gender" value="Male"/>Male</label>
+	<label><input type="radio" name="gender" value="Female"/>Female</label>
+
+
+	<h3>Hobby</h3>
+	<label><input type="checkbox" name="hobby" value="soccer"/>soccer</label>
+	<label><input type="checkbox" name="hobby" value="basketball"/>basketball</label>
+	<label><input type="checkbox" name="hobby" value="baseball"/>baseball</label>
+
+
+	<h3>Job</h3>
+	<select name="job">
+		<option>Choice</option>
+		<option value="programmer">Programmer</option>
+		<option value="publisher">Publisher</option>
+		<option value="designer">Designer</option>
+		<option value="manager">Manager</option>
+	</select>
+	
+</div>
+
+<h2>결과</h2>	
+<div id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	$('input[name="user_name"]').change(function(){ // focus out 시, 변경됨
+	// name 속성
+		$('#result').text('이름 변경');
+	});
+	
+	$('input[name="gender"]').change(function(e){ // is event와 동일
+	// $('input[name="gender"]')에서 발생하는 이벤트 = e
+	
+		console.log(e.target); // <input type="radio" name="gender" value="Male">
+		alert(e.target); // [object HTMLInputElement]
+
+		console.log(e.target.tagName); // INPUT - tagName은 대문자로 표기
+		alert(e.target.tagName); // INPUT
+		
+		console.log(e.target.value); // Male
+		alert(e.target.value); // Male
+
+		$('#result').text('성별 변경');
+	});
+
+	$('input[name="hobby"]').change(function(){
+		$('#result').text('취미 변경');
+	});
+
+	$('select[name="job"]').change(function(){
+		$('#result').text('직업 변경');
+	});
+
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>

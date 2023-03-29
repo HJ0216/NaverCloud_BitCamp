@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam05 here</title>
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+
+</head>
+<body>
+
+<h1>Key 이벤트 확인</h1>
+<div id="input">
+	<input type="text" />
+</div>
+
+<h2>결과</h2>
+<div id="result"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var down_count = 0;
+	var up_count = 0;
+	
+	$('#input > input[type="text"]').keydown(function(){ // 키보드를 누르고 있을 때
+		down_count++;
+		$('#result').html("down_count: " + down_count + " / up_count: " + up_count);
+	});
+	
+	$('#input > input[type="text"]').keyup(function(){ // 키보드에서 손을 땔 경우
+		up_count++;
+		$('#result').html("down_count: " + down_count + " / up_count: " + up_count);
+	});
+	
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>

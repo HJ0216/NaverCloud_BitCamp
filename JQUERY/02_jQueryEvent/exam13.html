@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam13 here</title>
+
+<link rel="stylesheet" type="text/css" href="../css/event.css">
+
+</head>
+<body>
+
+<h1>this의 사용</h1>
+<div id="input">
+	<h2>Single Object Check</h2>
+	<div id="singleBtn">Click</div>
+	
+	<h2>Multiple Object Check</h2>
+	<div>
+		<button class="multiBtn">Click</button>
+		<button class="multiBtn">Click</button>
+		<button class="multiBtn">Click</button>
+		<button class="multiBtn">Click</button>
+	</div>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#singleBtn').click(function(){
+		// $('#singleBtn').html('thank you!');
+		$(this).html('Thanks a lot!');
+		// 클릭한 자기자신을 의미
+		// this = $('#singleBtn'), 이벤트가 발생한 곳
+	});
+	
+	$('.multiBtn').click(function(){
+		$(this).html('Thank you!');
+		// 여러개의 class 속성 중에서 this를 사용할 경우 선택한 대상만 function 적용
+		// this = 이벤트 발생 대상
+
+		// $('#multiBtn').html('Thank you!');
+		// id 속성으로 변경할 경우, 최초로 만나는 id 속성값만 변경됨
+
+		// $('.multiBtn').html('Thank you!');
+		// 다수의 속성일 경우에는 반드시 class 속성으로 설정
+
+		var index = $(this).index();
+		var result = (index+1) + '번째 요소를 선택하였음';
+		
+		$(this).html(result);
+	});
+	
+	
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>
