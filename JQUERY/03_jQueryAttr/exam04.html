@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam04 here</title>
+</head>
+<body>
+
+<h1>활성/비활성 구현하기</h1>
+<form name="form1">
+	<input type="checkbox" id="upload_file_check" value="Y" />
+	<input type="file" id="file_finder" disabled />
+	<!-- 
+	disabled: 비활성화
+	readonly: 읽기 전용(변경 불가)
+	 -->
+</form>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#upload_file_check').change(function(){
+		var is_check = $(this).is(':checked');
+		$('#file_finder').prop('disabled', !is_check);
+		<!-- check에 따른 file_finder disabled 변경,
+		true -> disabled 삭제 // false -> disabled 생성 -->
+	});
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>

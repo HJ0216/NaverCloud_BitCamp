@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam03 here</title>
+
+</head>
+<body>
+
+<h1>전체 선택 기능 구현하기</h1>
+
+<form name="form1">
+	<fieldset>
+		<legend>취미</legend>
+		<p>
+			<input type="checkbox" id="all_check" value="Y" />
+			<label for="all_check">전체 선택 / 해제</label>
+		</p>
+		<p>
+			<input type="checkbox" id="hobby1" class="hobby_check" value="soccer" />
+			<label for="hobby1">Soccer</label>
+			<input type="checkbox" id="hobby2" class="hobby_check" value="basketball" />
+			<label for="hobby2">BasketBall</label>
+			<input type="checkbox" id="hobby3" class="hobby_check" value="baseball" />
+			<label for="hobby3">BaseBall</label>
+		</p>
+	</fieldset>
+</form>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#all_check').change(function(){
+		var is_check = $(this).is(':checked');
+		console.log(is_check); // 현재 checkbox의 선택 여부 확인(true, false)
+		
+		// $('.hobby_check').attr('checked', is_check);
+		// hobby_check class의 checked 속성 : '#all_check'의 true, false 이용
+		
+		// .attr():
+		// check box의 요소 하나를 선택 해제 후 다시 전체 선택 / 해제를 클릭할 경우,
+		// 해당 요소가 전체 선택 범위에 들어가지 않는 문제 발생
+		$('.hobby_check').prop('checked', is_check);
+		// .prop()활용
+		
+	});
+	
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>

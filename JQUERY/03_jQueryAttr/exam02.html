@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam02 here</title>
+</head>
+<body>
+<h1>속성 제어</h1>
+<p>클릭</p>
+<img src="../img/1.jpg" width="500" height="300" alt="카카오프렌즈 단체 사진" />
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var index = 1;
+	
+	$('img').click(function(){
+	// $('img'): id=img tag 반환
+		index = (index % 4) + 1;
+		// 파일명과 동일하게 0123 > 1234
+		$(this).attr('src', '../img/' + index + '.jpg');
+		// $(this) = $('img'), .attr(): 속성부여
+	});
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>
