@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+</head>
+<body>
+
+<p><a href="#">Link</a></p>
+
+<input type="checkbox" name=""  id="check" checked="checked" />CheckBox
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	console.log('attr: ' + $('a').attr('href'));
+	// 문자열 반환: #
+	
+	console.log('prop: ' + $('a').prop('href'));
+	// href가 가르키는 실제 값 반환: http://localhost:8080/jQuery/03_jQueryAttr/exam01.html#
+
+	var check = $('#check');
+	// $('#check'): id=check인 tag를 반환
+
+	
+	console.log('check: ' + check);
+	// element가 아니라 최고조상 obj[Object object]를 가져옴
+	// Element Type이 아니기 때문에 그냥 tagName할 경우, undefined
+	// .prop 처리 후 tagName 요청
+	console.log('check: ' + check.tagName); // undefined
+	console.log('check: ' + check.prop('tagName')); // INPUT
+			
+	console.log('attr: ' + check.attr('checked')); // 문자열: checked
+	console.log('prop: ' + check.prop('checked')); // 값: true(=체크 되었음)
+
+	var check2 = document.querySelector('#check'); // id=check tag 반환, react
+	console.log('attr: ' + check2.getAttribute('checked'));
+	
+	/*
+	.hasAttribute(name) —> 속성의 존재 확인
+	.getAttribute(name) — 속성값을 가져온다
+	.setAttribute(name, value) — 속성값을 변경
+	.removeAttribute(name) — 속성값을 제거
+	*/
+	
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>
+
+
+<!-- 
+tag 내부의 속성: attr() / prop()
+jQuery 1.6 이후: attr() -> attr() / prop()
+
+1. attr() : attribute
+- HTML에 작성된 속성값을 문자열로 받아온다
+
+[형식]
+var 변수명 = $("요소").attr("속성이름");
+$("요소").attr("속성이름", "값");
+
+예시
+* 동적 처리
+$('div').attr('name', '홍길동'); -> 속성으로 부여
+<div name = '홍길동'
+
+$("요소").attr({
+      "속성1이름": "값",
+      "속성2이름": "값",
+      "속성3이름": "값"
+}); ◀ JSON 표기법 사용
+
+2. prop() : property
+- 지정한 선택자를 가진 첫번째 요소의 속성값을 가져오거나 속성값을 추가한다
+- 자바스크립트의 프로퍼티를 가져온다
+  주의할 점은 HTML 입장에서의 속성(attribute)이 아닌 JavaScript 입장에서의 속성(property)이라는 것이다
+- 자바스크립트의 프로퍼티 값이 넘어오기 때문에 boolean, date, function 등도 가져올 수 있다
+
+[형식]
+.prop("속성이름")        → 속성값을 가져온다
+.prop("속성이름", "값")   → 속성값을 추가한다
+ -->
