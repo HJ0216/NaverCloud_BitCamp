@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Examm03 here</title>
+<style type="text/css">
+
+* { 
+   padding: 0;
+   margin: 0; 
+}
+
+#container { 
+   width: 500px;
+   margin: 20px auto; /*가운데 정렬*/
+}
+
+ul.tab {
+   list-style: none;
+   position: relative;
+   z-index: 100; /*우선순위 설정*/
+}
+
+ul.tab li {
+   width: 100px;
+   height: 40px;
+   float: left;
+}
+
+ul:after {
+   content: '';
+   display: block;
+   float: none;
+   clear: both;
+}
+
+ul.tab li a {
+   background: url("../img/tab.jpg");
+   display: block;
+   color: #222;
+   line-height: 40px;
+   text-align: center;
+   text-decoration: none;
+}
+
+ul.tab li a.selected {
+   background: url("../img/tab_selected.jpg");
+}
+
+p.panel {
+   border: 1px solid #9FB7D4;
+   position: relative;
+   padding: 10px;
+   margin: 0;
+   top: -1px; /*선택 시, border를 삭제하기 위해 div 영역을 -1만큼 이동*/
+}
+
+</style>
+</head>
+<body>
+
+<div id="container">
+<!-- 탭 버튼 영역 -->
+	<ul class="tab">
+		<li><a href="../txt/html5.txt" class="selected">HTML5</a></li>
+		<!-- class 속성을 동적으로 처리하여 선택에 따른 border를 삭제 -->
+		<li><a href="../txt/jquery.txt">jQuery</a></li>
+		<li><a href="../txt/bootstrap.txt">BootStrap3</a></li>
+	</ul>
+<!-- 내용 영역 -->
+<p class="panel"></p>
+</div>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 실행하자마자 class="selected" 부여된 파일의 내용 읽어오기: load()
+	console.log($('ul.tab li a.selected').attr('href'));
+	console.log($('ul li a.selected').attr('href'));
+	console.log($('ul.tab a.selected').attr('href'));
+	console.log($('ul  a.selected').attr('href'));
+	// a 속성의 class="selected": href의 attr 호출
+	
+	$('p.panel').load($('ul li a.selected').attr('href'));
+	
+	$('ul.tab li a').click(function(){
+	// 코드가 길어질 것을 대비해서 구체적으로 경로 적기
+
+		console.log('this: ' + this);
+		// return url
+		// this: 클릭한 자신의 "요소"
+		console.log('$(this): ' + $(this));
+		// return Obj ▶ 해당 객체의 함수 호출 가능
+		
+		// 클릭 "요소"를 제외한 나머지(=not(this))에서 class="selected"를 제거
+		$('ul.tab li a').not(this).removeClass('selected');
+		
+		// 클릭된 해당 "객체"에 class="selected" 추가
+		$(this).addClass('selected');
+		
+		// 클릭된 "객체"의 href 속성값(=파일, 파일경로)을 가져와서 속성값(=파일내용)을 읽어냄
+		$('p.panel').load($(this).attr('href'));
+		
+		// 페이지 이동 방지
+		return false;
+		
+	});
+	
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>
+
+
+<!-- 
+.not()
+- 제이쿼리로 선택한 선택자(요소)들 중에서, 특정 선택자(요소)만을 제외하는 함수(except)
+
+this / $(this)
+this: 해당 이벤트가 발생한 요소 표시
+$(this): 이벤트가 발생하면 발생한 태그를 Object 형태로 감싸서 반환
+
+this와 같은 데이터를 갖기 위해서는 $(this)[0] 을 사용하면 된다.
+this  === $(this)[0]
+ -->
