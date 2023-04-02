@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>mvcMember</display-name>
+<!--   
+   <servlet>
+  	<servlet-name>ControlServlet</servlet-name> servlet class 위치에 대한 alias 지정
+  	<servlet-class>com.control.ControlServlet</servlet-class>
+  	xml파일에 작성시 pkg 경로까지 작성 필수
+					 .class는 필수 생략
+
+  	<init-param>
+  	서버는 project 실행 시, web.xml만을 자동으로 읽으므로 command.properties 삽입
+  	* command.properties: request와 class를 매칭한 파일
+  	
+  		<param-name>propertyConfig</param-name> param-value에 대한 alias 지정
+  		<param-value>D:/java_ee/workspace/mvcMember/src/main/webapp/WEB-INF/command.properties</param-value>
+  		\에 대한 제어문자로 인식되는 문제(\n, \t 처럼)가 발생할 수 있으므로
+  		경로에서는 \대신 \\(c언어, java) or /(java)사용
+  		
+  		문제: 프로젝트명이 바뀌거나 properties 위치가 변경될 때, 환경 설정을 찾지 못함 > annotation 사용
+  		
+
+  	</init-param>
+
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControlServlet</servlet-name> url-pattern에 대한 alias 지정
+  	<url-pattern>*.do</url-pattern>
+  	.do로 끝나면 servlet-class(com.control.ControlServlet) 호출
+  	http://localhost:8080/mvcMember/___".do" > com.control.ControlServlet 호출
+  </servlet-mapping>
+-->
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+</web-app>

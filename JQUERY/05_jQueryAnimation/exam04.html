@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#thumb {
+   padding: 0;
+   margin: 0;
+   list-style: none; 
+   width: 100px;
+   float: left;
+}
+#thumb li {
+   padding: 5px 10px;
+}
+#thumb img {
+   width: 80px;
+   height: 80px;
+}
+#view {
+   padding: 5px 0;
+   width: 360px;
+   height: 270px;
+   float: left;
+}
+#view img {
+   width: 100%;
+   height: 100%;
+}
+</style>
+</head>
+<body>
+
+<ul id="thumb">
+	<li>
+		<a href="../img/1.jpg" class="item"><img src="../img/1.jpg" /></a>
+	</li>
+	<li>
+		<a href="../img/2.jpg" class="item"><img src="../img/2.jpg" /></a>
+	</li>
+	<li>
+		<a href="../img/3.jpg" class="item"><img src="../img/3.jpg" /></a>
+	</li>
+</ul>
+
+<div id="view"><img src="../img/1.jpg" /></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('a.item:eq(0)').click(function(){
+		var img = $(this).attr('href');
+		// 클릭 요소의 href 속성값 들고오기
+		
+		$('#view').hide(500, function(){
+			$('#view img').attr('src', img);
+			$(this).show(500);
+		});
+		
+		return false; // a tag 링크 이동 방지
+	});
+
+	$('a.item:eq(1)').click(function(){
+		var img = $(this).attr('href');
+		// 클릭 요소의 href 속성값 들고오기
+		
+		$('#view').hide(500, function(){
+			$('#view img').attr('src', img);
+			$(this).show(500);
+		});
+		
+		return false; // a tag 링크 이동 방지
+	});
+
+	$('a.item:eq(2)').click(function(){
+		var img = $(this).attr('href');
+		// 클릭 요소의 href 속성값 들고오기
+		
+		$('#view').hide(500, function(){
+			$('#view img').attr('src', img);
+			$(this).show(500);
+		});
+		
+		return false; // a tag 링크 이동 방지
+	});
+
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>
+
+<!-- 
+예) show(time [, function() {......}]);
+
+- 모든 애니메이션 관련 함수들은 시간값 외에 두 번째 파라미터로 함수를 지정할 수 있다.
+- 이 함수들에 애니메이션 처리가 종료된 후에 동작할 내용을 담는다.
+ -->

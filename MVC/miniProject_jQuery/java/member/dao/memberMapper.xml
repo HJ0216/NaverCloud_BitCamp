@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="memberSQL">
+ 	<!-- Sign in -->
+ 	<insert id="memberWrite" parameterType="MemberDTO">
+ 	<!-- parameterType: 넘어오는 데이터의 타입(class type일 경우, 위치 지정 필수)
+ 		 resultType: 넘겨울 데이터 타입 -->
+		INSERT INTO MEMBER VALUES(#{name}, #{id}, #{pwd}, #{gender}, #{email1}, #{email2}, #{tel1}, #{tel2}, #{tel3}, #{zipcode}, #{addr1}, #{addr2}, SYSDATE)
+	</insert>
+		
+	
+	<!-- Login -->
+	<select id="loginTry" parameterType="MemberDTO" resultType="MemberDTO">
+ 		SELECT * FROM MEMBER WHERE ID=#{id} AND PWD=#{pwd}
+ 	</select>
+
+	
+	<!-- Login -->
+	<select id="memberLogin" parameterType="java.util.Map" resultType="MemberDTO">
+ 		SELECT * FROM MEMBER WHERE ID=#{id} AND PWD=#{pwd}
+ 	</select>
+	
+	
+	<!-- Search -->
+	<select id="isExistId" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT * FROM MEMBER WHERE ID=#{id}
+	</select>
+
+
+	<!-- 회원정보 확인 -->
+	<select id="memberCall" parameterType="String" resultType="MemberDTO">
+ 		SELECT * FROM MEMBER WHERE ID=#{id}
+ 	</select>
+ 	
+ 	
+ 	<!-- 회원정보 수정 -->
+ 	<update id="memberUpdate" parameterType="MemberDTO">
+ 		UPDATE MEMBER SET NAME=#{name}
+ 						  , PWD=#{pwd}
+ 						  , GENDER=#{gender}
+ 						  , EMAIL1=#{email1}
+ 						  , EMAIL2=#{email2}
+ 						  , TEL1=#{tel1}
+ 						  , TEL2=#{tel2}
+ 						  , TEL3=#{tel3}
+ 						  , ZIPCODE=#{zipcode}
+ 						  , ADDR1=#{addr1}
+ 						  , ADDR2=#{addr2}
+ 						  , LOGTIME=SYSDATE
+ 						   WHERE ID=#{id}
+ 	</update>
+
+
+	<!-- 회원 탈퇴 -->	
+	<select id="memberDelTry" parameterType="String" resultType="MemberDTO">
+ 		SELECT * FROM MEMBER WHERE ID=#{id}
+ 	</select>
+ 	
+ 	
+	<!-- 회원 탈퇴 -->	
+ 	<delete id="memberDelete" parameterType="String">
+		DELETE FROM MEMBER WHERE ID=#{id}
+	</delete>
+	
+	
+	<!-- 회원 탈퇴 시, 비밀번호 확인 -->	
+	<select id="isExistPwd" parameterType="java.util.Map" resultType="MemberDTO">
+		SELECT * FROM MEMBER WHERE ID=#{id} AND PWD=#{pwd}
+	</select>
+ 	
+
+ 	<delete id="memberDeleteT" parameterType="String">
+		DELETE FROM MEMBER WHERE ID=#{id}
+	</delete>
+	
+	
+ </mapper>

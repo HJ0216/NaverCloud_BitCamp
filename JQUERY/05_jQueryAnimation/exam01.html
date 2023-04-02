@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+</head>
+<body>
+
+<button id="btn1">slideUp</button>
+<button id="btn2">slideDown</button>&nbsp;&nbsp;&nbsp;
+
+<button id="btn3">fadeIn</button>
+<button id="btn4">fadeOut</button>&nbsp;&nbsp;&nbsp;
+
+<button id="btn5">slide toggle</button>
+<button id="btn6">toggle</button>
+
+<p>Image</p>
+<img src="../img/1.jpg" width="500px" height="300"/>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#btn1').click(function(){ // img에 w, h가 부여되어야 좌상으로 fade 되지 않음
+		$('img').slideUp(1000); // 단위 1/1000 sec
+	});
+
+	$('#btn2').click(function(){
+		$('img').slideDown(1000); // 단위 1/1000 sec
+	});
+
+	$('#btn3').bind('click', function(){
+		$('img').fadeIn(1000);
+	});
+
+	$('#btn4').bind('click', function(){
+		$('img').fadeOut(1000);
+	});
+	
+	$('#btn5').bind('click', function(){
+		$('img').slideToggle(1000); // SlideUp, SlideDown을 번갈아 움직임
+	});
+	
+	$('#btn6').bind('click', function(){
+		$('img').toggle(1000); // SlideUp, SlideDown을 번갈아 움직임(좌상)
+	});
+	
+	
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>
+
+
+<!-- 
+slideUp(), slideDown(), slideToggle()은 반드시 <img> 태그에 width, height 속성을 주어야 한다
+그렇지 않으면 toggle()와 똑같은 동작을 한다
+
+slideUp(speed) : speed값을 지정해서 슬라이드업 효과를 줄 수 있다
+speed : "slow" or "fast" or milliseconds(1/1000초)
+ -->

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="boardSQL">
+	<insert id="boardWrite" parameterType="BoardDTO">
+ 	<!-- parameterType: 넘어오는 데이터의 타입(class type일 경우, 위치 지정 필수)
+ 		 resultType: 넘겨울 데이터 타입 -->
+		INSERT INTO BOARD(SEQ, ID, NAME, EMAIL, SUBJECT, CONTENT, REF, LOGTIME) 
+		VALUES(SEQ_BOARD.NEXTVAL, #{id}, #{name}, #{email}, #{subject}, #{content}, SEQ_BOARD.NEXTVAL, SYSDATE)
+	</insert>
+	
+	
+	<insert id="boardWriteT" parameterType="java.util.Map">
+ 	<!-- parameterType: 넘어오는 데이터의 타입(class type일 경우, 위치 지정 필수)
+ 		 resultType: 넘겨울 데이터 타입 -->
+		INSERT INTO BOARD(SEQ, ID, NAME, EMAIL, SUBJECT, CONTENT, REF, LOGTIME) 
+		VALUES(SEQ_BOARD.NEXTVAL, #{id}, #{name}, #{email}, #{subject}, #{content}, SEQ_BOARD.NEXTVAL, SYSDATE)
+	</insert>
+
+	
+	<select id="boardList" parameterType="java.util.Map" resultType="BoardDTO">
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+						 FROM (SELECT * 
+						 	     FROM BOARD 
+						 	 ORDER BY REF DESC, STEP) A) 
+		WHERE RN BETWEEN #{startNum} AND #{endNum}
+ 	</select>
+
+	
+	<select id="boardListT" parameterType="java.util.Map" resultType="BoardDTO">
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+						 FROM (SELECT * 
+						 	     FROM BOARD 
+						 	 ORDER BY REF DESC, STEP) A) 
+		WHERE RN BETWEEN #{startNum} AND #{endNum}
+ 	</select>
+ 	
+ 	
+ 	<select id="getTotalA" resultType="BoardDTO">
+		SELECT * FROM BOARD
+ 	</select>
+	
+
+ 	<select id="boardCall" parameterType="Integer" resultType="BoardDTO">
+		SELECT * FROM BOARD WHERE SEQ=#{seq}
+ 	</select>
+ 	
+ 	
+ 	<select id="boardSearch_name" parameterType="java.util.Map" resultType="BoardDTO">
+		SELECT * FROM BOARD WHRER NAME LIKE '%' ||#{search_content}|| '%'
+ 	</select>
+	
+	
+ 	<select id="boardSearch_subject" parameterType="java.util.Map" resultType="BoardDTO">
+		SELECT * FROM BOARD WHRER CONTENT LIKE '%' ||#{search_content}|| '%'
+ 	</select>
+	
+	
+	
+	
+ </mapper>

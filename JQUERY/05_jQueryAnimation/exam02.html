@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam02 here</title>
+<style type="text/css">
+.btn {
+	background: cyan;
+}
+</style>
+</head>
+<body>
+
+<h1>Show / Hide</h1>
+<div id="sh">
+	<input type="button" class="btn" value="보이기" />
+	<input type="button" value="숨기기" />
+	<input type="button" value="토글" />
+	<div>
+		<img src="../img/1.jpg" width="500px" height="300px" />
+	</div>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('div#sh > input:eq(0)').click(function(){
+		$('div#sh > div > img').show(200);
+		// 자식 tag 사용 시, 순서대로 기재
+		// div#sh img 와 동일
+/* 		$('div#sh > input:eq(0)').addClass('btn');
+		$('div#sh > input:eq(1)').removeClass('btn');
+		$('div#sh > input:eq(2)').removeClass('btn'); */
+	});
+
+	$('div#sh > input:eq(1)').click(function(){
+		$('div#sh img').hide(200);
+		// 자식 tag 사용 시, 순서대로 기재
+		// div#sh img 와 동일
+/* 		$('div#sh > input:eq(1)').addClass('btn');
+		$('div#sh > input:eq(0)').removeClass('btn');
+		$('div#sh > input:eq(2)').removeClass('btn'); */
+	});
+
+	$('div#sh > input:eq(2)').click(function(){
+		$('#sh img').toggle(200);
+		// 자식 tag 사용 시, 순서대로 기재
+		// div#sh img 와 동일
+/* 		$('div#sh > input:eq(2)').addClass('btn');
+		$('div#sh > input:eq(0)').removeClass('btn');
+		$('div#sh > input:eq(1)').removeClass('btn'); */
+	});
+
+	 
+//	[문제] 클릭할 때마다 button의 색깔을 cyan으로 바꾸고 나머지는 원래의 색으로 유지
+
+	// not 활용
+	$('div#sh > input').click(function(){
+		console.log('this: ' + this); // [object HTMLInputElement]
+		console.log('$(this): ' + $(this)); // [object Object]
+		
+		// 클릭한 버튼을 제외한 모든 버튼에서 class 속성 제거
+		$('#sh > input').not(this).removeClass('btn');
+		
+		// 클릭한 버튼에 class 속성을 부여
+		$(this).addClass('btn');
+	});
+	
+
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>
+
+ 
+<!-- 
+ * this와 $(this)의 차이
+$('#sh > input').not(this).removeClass('btn');
+
+=> this는 자바스크립트이고 $(this) 제이쿼리 문법이다.
+=> this의 경우 해당 이벤트가 발생한 요소를 표시해주고
+   $(this)는 이벤트가 발생하면 발생한 태그를 Object로 보여준다는게 다른점이다.
+=> this  === $(this)[0]
+
+[결과] console.log()로 출력한 결과
+<input type="button"  value="보이기" class="btn">      //console.log(this); 결과
+
+▼ S.fn.init [input]         //console.log($(this)); 결과
+   ▶ 0: input.btn
+     length: 1
+   ▶ [[Prototype]]: Object(0)
+-->

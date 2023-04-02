@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam02 here</title>
+<style type="text/css">
+div {
+   width: 400px;
+   height: 300px;
+   padding-top: 20px;
+   background-size: 100% 100%;
+}
+ul {
+   padding: 10px 20px;
+   background-color: rgba(255, 255, 255, 0.6) /*4번째 요소: 0=투명*/
+}
+</style>
+</head>
+<body>
+
+<div>
+	<ul id="menu">
+		<li class="item">
+			<a href="#">../img/1.jpg</a>
+		</li>
+		<li class="item">
+			<a href="#">../img/2.jpg</a>
+		</li>
+		<li class="item">
+			<a href="#">../img/3.jpg</a>
+		</li>
+	</ul>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.item > a').click(function(){
+		var index = $(this).parent().index();
+		// a tag는 혼자 있으므로 li tag로 올라가서 index 처리
+		console.log('index: ' + index);
+		
+		// 슬라이드쇼 활용 가능
+		var image = ['../img/1.jpg', '../img/2.jpg', '../img/3.jpg'];
+		$(this).parents('div').css({
+			'background-image' : 'url(' + image[index] + ')'
+			
+		}); // css 다중 속성 사용 시, {}
+		// 조상 중 div tag 탐색
+		// $(this).parent().parent().parent()
+	});
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>

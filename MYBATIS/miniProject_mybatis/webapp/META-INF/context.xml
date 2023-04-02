@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xml ver, encoding 부분은 반드시 맨 위에 붙여서 진행
+	 Connection Pool을 설치할 Context(Project) 작성 -->
+
+<!-- 
+Server 내부의 Connection Pool에 jdbc/oracle이라는 이름의 resource 존재
+Client는 connectoin pool에 직접 접근할 수 없으므로
+connection pool로 부터 모든 데이터를 전달받은 DataSource를 통해서
+Server Connection pool에 접근
+ -->
+
+<Context docBase="miniProject_mybatis"
+		 path="/miniProject_mybatis"
+		 reloadable="true"
+		 source="org.eclipse.jst.jee.server:miniProject_mybatis">
+		 
+		 <Resource name="jdbc/oracle"
+		 		   type="javax.sql.DataSource"
+		 		   driverClassName="oracle.jdbc.driver.OracleDriver"
+		 		   url="jdbc:oracle:thin:@localhost:1521:xe"
+		 		   username="C##JAVA"
+		 		   password="1234"
+		 		   maxActive="20"
+		 		   maxIdle="3"
+		 		   removeAbandoned="true" />
+		 
+</Context>
+<!-- Connection pool이 중간에 들어가야하므로 context 시작 종료 나누기 -->	 

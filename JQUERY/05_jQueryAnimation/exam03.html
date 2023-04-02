@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam03 here</title>
+
+<style type="text/css">
+ul { 
+   width: 700px;
+   margin: auto;
+   list-style: none;
+}
+ul li { 
+   float: left;
+}
+ul li img { 
+   border: 0;
+   margin: 10px;
+}
+div#glayLayer {
+   display: none;
+   position: fixed;
+   left: 0;
+   top: 0;
+   height: 100%;
+   width: 100%;
+   background: black;
+   /* filter: alpha(opacity=60); */
+   opacity: 0.60;  /* 0.0 ~ 1.0, 값이 작을수록 더 투명하게 만든다. */
+}
+#overLayer {
+   display: none;
+   position: fixed;
+   top: 50%; /*glayLayer의 50%*/
+   left: 50%;
+   margin-top: -244px; /* 양수 값은 인접 요소와 거리를 넓히고, 음수 값은 더 좁힌다. */
+   margin-left: -325px;
+}
+</style>
+
+</head>
+<body>
+
+<div id="glayLayer"></div>
+<div id="overLayer"></div>
+
+<ul>
+	<li>
+		<a href="../img/photo1.jpg" class="modal">
+			<img src="../img/photo1_thum.jpg" alt="샹드리아" />
+		</a>
+	</li>
+	<li>
+		<a href="../img/photo2.jpg" class="modal">
+			<img src="../img/photo2_thum.jpg" alt="장미" />
+		</a>
+	</li>
+	<li>
+		<a href="../img/photo3.jpg" class="modal">
+			<img src="../img/photo3_thum.jpg" alt="바다" />
+		</a>
+	</li>
+	<li>
+		<a href="../img/photo4.jpg" class="modal">
+			<img src="../img/photo4_thum.jpg" alt="문" />
+		</a>
+	</li>
+	<li>
+		<a href="../img/photo5.jpg" class="modal">
+			<img src="../img/photo5_thum.jpg" alt="바다" />
+		</a>
+	</li>
+	<li>
+		<a href="../img/photo6.jpg" class="modal">
+			<img src="../img/photo6_thum.jpg" alt="꽃" />
+		</a>
+	</li>
+	<li>
+		<a href="../img/photo7.jpg" class="modal">
+			<img src="../img/photo7_thum.jpg" alt="하늘" />
+		</a>
+	</li>
+	<li>
+		<a href="../img/photo8.jpg" class="modal">
+			<img src="../img/photo8_thum.jpg" alt="건물" />
+		</a>
+	</li>
+</ul>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('a.modal').click(function(){
+		$('#glayLayer').fadeIn(300);
+		$('#overLayer').fadeIn(300);
+		
+		$('#overLayer').html('<img src="' + $(this).attr('href') + '" />');
+		// href: "../img/photo8.jpg"
+		
+		return false;
+	});
+	
+	$('#glayLayer').click(function(){
+		$(this).fadeOut(300);
+		$('#overLayer').fadeOut(300);
+	});
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>

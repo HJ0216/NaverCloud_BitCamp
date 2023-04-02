@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="boardSQL">
+	<insert id="boardWrite" parameterType="BoardDTO">
+ 	<!-- parameterType: 넘어오는 데이터의 타입(class type일 경우, 위치 지정 필수)
+ 		 resultType: 넘겨울 데이터 타입 -->
+		INSERT INTO BOARD(SEQ, ID, NAME, EMAIL, SUBJECT, CONTENT, REF, LOGTIME) 
+		VALUES(SEQ_BOARD.NEXTVAL, #{id}, #{name}, #{email}, #{subject}, #{content}, SEQ_BOARD.NEXTVAL, SYSDATE)
+	</insert>
+	
+	
+	<insert id="boardWriteT" parameterType="java.util.Map">
+ 	<!-- parameterType: 넘어오는 데이터의 타입(class type일 경우, 위치 지정 필수)
+ 		 resultType: 넘겨울 데이터 타입 -->
+		INSERT INTO BOARD(SEQ, ID, NAME, EMAIL, SUBJECT, CONTENT, REF, LOGTIME) VALUES(SEQ_BOARD.NEXTVAL, #{id}, #{name}, #{email}, #{subject}, #{content}, SEQ_BOARD.NEXTVAL, SYSDATE)
+	</insert>
+
+	
+	<select id="boardList" parameterType="java.util.Map" resultType="BoardDTO">
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+						 FROM (SELECT * 
+						 	     FROM BOARD 
+						 	 ORDER BY REF DESC, STEP) A) 
+		WHERE RN BETWEEN #{startNum} AND #{endNum}
+<!--		
+		<![CDATA[ // < - 태그 미 인식
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+						 FROM (SELECT * 
+						 	     FROM BOARD 
+						 	 ORDER BY REF DESC, STEP) A) 
+		WHERE RN>=#{startNum} AND RN<=#{endNum}		
+		]]>
+-->		
+ 	</select>
+
+	
+	<select id="boardListT" parameterType="java.util.Map" resultType="BoardDTO">
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+						 FROM (SELECT * 
+						 	     FROM BOARD 
+						 	 ORDER BY REF DESC, STEP) A) 
+		WHERE RN BETWEEN #{startNum} AND #{endNum}
+ 	</select>
+ 	
+ 	
+ 	<select id="getTotalA" resultType="BoardDTO">
+		SELECT * FROM BOARD
+ 	</select>
+
+<!-- 
+ 	<select id="getTotalB" resultType="int">
+		SELECT COUNT(*) FROM BOARD
+ 	</select>
+ -->
+	
+	<!-- getBoard와 동일 -->
+ 	<select id="boardCall" parameterType="Integer" resultType="BoardDTO">
+ 	<!-- Integer 대신 int 사용 가능 -->
+		SELECT * FROM BOARD WHERE SEQ=#{pseq}
+ 	</select>
+ 	
+ 	
+ 	<select id="boardSearch_name" parameterType="java.util.Map" resultType="BoardDTO">
+		SELECT * FROM BOARD WHRER NAME LIKE '%' ||#{search_content}|| '%'
+ 	</select>
+	
+	
+ 	<select id="boardSearch_subject" parameterType="java.util.Map" resultType="BoardDTO">
+		SELECT * FROM BOARD WHRER CONTENT LIKE '%' ||#{search_content}|| '%'
+ 	</select>
+	
+	
+	<!-- 답글 기능 -->
+	<update id="boardReply1" parameterType="boardDTO">
+		UPDATE BOARD SET STEP=STEP+1 WHERE REF=#{ref} AND STEP>#{step}
+	</update>
+	
+	<insert id="boardReply2" parameterType="java.util.Map">
+		INSERT INTO BOARD VALUES(SEQ_BOARD.NEXTVAL, #{ID}, #{NAME}, #{EMAIL}, #{SUBJECT}, #{CONTENT}, #{REF}, #{LEV}, #{STEP}, #{PSEQ}, 0, 0, SYSDATE)
+	</insert>
+	
+	<update id="boardReply3" parameterType="int">
+		UPDATE BOARD SET REPLY=REPLY+1 WHERE SEQ=#{seq}
+	</update>
+	
+
+	<!-- 글 수정 -->
+	<update id="boardUpdate" parameterType="java.util.Map">
+		UPDATE BOARD SET SUBJECT=#{subject}, CONTENT=#{content} WHERE SEQ=#{seq}
+	</update>
+	
+	
+	<!-- 글 삭제 -->
+	<update id="boardDelete1" parameterType="int">
+		UPDATE BOARD SET REPLY=REPLY-1 WHERE SEQ=#{seq}
+	</update>
+	
+	<update id="boardDelete2" parameterType="int">
+		UPDATE BOARD SET SUBJECT=('[원글이 삭제된 답글] ' || SUBJECT) WHERE PSEQ=#{seq}
+	</update>
+
+	<delete id="boardDelete3" parameterType="int">
+		DELETE FROM BOARD WHERE SEQ=#{seq}
+	</delete>
+
+	
+ </mapper>

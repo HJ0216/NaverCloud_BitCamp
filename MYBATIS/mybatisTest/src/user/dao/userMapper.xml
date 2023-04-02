@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="userSQL">
+
+ 	<insert id="write" parameterType="user">
+ 	<!-- parameterType: 넘어오는 데이터 타입(위치까지 안내 필수) -->
+ 		INSERT INTO USERTABLE VALUES(#{name}, #{id}, #{pwd})
+	</insert>
+	
+	<!-- 
+		<select id="getUserList" resultType="user.bean.UserDTO">
+		resultType: 반환되는 record 타입에 대해서만 선언
+	
+		Mapper는 같은 이름을 찾아서 DTO에 setData를 실행(DB와 java 변수를 동일한 이름으로 선언)
+		boardDTO.setSeq(rs.getInt("SEQ")); 실행구문이 자동으로 이뤄짐
+		* 만일 이름을 다르게 해서 자동 매핑이 되지 않을 경우
+		= userDTO의 필드명과 OracleDB col name이 상이
+		<resultMap type="user.bean.UserDTO" id="userResult"></resultMap> 사용
+	
+		SELECT * FROM USERTABLE
+		</select>		
+	 -->
+ 	 
+ 	<resultMap type="user" id="userResult">
+ 		<result column="NAME" property="name"/>
+ 		<result column="ID" property="id"/>
+ 		<result column="PWD" property="pwd"/>
+ 	</resultMap>
+ 	
+ 	<select id="getUserList" resultMap="userResult">
+ 		SELECT * FROM USERTABLE
+ 	</select>
+
+
+ 	<select id="getUser" parameterType="String" resultType="user">
+ 	<!-- parameterType: 넘어오는 데이터의 타입
+ 		 resultType: 넘겨울 데이터 타입 -->
+ 		SELECT * FROM USERTABLE WHERE ID=#{id}
+ 	</select> 
+ 
+ 
+ 	<update id="update" parameterType="java.util.Map">
+ 	<!-- paramType 기재 시, import 명 기재 -->
+ 		UPDATE USERTABLE SET NAME=#{name}, PWD=#{pwd} WHERE ID=#{id}
+ 	</update>
+
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM USERTABLE WHERE ID=#{id}
+	</delete>
+
+	<select id="search" parameterType="java.util.Map" resultType="user">
+		SELECT * FROM USERTABLE WHERE ${col_name} LIKE '%' ||#{value}|| '%'
+		<!--
+			${}: 값이 그대로 입력, #{}: ''으로 감싸지고 값 입력
+			col_name value의 경우 이미 String 처리를 위해 ""로 감싸져 있으므로
+			#{} 사용 시, error 발생
+		-->
+	</select>
+	
+	<select id="searchT" parameterType="java.util.Map" resultType="user">
+		<!-- 여러줄 주석: ctrl shift / -->
+
+		<!--
+		java if 조건문 = xml if 조건문
+		(단, else가 없으므로 다중 if 사용)
+		
+ 		SELECT * FROM USERTABLE WHERE 
+		<if test="columnName == 'NAME'">
+			NAME LIKE '%' || #{value} || '%'
+		</if>
+		<if test="columnName == 'ID'">
+			ID LIKE '%' || #{value} || '%'
+		</if>
+		
+		-->
+		
+		<!--
+		java switch 조건문 = xml choose 조건문
+		java case = when (다중 사용 가능)
+		java default = otherwise
+		
+		SELECT * FROM USERTABLE WHERE
+		<choose>
+			<when test="columnName == 'NAME'">
+				NAME LIKE '%' || #{value} || '%'
+			</when>
+			<otherwise>
+				ID LIKE '%' || #{value} || '%'
+			</otherwise>
+		</choose>
+		-->
+
+		
+		<!--  -->
+		SELECT * FROM USERTABLE WHERE ${columnName} LIKE '%' || #{value} || '%'
+		<!--
+			${}: 변수 값 
+			#{}: ''으로 감싸진 변수 값(String 처리)
+		-->
+		
+	</select>
+ 	
+ </mapper>
