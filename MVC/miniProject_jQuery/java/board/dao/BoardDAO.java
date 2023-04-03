@@ -154,20 +154,20 @@ public class BoardDAO {
 	}
 
 
-	public void boardDelete(Map<String, String> map) {
+	public void boardDelete(String seq) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		BoardDTO boardDTO = sqlSession.selectOne("boardSQL.boardCall", Integer.parseInt(map.get("PSEQ")));
-		// map.get("pseq"): String -> Integer.parseInt로 변환
 		
 		// REPLY UPDATE
-		// UPDATE BOARD SET REPLY=REPLY+1 WHERE SEQ=원글_SEQ
-		sqlSession.update("boardSQL.boardDelete1", boardDTO.getSeq());
+		// UPDATE BOARD SET REPLY=REPLY-1 WHERE SEQ=원글_SEQ
+		// 원글_SEQ = SELECT PSEQ FROM BOARD WHERE SEQ=#{seq}
+		sqlSession.update("boardSQL.boardDelete1", Integer.parseInt(seq));
+		// map.get("pseq"): String -> Integer.parseInt로 변환
 
 		// UPDATE BOARD SET SUBJECT=('[원글이 삭제된 답글] ' || SUBJECT) WHERE PSEQ=원글_SEQ;
-		sqlSession.update("boardSQL.boardDelete2", boardDTO.getSeq());
+		sqlSession.update("boardSQL.boardDelete2", Integer.parseInt(seq));
 
 		// DELETE FROM BOARD WHERE SEQ=원글_SEQ;		
-		sqlSession.delete("boardSQL.boardDelete3", boardDTO.getSeq());
+		sqlSession.delete("boardSQL.boardDelete3", Integer.parseInt(seq));
 		
 		sqlSession.commit();
 		sqlSession.close();

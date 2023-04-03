@@ -9,11 +9,13 @@ $(document).ready(function(){
 		// ▶ .jsp와 객체를 공유하며 view로 반환
 		// .jsp의 ${requestScope.json } = service.java의 request.setAttribute("json", json)
 		// list, pagingHTML: json에 저장되어 있음
-		// servlet이 jsp의request 객체를 사용할 수 있다는 말????????????????
+		// forward 의미: servlet이 jsp의 request 객체를 사용할 수 있다는 말????????????????
 		data: {'pg': $('#pg').val()},
 		// JSON: {'pg': $('#pg').val()},
 		// 문자열: 'pg=' + $('#pg').val(),
-		// jQuery: ajax() 안에서만???????????????????
+		// jQuery: 혼자서 사용 가능 
+		// jQuery: 서버와 연결할 때는 ajax()와 함께 사용
+		
 		dataType: 'json',
 		// return dataType: text, html, xml, json
 		// * 객체 type을 return 받을 수 없으므로 객체를 json으로 변환시켜 가져와야 함
@@ -94,7 +96,8 @@ $(document).ready(function(){
 				
 				// 만일 memId라는 변수는 선언되었는데, scope 겁색 후 해당 변수의 값이 조화가 안된다면
 				// ${memId}, el 표현식 상 "" 빈값(empty)을 반환
-					alert("로그인 필요");					
+					alert("로그인 필요");
+					location.href="/miniProject_jQuery/member/loginForm.do";
 				} else {
 //					var seq = $(this); // <A>
 					// $('.subjectA'): subjectA 5개 중에서 누구인지 알 수 X

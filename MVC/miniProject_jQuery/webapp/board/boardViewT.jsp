@@ -31,6 +31,7 @@ seq, pg: From BoardViewService.java --%>
 		<td colspan="3">
 			<h2><span id="subjectSpan"></span></h2>
 			<!-- span tag를 추가 > 동적 데이터 추가 -->
+			<!-- 동적으로 데이터를 입력할 경우, 웹 브라우저에서 페이지 소스보기에서 동적 데이터가 보이지 않음 -->
 		</td>
 	</tr>
 	

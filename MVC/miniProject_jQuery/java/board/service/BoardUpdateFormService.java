@@ -11,7 +11,7 @@ public class BoardUpdateFormService implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		// 1. DATA
-		// pg, seq from boardViewT.jsp
+		// pg, seq from boardViewT.jsp + boardView.js
 		int seq = Integer.valueOf(request.getParameter("seq"));
 		int pg = Integer.valueOf(request.getParameter("pg"));
 		

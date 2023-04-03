@@ -11,23 +11,25 @@
 
 <style type="text/css">
 
-#boardWriteForm div {
+#boardUpdateForm div {
 	color: red;
 	font-size: 8px;
 	font-weight: bold;
 }
-/*#: name attribute*/
+/*#: id attribute*/
 </style>
 
 </head>
 <body>
 
 <form id="boardUpdateForm" action="">
-
 <%--  boardUpdateForm.jsp에 담아줘야 boardUpdate.js에서도 사용 가능
 seq, pg: From BoardUpdateFormService.java --%>
 <input type="text" id="seq" name="seq" value="${seq }" >
+<!-- hidden으로 수정 가능 -->
 <input type="text" id="pg" name="pg" value="${pg }" >
+
+	<h3>글 수정</h3>
 
 	<table id="boardUpdateTable" border="1" cellpadding="5" cellspacing="0">
 		<tr>
@@ -53,7 +55,9 @@ seq, pg: From BoardUpdateFormService.java --%>
 			<td colspan="2" align="center">
 				<input type="button" value="Complete" id="boardReWriteBtn">
 				<!-- onclick: js() 사용 시, submit에 따른 action을 false 처리해줘야 하므로 id 지정 후 ajax 처리 -->
-				<input type="button" value="ReWrite" id="boardResetBtn">
+				<input type="button" value="ReWrite" onclick="location.reload()">
+				<!-- <input type="button" value="ReWrite" id="boardResetBtn"> -->
+				
 			</td>
 		</tr>
 			

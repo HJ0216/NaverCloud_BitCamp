@@ -86,15 +86,15 @@
 	</update>
 	
 
-	<!-- 글 수정 -->
+	<!-- 글 수정: LOGTIME도 수정 시간으로 UPDATE -->
 	<update id="boardUpdate" parameterType="java.util.Map">
-		UPDATE BOARD SET SUBJECT=#{subject}, CONTENT=#{content} WHERE SEQ=#{seq}
+		UPDATE BOARD SET SUBJECT=#{subject}, CONTENT=#{content}, LOGTIME=SYSDATE WHERE SEQ=#{seq}
 	</update>
 	
 	
 	<!-- 글 삭제 -->
 	<update id="boardDelete1" parameterType="int">
-		UPDATE BOARD SET REPLY=REPLY-1 WHERE SEQ=#{seq}
+		UPDATE BOARD SET REPLY=REPLY-1 WHERE SEQ=(SELECT PSEQ FROM BOARD WHERE SEQ=#{seq})
 	</update>
 	
 	<update id="boardDelete2" parameterType="int">

@@ -38,6 +38,7 @@ $(document).ready(function(){
 // 글 수정 폼
 $('#boardUpdateFormBtn').click(function(){
 	$('#boardViewForm').attr('action', '/miniProject_jQuery/board/boardUpdateForm.do');
+	// seq, pg 전달
 	$('#boardViewForm').submit();
 	// submit: id 속성은 가져갈 수 없고 name 속성만 form을 통해 데이터 이동 가능
 
