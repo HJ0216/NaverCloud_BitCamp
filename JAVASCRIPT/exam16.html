@@ -22,10 +22,13 @@ function showResult() {
 	// alert("마우스 Over")
 	var result = sum(10, 50);
 	var myTag = document.getElementById("question"); // document.getElementById: 해당 id의 tag 반환
+	// function 내부에서 선언된 전역변수 var는 "해당 함수 안에서" 전역적으로 사용 가능
+	// var: 함수 내부의 블럭(function(){"{}"})에서 선언되어도 블럭 밖에서 사용 가능(let, const 사용 X))
 	myTag.innerHTML = "<font color='red'>" + result + "</font>";
 	// "question"을 id 값으로 갖는 span tag에 안에 HTML 코드 삽입
 
 }
+
 function hidResult() {
 	// alert("마우스 Out")
 	var myTag = document.getElementById("question");

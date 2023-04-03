@@ -8,7 +8,13 @@
 <h1>History 객체1</h1>
 <a href="examHistory.html">페이지 이동</a>
 <a href="#" onclick="history.forward(); return false;">앞 페이지 이동</a>
-
+<!-- return false: "href" 속성에 지정된 URL로 이동하는 링크의 기본 동작을 실행 중지 -->
+<a href="#" onclick="history.back(); return false;">앞 페이지 이동</a>
+<a href="#" onclick="history.go(-1); return false;">앞 페이지 이동</a>
+<!-- 
+back, go(-1)의 경우는 이동을 기준으로 page를 저장하는 게 아니라,
+시작 페이지를 기준으로 하기때문에 forward()와 달리 첫 페이지에서 이전으로 이동 할 수 X
+ -->
 </body>
 </html>
 

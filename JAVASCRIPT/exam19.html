@@ -25,11 +25,12 @@
 <a href="#" onclick="doPrint()">JS 함수 호출</a>
 
 <script type="text/javascript">
-document.getElementById("myid").innerHTML = "스크립트가 실행되었습니다."
-// document.getElementById("myid"): h1 tag 반환
-// id가 동일할 경우, JS를 통한 innerHTML 실행 시, 제일 먼저 실행되는 id만 변경됨
-// * 중복 ID를 인식하지 못함
-
+function doPrint(){
+	document.getElementById("myid").innerHTML = "스크립트가 실행되었습니다."
+	// document.getElementById("myid"): h1 tag 반환
+	// id가 동일할 경우, JS를 통한 innerHTML 실행 시, 제일 먼저 실행되는 id만 변경됨
+	// * 중복 ID를 인식하지 못함
+}
 </script>
 
 </body>
