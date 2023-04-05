@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam06 here</title>
+<style type="text/css">
+* { 
+   padding: 0; 
+   margin: 0; 
+   color: #333;
+}
+   
+body { 
+   padding: 20px 30px;
+}
+
+#login fieldset {
+   width: 270px; 
+   padding: 15px;
+   border: 1px solid #7BAEB5;
+   position: relative;
+}
+      
+#login fieldset legend {
+   display: none;
+}
+
+#login label {
+   display: inline-block;
+   width: 80px;
+   font-size: 14px;
+   font-weight: bold;
+   padding-left: 10px;
+   margin-bottom: 10px;
+}
+
+#login input[type='text'], #login input[type='password'] {
+   border: 1px solid #ccc;
+   padding: 3px 10px;
+   width: 150px;
+   vertical-align: middle;
+   font-size: 12px;
+   line-height: 150%;
+}
+
+#login input[type='submit'] { 
+   width: 270px;
+   height: 20px;
+}
+
+.active {
+   border: 1px solid #f00 !important;
+   background-color: dodgerblue;
+}
+
+#login {
+   position: relative;
+}
+
+#login fieldset .loader {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.3);
+   display: none;
+}
+
+#login .loader img {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   margin-left: -5px;
+   margin-top: -5px;
+}
+</style>
+</head>
+<body>
+
+<form id="login">
+	<fieldset>
+		<legend>로그인</legend>
+		<div>
+			<label for="user_id">ID</label>
+			<input type="text" name="user_id" id="user_id" />
+		</div>
+
+		<div>
+			<label for="user_pwd">PWD</label>
+			<input type="password" name="user_pwd" id="user_pwd" />
+		</div>
+
+		<div>
+			<input type="submit" value="login" />
+		</div>
+
+		<div class="loader">
+			<img src="../img/loader.gif" />
+		</div>
+
+	</fieldset>
+</form>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#user_id, #user_pwd').bind({
+		'focus': function(){
+			$(this).addClass('active');
+		},
+		'blur': function(){
+			$(this).removeClass('active');
+		}
+	});
+	
+	$('#login').bind('submit', function(){
+		
+		if(!$('#user_id').val()){
+		// user_id에 value가 있으면 true
+		// !를 추가해서 false일 경우, 유효성 검사 진행
+			alert("Enter the ID");
+			$('#user_id').focus();
+			return false; // 페이지 이동 방지
+		}
+		
+		if(!$('#user_pwd').val()){
+			// user_id에 value가 있으면 true
+			// !를 추가해서 false일 경우, 유효성 검사 진행
+				alert("Enter the PWD");
+				$('#user_pwd').focus();
+				return false; // 페이지 이동 방지
+		}
+		
+		$('#login .loader').show();
+		// return false; 작성 시, $('#login').bind('submit', function(){};
+		// 함수가 종료되므로 작성 X
+		
+		// 아이디와 비밀번호를 서버로 전송
+		setTimeout(function(){
+			alert('Hello ' + $('#user_id').val() + "!");
+			$('#login .loader').hide();
+			
+			return false; // 이동 방지
+			
+		}, 10);
+
+	});
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+</body>
+</html>
+
+
+<!-- 
+1. bind 함수
+
+$("요소").bind("이벤트", function() {
+   ... 이벤트 처리 ...
+});
+
+
+$("요소").bind( "이벤트1 이벤트2 이벤트3", function() { //이벤트 이름을 공백으로 구분하여 여러개 지정
+   ... 이벤트 처리 ...
+});
+
+JSON 표기법
+$("요소").bind({
+   "이벤트1" : function() { ... 이벤트 처리 ...},
+   "이벤트2" : function() { ... 이벤트 처리 ...},
+   "이벤트3" : function() { ... 이벤트 처리 ...}
+});
+ -->

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam04 here</title>
+<style>
+body {
+   background: #252422;
+}
+ul {
+   padding: 0;
+   margin: 50px auto;
+   list-style: none;
+   width: 800px;
+}
+.title {
+   padding: 0;
+   margin: 0;
+}
+.title > a {
+   display: block;
+   padding-top: 12px;
+   font-size: 14px;
+   text-indent: 12px;
+   text-decoration: none;
+   font-weight: bold;
+   color: white;
+   height: 23px;
+   background: url('../img/background.jpg');
+}
+.selected {
+   background: url('../img/background-selected.jpg') !important;
+   /*!important: 제일 먼저 수행*/
+}
+.content {
+   margin: 0;
+   background: #D4D0C8;
+   padding: 10px;
+   height: 200px;
+   overflow-y: auto;
+}
+</style>
+</head>
+<body>
+
+<ul>
+	<li class="collapsible">
+		<h2 class="title"><a href="../txt/html5.txt">HTML5</a></h2>
+		<p class="content"></p>
+	</li>
+
+	<li class="collapsible">
+		<h2 class="title"><a href="../txt/jquery.txt">jQuery</a></h2>
+		<p class="content"></p>
+	</li>
+
+	<li class="collapsible">
+		<h2 class="title"><a href="../txt/bootstrap.txt">BootStrap3</a></h2>
+		<p class="content"></p>
+	</li>
+</ul>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+		// 첫 번째항목이 펼쳐져 있도록 처리
+		// 탭의 내용은 첫 번째 항목 안의 <a>가 가리키는 txt 파일을 읽어와서 출력
+		$('.collapsible:eq(0) > .content').load($('.collapsible:eq(0) > .title > a').attr('href'));
+		// href 파일의 attr을 load
+		
+		// 첫 번째 항목의 <a>에게 selected 클래스를 적용하여 준다.
+		// 실행하면 css style이 적용되어 첫번째 항목이 오렌지색으로 변경
+		$('.collapsible:eq(0) a').addClass('selected'); // 후손
+		// $('.collapsible:eq(0) > .title > a').addClass('selected'); // 자손
+
+		// 첫 번째 항목 이외의 항목 content 숨기기
+		// $('.collapsible:eq(1) p').hide();
+		// $('.collapsible:eq(2) p').hide();
+		
+		$('.collapsible').not(':eq(0)').find('.content').hide();
+		
+		$('.collapsible > .title > a').click(function(){
+		// 	$('.collapsible a')
+		// 	$('a')
+		// 경로를 자세히 지정해주기
+			$(this).toggleClass('selected');
+			// 클릭에 따라서 selected가 on/off 됨
+			
+			// 클릭된 요소를 제외한 나머지 링크들은 selected class 삭제
+			$('.collapsible > .title > a').not(this).removeClass('selected');
+			// <a>에서 클릭된 요소를 제외한 나머지 요소의 class 제외
+			
+			// 펼칠 대상 검색
+			var target = $(this).parent().next();
+			// var target = $(this).parents('.collapsible').find('.content');
+			// parents 범위: 조상부터? 부모부터????????????????????????????????
+			// click event 발생: <a>, find 대상: <p>
+			// parent(): <h2>
+			// parents(): <h2>, <li>, ...
+			/*
+			구성
+			<ul>
+				<li class="collapsible">
+					<h2 class="title">
+						<a href="../txt/html5.txt">HTML5</a>
+					</h2>
+					<p class="content"></p>
+				</li>
+			</ul>
+			*/
+			
+			
+			// 나머지 대상 검색
+			var other = $('.content').not(target);
+			// var other = $('a').not(this).parents('.collapsible').find('.content');
+			// <a>에서 click한 요소를 제외한 요소들 중에 조상의 content 검색
+			
+			target.slideToggle(300);
+			other.slideUp(300);
+			
+			if(target.css('display') != 'none'){
+				target.load($(this).attr('href'));
+			}
+			
+			return false;
+			// <a> href 이동 방지
+		});
+		
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>
+
+
+<!-- 
+$().css('display')
+=> display 속성은 요소를 어떻게 보여줄지를 결정한다
+
+① none : 보이지 않음
+② block
+③ inline
+④ inline-block
+ -->

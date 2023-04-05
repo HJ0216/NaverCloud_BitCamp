@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam08 here</title>
+
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/reset.css" />
+
+</head>
+<body>
+
+<h1 class="title">Dynamic DropDown</h1>
+<div class="exec">
+	<form>
+		<!-- 각 단계별 Dropdown을 표시할 span tag -->
+		<span id="category1"></span>
+		<span id="category2"></span>
+		<span id="category3"></span>
+	</form>
+</div>
+
+<div class="console"></div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//1 depth
+	$('#category1').load('../text/category-data.html #category1-1', function(){
+		$(this).show();
+	});
+	
+	//2 depth
+	//$('#category1 > select').change();
+	$(document).on('change', '#category1 > select', function(){ //동적으로 추가된 요소에 대한 이벤트를 정의
+		$('#category2').empty().hide();
+		$('#category3').empty().hide();
+		
+		var target = $(this).find('option:selected').attr('data-target');
+		console.log(target);
+		
+		$('#category2').load('../text/category-data.html '+target, function(){ 
+		// '../text/category-data.html ': 띄어쓰기가 되어있지 않으면 하나의 파일로 인식,
+		// target화 하려면 파일명 뒤에 띄어쓰기 필요
+			$(this).show();
+		});
+	});
+	
+	//3 depth
+	$(document).on('change', '#category2 > select', function(){
+		$('#category3').empty().hide();
+		
+		var target = $(this).find('option:selected').attr('data-target');
+		console.log(target);
+		
+		$('#category3').load('../text/category-data.html '+target, function(){ 
+		// '../text/category-data.html ': 띄어쓰기가 되어있지 않으면 하나의 파일로 인식,
+		// target화 하려면 파일명 뒤에 띄어쓰기 필요
+			$(this).show();
+		});
+	});
+	
+	//마지막 선택
+	$(document).on('change', '#category3 > select', function(){
+		if($(this).find('option:selected').index() > 0){
+			var data1 = $('#category1 > select > option:selected').val();
+			var data2 = $('#category2 > select > option:selected').val();
+			//var data3 = $('#category3 > select > option:selected').val();
+			var data3 = $(this).find('option:selected').val();
+			
+			$('.console').html(data1 + "&gt;" + data2 + "&gt;" + data3);
+		}
+	});
+});
+</script>
+
+</body>
+</html>
+
+
+<!-- 
+* load()
+읽어오고자 하는 대상의 내용이 단순한 text나 html 태그를 표현하며 
+읽어온 내용을 특정 요소에 출력하는 것만을 목적으로 할 경우 load() 함수를 사용해 코드를 축약할 수 있다.
+
+$("CSS셀렉터").load(
+   "읽어올 대상의 URL" 
+   [, function() { ...읽기에 성공한 후 실행될 함수...}]   
+);
+
+예) "readme.html" 파일의 전체 내용 중에서 "#my"라는 id값을 갖는 요소만을 읽어올 경우
+$(“출력할 대상의 셀렉터”).load("readme.html #my");
+ -->

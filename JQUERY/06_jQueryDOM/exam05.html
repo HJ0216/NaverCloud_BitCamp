@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam05 here</title>
+</head>
+<body>
+
+<input type="button" value="add" />
+<input type="button" value="delete" />
+
+<!-- 실행하면서 코드가 삽입되는 동적 요소 -->
+<ul></ul>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var i = 1;
+	// 추가버튼 click
+	$('input[value="add"]').click(function(){
+	// $('input:eq(0)')
+		var li1 = $('<li>').css('color', 'dodgerblue').html('추가 항목' + (i++)); // 1
+		var li2 = $('<li>').css('color', 'black').html('추가 항목' + (i++)); // 2
+		var li3 = $('<li>').css('color', 'salmon').html('추가 항목' + (i++)); // 3
+		// 후행 연산자: i=1 ▶ 출력 ▶ i=2
+		
+		$(li1).click(function(){
+			$(this).remove();
+		})
+
+		$(li2).click(function(){
+			$(this).remove();
+		})
+		
+		$(li3).click(function(){
+			$(this).remove();
+		})
+		
+		$('ul').append(li1);
+		$('ul').append(li2);
+		li3.appendTo($('ul'));
+		
+	});
+	
+	$('input:eq(1)').click(function(){
+		$('ul').empty();
+	});
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>
+
+
+<!-- 
+A.append(B)   -- A에 B를 추가하다.
+A
+	B
+B.appendTo(A) -- B를 A에 추가하다.
+A
+	B
+ -->

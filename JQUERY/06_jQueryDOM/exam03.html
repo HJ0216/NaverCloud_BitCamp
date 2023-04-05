@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam03 here</title>
+<style>
+ul {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+ul.menu li {
+   float: left;
+   width: 179px;
+   height: 48px;
+   background: url("../img/btn.png");
+}
+ul.menu li a {
+   display: block;
+   width: 100%;
+   height: 100%;
+   line-height: 48px;
+   text-align: center;
+   font-weight: bold;
+   color: #CFDFB5;
+   text-decoration: none;
+}
+ul.menu li a:hover {
+   background: url("../img/btn_over.png");
+}
+ul.menu:after {
+   content: '';
+   display: block;
+   clear: both;
+   float: none;
+}
+</style>
+</head>
+<body>
+<ul class="menu">
+	<li>
+		<a href="#">Menu A</a>
+		<ul class="sub">
+			<li>
+				<a href="#">SubMenu A</a>
+			</li>
+			<li>
+				<a href="#">SubMenu A</a>
+			</li>
+			<li>
+				<a href="#">SubMenu A</a>
+			</li>
+		</ul>
+	</li>
+	
+	
+	<li>
+		<a href="#">Menu B</a>
+		<ul class="sub">
+			<li>
+				<a href="#">SubMenu B</a>
+			</li>
+			<li>
+				<a href="#">SubMenu B</a>
+			</li>
+			<li>
+				<a href="#">SubMenu B</a>
+			</li>
+		</ul>
+	</li>
+	
+
+	<li>
+		<a href="#">Menu C</a>
+		<ul class="sub">
+			<li>
+				<a href="#">SubMenu C</a>
+			</li>
+			<li>
+				<a href="#">SubMenu C</a>
+			</li>
+			<li>
+				<a href="#">SubMenu C</a>
+			</li>
+		</ul>
+	</li>
+
+</ul>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	// 모든 서브메뉴 숨기기
+	$('ul.menu > li > .sub').hide();
+	// $('ul.menu > .sub').hide();
+	// $('.menu > .sub').hide();
+	// $('.sub').hide();
+	
+	$('ul.menu >li').hover(function(){ // 마우스가 올라갈 때,
+		$(this).find('.sub').slideDown(200);
+		// $(this): 현재 마우스가 올라간 곳의
+	}, function(){ // 마우스가 나갈 때,
+		$(this).find('.sub').slideUp(200);
+		
+	});
+	
+		
+}); // 형식을 갖추고 나서 내용 채우기
+</script>
+
+
+</body>
+</html>
+
+
+
+<!-- 
+요소의 탐색과 생성
+- jQuery: 특정 HTML 요소에 대한 객체를 기준으로 그 주변 요소나 태그의 트리 구조를 탐색할 
+  수 있음
+- jQuery: 웹브라우저에 보여지는 HTML 태그 안에 HTML 요소를 생성하여 포함시키도록 하는 
+  기능을 지원
+
+1. DOM (Document Object Model)
+- DOM은 HTML과 XML 문서에 대한 구조적 정보를 제공하는 양식
+  즉, DOM이 HTML과 XML 문서의 뼈대를 의미
+- DOM은 문서 구조나 외양 및 내용을 바꿀 수 있도록 프로그램에서 접근할 수있는 방법을 
+  제공하는 인터페이스
+- DOM은 프로퍼티와 메소드를 가지는 객체와 노드의 트리형 구조로 표현
+  이 구조는 스크립트나 다른 언어에서 웹페이지에 접근할 때 필수적
+
+(1) DOM의 구성요소
+① Element : (= HTML 태그) 하나의 태그 요소
+② Attribute : (= HTML 태그 속성) 하나의 Element에 속해 있는 속성들
+③ Node : 트리 구조에서의 각 Element,
+          하나의 노드 안에는 여러개의 노드가 포함되어 있을 수 있다.
+
+(2) DOM의 트리구조
+* 사진 별첨
+요소 하나: node
+document - <html> - <head> - <meta>
+ 	 (root node)		   - <title>
+				  - <body> - <article> - <h3>
+				  					   - <ul> - <li>
+				  					   		  - </li>
+
+<html>
+	<head>
+		<meta>
+		<title>
+	</head>
+	<body>
+		<article>
+			<h3></h3>
+			<ul>
+				<li></li>
+				<li></li>
+			</ul>
+		</article>
+	</body>
+</html>
+
+
+2. DOM 객체의 제어
+- 다이나믹한 대화형 웹페이지 제작에서 DOM을 제어하는 것은 중요하다.
+- jQuery의 기능들도 모두 DOM을 제어했기 때문에 가능한 것이다.
+- jQuery가 제공하는 5개 함수를 통해, 하나의 요소를 기준으로 상대적으로 탐색할 수 있다.
+   ① next() : 현재 요소를 기준으로 다음 요소를 리턴 한다.
+   ② prev() : 현재 요소를 기준으로 이전 요소를 리턴 한다.
+   ③ parent() : 현재 요소를 기준으로 상위 요소를 리턴 한다.
+   ④ childrun() : 현재 요소를 기준으로 하위 요소를 배열로 리턴 한다.
+   ⑤ eq(n) : 현재 요소를 기준으로 하위 요소 중 n번째 요소를 선택한다. n은 0부터 시작한다.
+
+3. 조상과 자손의 검색
+(1) 직계 자손이나 항렬이 같은 친척 찾기
+- next(), prev(), parent(), childrun(), eq(n) 함수들은 특정 요소와 인접해 있는 다른 요소들을
+  탐색한다. 즉 이 함수들은 HTML 태그의 Node를 타고 다니는 것과 같은 효과를 갖는다.
+
+(2) 가까운 조상 찾기
+- parents() : HTML 요소가 인접해 있지 않더라도, 현재 객체 요소의 상위 태그 중에서 
+  파라미터로 전달된 셀렉터가 가리키는 가장 가까운 요소를 찾는다.
+- 사용법
+  $("CSS셀렉터").parents("CSS셀렉터");
+
+(3) 가까운 자식 찾기
+- find() : HTML 요소가 인접해 있지 않더라도, 현재 객체 요소의 하위 태그 중에서 
+  파라미터로 전달된 셀렉터가 가리키는 가장 가까운 요소를 검색한다.
+- 사용법
+  $("CSS셀렉터").find("CSS셀렉터");
+
+ -->
