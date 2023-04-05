@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam05 here</title>
+
+<style>
+* {
+   padding: 0;
+   margin: 0;
+   color: #333;
+}
+      
+ul {
+   list-style: none;
+}
+      
+#container {
+   padding: 30px 20px;
+}
+
+h1 {
+   font-size: large;
+   border-left: 10px solid #7BAEB5;
+   border-bottom: 1px solid #7BAEB5;
+   padding: 10px;
+   width: auto;
+}
+
+#comment_write {
+   padding: 20px 15px;
+   border-bottom: 1px solid #7BAEB5;
+}
+      
+#comment_write label {
+   display: inline-block;
+   width: 80px;
+   font-size: 14px;
+   font-weight: bold;
+   margin-bottom: 10px;
+}
+
+#comment_write input[type='text'], #comment_write textarea {
+   border: 1px solid #ccc;
+   vertical-align: middle;
+   padding: 3px 10px;
+   font-size: 12px;
+   line-height: 150%;
+}
+
+#comment_write textarea {
+   width: 380px;
+   height: 90px
+}
+      
+.comment_item {
+   font-size: 13px;
+   color: #333;
+   padding: 15px;
+   border-bottom: 1px dotted #ccc;
+   line-height: 150%;
+}
+
+.comment_item .writer {
+   color: #555;
+   line-height: 200%;
+}
+      
+.comment_item .writer input {
+   vertical-align: middle;
+}
+      
+.comment_item .writer .name {
+   color: #222;
+   font-weight: bold;
+   font-size: 14px;
+}
+</style>
+
+</head>
+<body>
+
+<div id="container">
+	<h1>jQuery Comment</h1>
+	<div id="comment_write">
+		<form id="comment_form">
+			<input type="text" name="num" value="" />
+			<!-- name: form submit시 사용 -->
+			<input type="text" name="datetime" value="" />
+			<div>
+				<label for="writer">Writer</label>
+				<input type="text" name="writer" id="writer" />
+				<input type="submit" value="Save" />
+			</div>
+			<div>
+				<label for="content">Comment</label>
+				<textarea name="content" id="content"></textarea>
+			</div>
+		</form>
+	</div>
+	
+	<ul id="comment_list">
+	</ul>
+	
+</div>
+
+<!-- CDM 방식: 서버에서 직접 가져오는 방식 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<!-- js -->
+<script>
+function getToday(){
+	var date = new Date();
+	var yy = date.getFullYear();
+	var mm = date.getMonth()+1;
+	var dd = date.getDate();
+	var hh = date.getHours();
+	var mi = date.getMinutes();
+	var ss = date.getSeconds();
+	
+	if(mm < 10){mm = '0' + mm;} // 1월 > 01월
+	if(dd < 10){dd = '0' + dd;} // 1일 > 01일
+	if(hh < 10){hh = '0' + hh;} // 1시 > 01시
+	if(mi < 10){mi = '0' + mi;} // 1분 > 01분
+	if(ss < 10){ss = '0' + ss;} // 1초 > 01초
+	
+	var today = yy + "-" + mm + "-" + dd + " " + hh + ":" + mi + ":" + ss;
+
+	return today;
+}
+
+// 메서드 구현
+function addItem(num, writer, content, datetime) {
+	// <li class="comment_item"></li>
+	var new_li = $('<li/>'); // create tag
+	new_li.addClass('comment_item');
+	
+	// <p class="writer"></p>
+	var writer_p = $('<p>'); // create tag
+	writer_p.addClass('writer');
+	
+	// <span class="name">user_name_value!</span>
+	var name_span = $('<span>'); // create tag
+	name_span.addClass('name');
+	name_span.html(writer);		
+	
+	// <span> / 2023-04-03 12:34 </span>
+	var date_span = $('<span>');
+	date_span.html('/' + datetime + '');
+	
+	// <input type="button" value="delete" class="delete_btn" />
+	var del_input = $('<input>');
+	del_input.attr({
+		'type': 'button',
+		'value' : 'delete'
+		// 'class' : 'delete_btn'
+	});
+	
+	del_input.addClass('delete_btn');
+	
+	// <p>comment_value</p>
+	var content_p = $('<p>');
+	content_p.html(content);
+	
+	writer_p.append(name_span)
+			.append(date_span)
+			.append(del_input);
+//			.appendTo(writer_p);
+	
+	new_li.append(writer_p).append(content_p);
+	
+	$('#comment_list').append(new_li);
+	
+}
+
+</script>
+
+
+<!-- jQuery -->
+<script>
+var num = 3;
+
+$(function(){
+	// 목록
+	$.get('../comment/comment_list.xml',
+		  {},
+		  function(data){
+			  $(data).find('item').each(function(){
+				  var num = $(this).find('num').text();
+				  // $(this) = $(item)
+				  var writer = $(this).find('writer').text();
+				  var content = $(this).find('content').text();
+				  var datetime = $(this).find('datetime').text();
+				  
+				  addItem(num, writer, content, datetime); // 메서드 호출
+				  
+			  }); // each
+			  // jQuery 객체$()로 만들어줘야 jQuery 함수를 사용할 수 있음
+		  }).fail(function(){
+			  alert("Fail");
+		  });
+	// $.get('', {}, function(){}).fail(); 전체구문 작성 먼저
+	// $.get('주소', {보낼 데이터}, function(받을 데이터){실행 내용}).fail();
+	
+	
+	// 저장
+	$('#comment_form').submit(function(){
+		if(!$('#writer').val()){
+			alert("Enter the Writer");
+			$('#writer').focus();
+			return false; // 페이지 이동 방지
+		}
+
+		if(!$('#content').val()){
+			alert("Enter the Content");
+			$('#content').focus();
+			return false; // 페이지 이동 방지
+		}
+		$('input[name="num"]').val(++num);
+		$('input[name="datetime"]').val(getToday());
+		
+		$.post('../comment/comment_write.jsp', 
+			   $(this).serialize(), 
+				// $('#comment_form').submit에서 이미 form이 사용되었으므로 this 사용 가능
+			   function(data){
+			var result = eval($(data).find('result').text()); // "true" -> true
+			if(result){
+				alert($(data).find('message').text());
+				
+			    var num = $(data).find('num').text();
+			    // $(this) = $(item)
+			    var writer = $(data).find('writer').text();
+			    var content = $(data).find('content').text();
+			    var datetime = $(data).find('datetime').text();
+			  
+			    addItem(num, writer, content, datetime); // 메서드 호출
+			    
+			    // 초기화
+			    $('#writer').val('');
+			    $('#content').val('');
+			    
+			}			
+		}).fail(function(){
+			alert('Not saved');
+		});
+		
+		return false;
+	});
+	
+	// 삭제
+	// 삭제하기 버튼은 동적으로 들어오기 때문에 click event 적용 X
+	// on 적용 시, btn 부모(부모이기만 하면 됨) 입력
+	$(document).on('click', '.delete_btn', function(){
+		if(confirm('Do you want to delete?')){
+			// 글번호 얻어오기
+			var num = $(this).parents('li').attr('data-num');
+			// $(this).parent().parent()
+			// $(this).parents('li')
+			var target = $(this).parents('.comment_item');
+			
+			$.post('../comment/comment_delete.jsp', 
+				   {}, 
+				   function(data){
+					   var result = eval($(data).find('result').text());
+					   
+					   if(true){
+						   alert($(data).find('message').text());
+						   target.remove();
+					   }
+					   
+				   }).fail(function(){
+					   alert('Delete Failed');
+				   });
+			
+		} // if
+	});
+});
+</script>
+
+
+</body>
+</html>
+
+
+<!-- 
+data-*
+- data- 로 시작하는 속성: Custom Data Attributes, 사용자 정의 데이터 속성
+- html5 element의 데이터를 의미 있게 표현할 수 있는 속성
+- CSS: id, class 외 속성값 접근 수단 추가
+- jQuery에서도 .data()를 이용해 접근 가능
+
+예]
+<li class="user" data-name="홍길동" data-city="Seoul" data-car="sm6">
+    <strong>홍길동:</strong> <span>안녕하세요</span>
+</li>
+
+
+* CSS
+<style type="text/css">
+    [data-name] { color: red; }
+</style>
+
+* jQuery: .data()
+-데이터를 가져올 때,
+    $(".user").data("name") -- 홍길동 
+
+- 데이터를 설정할 때,
+    $(".user").data("name", "고길동");
+ -->

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/reset.css" />
+
+</head>
+<body>
+
+<h1 class="title">$.ajax()를 사용한 XML 데이터 읽기(1)</h1>
+
+<div class="exec">
+	<input type="button" value="load xml data" id="myBtn" />
+</div>
+
+<div class="console" id="result"></div>
+
+<!-- CDM 방식: 서버에서 직접 가져오는 방식 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(function(){
+	$('#myBtn').click(function(){
+		$.ajax({
+			type: 'get',
+			url: '../xml/xml02.xml',
+			dataType: 'xml', // xml load한 형태로 return 받음
+			success: function(data){
+				console.log(data); // #document(xml)
+				console.log($(data)); // jQuery 함수 객체 ▶ 함수 사용 가능
+				
+				var title = $(data).find('title').text();
+				var time = $(data).find('time').text();
+				var teacher = $(data).find('teacher').text();
+				
+				var div = $('<div/>'); // <div></div>
+				var p1 = $('<p/>').html(title); // <p>title</p>
+				var p2 = $('<p/>').html(time); // <p>time</p>
+				var p3 = $('<p/>').html(teacher); // <p>teacher</p>
+				
+				// Method chain 방식
+ 				div.append(p1)
+				   .append(p2)
+				   .append(p3)
+				   .appendTo('#result');
+
+/* 				
+ 				div.append(p1)
+				   .append(p2)
+				   .append(p3);
+ 
+				$('#result').append(div);
+ */				
+			},
+			
+			error: function(e){
+				console.log(e);
+			} // error
+			
+		});
+
+	});
+});
+</script>
+
+</body>
+</html>

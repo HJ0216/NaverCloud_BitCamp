@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam01 here</title>
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/reset.css" />
+
+</head>
+<body>
+
+<h1 class="title">$.ajax()를 사용한 텍스트 읽기</h1>
+<div class="exec">
+	<input type="button" value="load txt file" id="myBtn" />
+</div>
+<div class="console" id="result"></div>
+
+<!-- CDM 방식: 서버에서 직접 가져오는 방식 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(function(){
+	$('#myBtn').click(function(){
+		$.ajax({
+			type: 'get',
+			url: '/aJax_jQuery/text/text01.txt',
+			// url 작성 시, 
+			// HTTP-200: OK
+			// HTTP-404: 잘못된 주소
+			// HTTP-405: 잘못된 type(get or post)
+			// HTTP-500: 서버 에러
+			
+			dataType: 'text',
+			timeout: 30_000,
+			cache: false,
+			success: function(data){
+				$('#result').html(data);
+			},
+			error : function(xhr, textStatus, errorThrown) {
+				$('div').html('<div>' + textStatus + '(HTTP-' + xhr.status + '/' + errorThrown + ')' + '</div>');
+			}			
+		});
+
+	});
+});
+</script>
+
+</body>
+</html>
+
+
+<!-- 
+동기 처리 방식
+java program 상 console, scanner 실행 시 입력하지 않으면 더 이상 작동 X
+
+비동기 처리 방식
+client의 response 유무와 관계없이 나머지 처리과정을 수행
+
+aJax: 화면 이동없이 응답을 요청이 일어난 페이지에서 처리할 수 있음
+ * aJax 구성요소
+XMLHttpRequest: 서버와의 통신 담당
+
+jQuery aJax 함수
+: $.ajax(), $.load(), $.get(), $.post(), $.getJSON() 등
+
+	$.ajax({
+		// 작성 순서 상관 X
+		type : "get / post",
+		url : "접속할 페이지 주소",
+		data : "파라미터 문자열 key=value&key=value",
+		dataType : "text / xml / json", // 생략 시, 가능한 모든 data return 가능
+		success : function(data) {
+			통신이 성공할 경우, ...
+		error : function(xhr, textStatus, errorThrown) {
+			통신이 실패할 경우, ...
+		}
+	});
+
+
+ -->

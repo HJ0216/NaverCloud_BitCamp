@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam02 here</title>
+
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/reset.css" />
+
+</head>
+<body>
+
+<h1 class="title">$.ajax()를 사용한 XML 데이터 읽기(2)</h1>
+
+<div class="exec">
+	<input type="button" value="load xml data" id="myBtn" />
+</div>
+
+<div class="console" id="result"></div>
+
+<!-- CDM 방식: 서버에서 직접 가져오는 방식 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(function(){
+	$('#myBtn').click(function(){
+		$.ajax({
+			type: 'get',
+			url: '../xml/xml02.xml',
+			dataType: 'xml', // xml load한 형태로 return 받음
+			success: function(data){
+				var subject = $(data).find('subject');
+				
+				subject.each(function(){ // 반복_tag.each(function(){});
+					var title = $(this).find('title').text();
+					// var title = $(subject).find('title').text();
+					var time = $(this).find('time').text();
+					var teacher = $(this).find('teacher').text();
+					
+					var div = $('<div/>'); // <div></div>
+					var p1 = $('<p/>').html(title); // <p>title</p>
+					var p2 = $('<p/>').html(time); // <p>time</p>
+					var p3 = $('<p/>').html(teacher); // <p>teacher</p>
+					
+	 				div.append(p1)
+					   .append(p2)
+					   .append(p3);
+	 
+					$('#result').append(div);
+					$('#result').append('<hr/>'); // 순서대로 tag가 붙음
+					//$('#result').append(div).append('<hr/>');
+
+				}); // each
+				
+			}, // success
+			
+			error: function(e){
+				console.log(e);
+			} // error
+
+		}); // ajax
+
+	}); // click
+
+}); // function
+
+</script>
+</body>
+</html>

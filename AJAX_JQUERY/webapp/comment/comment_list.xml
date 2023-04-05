@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+CDATA Section
+<![CDATA[.....]]> 
+특수문자(<, >, 등) 사용 가능
+한글 포함 문자열 데이터에 사용 가능
+ -->
+ 
+<comment>
+	<result>true</result>
+	
+	<message></message>
+	
+	<total_count>24</total_count>
+	
+	<item>
+		<num>1</num>
+		<writer>홍길동</writer>
+		<content><![CDATA[Ajax로 구현하는 댓글 예제]]></content>
+		<datetime><![CDATA[2021-03-15 12:21:42]]></datetime>
+	</item>
+	
+	<item>
+    	<num>2</num>
+    	<writer>라이언</writer>
+    	<content><![CDATA[jQuery로 Ajax를 구현하면 매우 쉽습니다.]]></content>
+    	<datetime><![CDATA[2021-03-15 12:21:42]]></datetime>
+   </item>
+   
+   <item>
+   		<num>3</num>
+  		<writer>프로도</writer>
+   		<content><![CDATA[Hello jQuery~ Hello Ajax~]]></content>
+      	<datetime><![CDATA[2021-03-15 12:21:42]]></datetime>
+   </item>
+   
+</comment>
+<!-- comment 자식 tag 4개 = xml 상 표현 node 4개 -->

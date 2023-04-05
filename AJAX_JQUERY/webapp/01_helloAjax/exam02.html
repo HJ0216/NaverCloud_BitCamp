@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam02 here</title>
+
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/reset.css" />
+
+</head>
+<body>
+
+<h1 class="title">$.ajax()를 사용한 HTML 읽기</h1>
+<div class="exec">
+	<input type="button" value="load html file" id="myBtn" />
+</div>
+<div class="console" id="result"></div>
+
+<!-- CDM 방식: 서버에서 직접 가져오는 방식 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(function(){
+	$('#myBtn').click(function(){
+		$.ajax({
+			type: 'get',
+			url: '../text/text02.txt',
+			dataType: 'text',
+			success: function(data){
+				// $('#result').text(data);
+				// $('#result').html(data);
+				// 불러오는 파일에 html tag가 있을 경우, 입력값을 html로 작성
+				$('#result').append(data);
+				// id=result에 자식 tag로 지정 
+			},
+			error: function(e){
+				console.log(e);
+			}
+		});
+
+	});
+});
+</script>
+
+</body>
+</html>

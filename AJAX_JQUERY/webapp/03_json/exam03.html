@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam03 here</title>
+<style type="text/css">
+table {
+	display: block;
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+}
+table tr:after {
+	content: '';
+	display: block;
+	float: none;
+	clear: both;
+}
+table .left {
+	text-align: left;
+}
+thead, tbody, tr {
+	display: block;
+	width: 100%;
+}
+td, th {
+	display: block;
+	float: left;
+	padding: 10px 0;
+}
+table thead {
+	border-bottom: solid 2px #285E8E;
+	font-weight: bold;
+}
+table tbody tr {
+	border-bottom: 1px dotted #ccc;
+}
+.example table .no {
+	width: 10%;
+}
+.example table .subject {
+	width: 60%;
+}
+.example table .hit {
+	width: 10%;
+}
+.example table .date {
+	width: 20%;
+}
+</style>
+</head>
+<body>
+<!-- 게시판 제목 -->
+<h1 class="title"></h1>
+
+<!-- 게시판 설명 -->
+<div class="exec"></div>
+
+<div class="exec">
+	<!-- 게시물 수  -->
+	총 게시물 수: <span></span>개
+</div>
+
+<div class="example">
+	<table>
+		<thead>
+			<tr>
+				<th class="no">번호</th>
+				<th class="subject">제목</th>
+				<th class="hit">조회수</th>
+				<th class="date">작성일시</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<!-- 목록 -->
+		</tbody>
+		
+	</table>
+</div>
+
+<!-- CDM 방식: 서버에서 직접 가져오는 방식 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+<script type="text/javascript" src="../json/jquery.tmpl.min.js"></script>
+
+
+<!-- 템플릿으로 사용할 HTML 태그 -->
+<script id="itemTemplate">
+	<tr>
+		<td class="no">${no}</td> // .json과 동일하게 작성
+		<td class="left subject">${subject}</td>
+		<td class="hit">${hit}</td>
+		<td class="date">${date}</td>
+	</tr>
+</script>
+<!-- 템플릿 끝 -->
+
+
+<script>
+$(function(){
+	$.get('../json/bbs.json', {}, function(data){
+		$('h1.title').html(data.title);
+		$('div.exec:eq(0)').html(data.description);
+		$('div.exec:eq(1) > span').html(data.total);
+		
+		// item을 담고 있는 배열 탬플릿에 통째로 저장(형식 지정으로 인한 for문 사용 X)
+		var tmpl = $('#itemTemplate').tmpl(data.item);
+		
+		$('div.example > table > tbody').append(tmpl);
+		
+	});
+});
+</script>
+
+
+</body>
+</html>
+
+
+<!-- 
+Template 플러그인과의 연계
+- Template 플러그인은 동적으로 생성하고자 하는 요소를 미리 HTML 틀을 정의해 둔 후, 
+  그 안의 적용할 내용을 JSON 데이터로 처리하는 jQuery 플러그인이다.
+- Ajax를 사용하면 원격지의 JSON 데이터를 페이지 이동 없이 로드 해 올 수 있다.
+- 이때 Ajax로 로드한 JSON 데이터의 구조와 템플릿에 정의되어있는 치환자들이 동일하다면, 
+	= 치환자가 동일 = 같은 이름
+  바로 데이터를 전달받아 동적 요소를 생성하여 화면에 출력하도록 구성할 수 있다.
+- 사이트 : https://github.com/BorisMoore/jquery-tmpl
+   => jquery-tmpl-master.zip 다운로드 받기
+     => jquery.tmpl.min.js를 사용하면 된다.
+   => 플러그인 참조 코드 추가
+   <script type="text/javascript" src="../js/jquery.tmpl.min.js"></script>
+
+예)
+   {"message" : "Hello Ajax"}
+            ↓
+   $.get("data.json", {파라미터}, function(data) {
+      var temp = $("#itemTemplate").tmpl(data);
+      $("출력할 요소 CSS셀렉터").append(temp);
+   }, ["json"]);
+            ↓
+   <script id="itemTemplate" type="text/x-jquery-teml">
+      <h1>${message}</h1>
+   </script>
+   
+* 주의사항
+  => JSP 파일에서 작업을 하면 EL표현식과 충돌이 난다.
+   <script id="itemTemplate" type="text/x-jquery-teml">
+      <h1>${message}</h1>
+   </script>
+  => 그래서 JSP 파일에서는 반드시 "\"를 붙여서 사용을 해야 한다.
+   <script id="itemTemplate" type="text/x-jquery-teml">
+      <h1>\${message}</h1>
+   </script>   
+ -->

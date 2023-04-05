@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exam03 here</title>
+
+<link rel="stylesheet" href="../css/common.css" />
+<link rel="stylesheet" href="../css/reset.css" />
+
+</head>
+<body>
+
+<h1 class="title">아이디 중복검사</h1>
+
+<div class="exec">
+	<form>
+		<input type="text" name="user_id" />
+		<input type="button" id="checkId" value="중복검사" />
+	</form>
+</div>
+
+<div class="console"></div>
+
+<!-- CDM 방식: 서버에서 직접 가져오는 방식 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(function(){
+	$('#checkId').click(function(){
+		var user_id = $('input[name="user_id"]').val();
+		if(!user_id){
+			alert("Enter the ID");
+			$('input[name="user_id"]').focus();
+			return false;
+		}
+		
+		// $.get(), type='get' 지정
+		$.get('../checkId/checkId.jsp',
+				{'user_id': user_id}, // data
+				function(data){ // optional, 실행할 함수, data: return
+					var result_text = $(data).find('result').text(); // String "true"
+					var result_boolean = eval(result_text); // String "true" > boolean true
+					// eval("2+3") = 2 + 3
+					// eval("true") = true
+				if(result_boolean){
+					$('.console').html('<span style="color: salmon;">사용할 수 없는 아이디입니다.</span>')
+				} else {
+					$('.console').html('<span style="color: dodgerblue;">사용할 수 있는 아이디입니다.</span>')					
+				}
+					
+				} 				
+				
+				); // get
+
+	}); // click
+
+}); // function
+
+</script>
+
+</body>
+</html>
+
+
+<!-- 
+(1) $.ajax()
+   $.ajax({
+      url: "XML파일의 URL",
+      type: "get / post",
+      data: "파라미터 문자열 key=value&key=value",
+      dataType: "xml",
+      success: function(data) {
+         ... 통신이 성공한 경우 실행되는 함수 ...
+      },
+      error: function(err){}    
+   });
+   
+(2) $.get() / $.post()
+   $.get("url", {파라미터 json}, function(data) {
+         ... XML 데이터의 처리 ...
+      }, ["xml"]);
+
+예) 
+var ajax = $.get("url", {파라미터 json}, function(data) {...XML 데이터의 처리...}, ["xml"]);
+
+(3) ajax.fail() / ajax.always()
+ajax.fail(function() {
+   // 404, 500 에러 등이 발생한 경우 실행될 내용
+});
+
+ajax.always(function() {
+   // 통신 성공, 실패 여부에 상관없이 무조건 마지막에 호출됨
+});
+ -->
