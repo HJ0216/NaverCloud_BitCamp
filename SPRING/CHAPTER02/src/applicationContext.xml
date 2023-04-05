@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- sample01 -->
+	<!-- new 생성 대신 bean 설정 -->
+	<bean id="messageBeanImpl" class="sample01.MessageBeanImpl">
+		<constructor-arg>
+			<value>Apple</value> <!-- 생성자값 -->
+		</constructor-arg>
+		
+		<property name="cost">
+			<value>5000</value>
+		</property> <!-- cost = setCost() -->
+
+		<!-- qty = setQty() -->
+		<property name="qty" value="3" /> 
+		
+	</bean>
+	<!-- 
+	Multiple annotations found at this line:
+	- No constructor with 0 arguments defined in class 
+	 'sample01.MessageBeanImpl'
+	 
+	 생성자가 있을 경우, 기본생성자가 없으므로 나타나는 error
+	 -->
+
+	<!-- sample01 -->
+	<!-- new 생성 대신 bean 설정 -->
+	<bean id="calcAdd" class="sample02.CalcAdd">
+		<constructor-arg>
+			<value>25</value> <!-- 생성자값 -->
+		</constructor-arg>	
+		<constructor-arg value="36" />
+
+	</bean>
+
+	<bean id="calcMul" class="sample02.CalcMul">
+		<property name="x">
+			<value>25</value>
+		</property>
+
+		<property name="y" value="36" /> 
+
+	</bean>
+
+	
+</beans>

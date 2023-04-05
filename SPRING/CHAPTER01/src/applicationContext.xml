@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!--
+Namespaces에서 빠진 configure 파일 추가 가능
+* beans, context
+ -->
+
+
+	<!-- sample03 -->
+	<!-- getInstance()가 없더라도 singleton 방식
+	객체 1개 생성 후, 주소 참조 형태 -->
+	<!-- scope: prototype(not singleton), request, session, singleton -->
+	<bean id="msgBean" class="sample03.MessageBeanKo" scope="prototype">
+	<!-- id="객체명" class="생성될 java 파일(pkg.java)" -->
+	</bean>
+	<!-- 인자가 있는 construnctor가 존재할 때 인자가 없는 기본 생성자 생성x
+	No constructor with 0 arguments defined in class 'sample03.MessageBeanKo'
+	-> error 발생
+	-->	
+
+
+	<!-- sample04 -->
+	<bean id="calcAdd" class="sample04.CalcAdd"></bean>
+	<bean id="calcMul" class="sample04.CalcMul"></bean>
+	
+	
+	<!-- sample05 -->
+	<bean id="sungJukImpl" class="sample05.SungJukImpl"></bean>
+
+</beans>
