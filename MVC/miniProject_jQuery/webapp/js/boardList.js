@@ -9,7 +9,13 @@ $(document).ready(function(){
 		// ▶ .jsp와 객체를 공유하며 view로 반환
 		// .jsp의 ${requestScope.json } = service.java의 request.setAttribute("json", json)
 		// list, pagingHTML: json에 저장되어 있음
-		// forward 의미: servlet이 jsp의 request 객체를 사용할 수 있다는 말????????????????
+		// forward 의미:
+		// .java: servlet으로부터 request 객체를 전달받음(java 자체에서는 request 객체 없음)
+		// 		: 해당 request 객체에 java 파일에서 데이터를 저장하고
+		//		: return되는 .jsp와 해당 데이터를 공유하면서 servlet에 return
+		// servlet이 갖고 있던 request 객체, 건네받은 java, return되는 jsp가 모두 객체를 공유 = forward
+		
+		
 		data: {'pg': $('#pg').val()},
 		// JSON: {'pg': $('#pg').val()},
 		// 문자열: 'pg=' + $('#pg').val(),

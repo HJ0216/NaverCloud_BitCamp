@@ -95,7 +95,7 @@ $('#boardResetBtn').click(function(){
 			// input type=text: value
 			$('#content').val(data.content);
 			// textarea: value
-			// text로 선언할 때 reWrite 작동하지 않는 이유?????????????
+			// span#content: span tag에는 value attr은 있지만, text attr은 없으므로 작동하지 X
 		},
 		error: function(err){
 			console.log(err);
