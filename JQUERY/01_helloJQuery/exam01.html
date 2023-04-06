@@ -8,7 +8,6 @@
 
 <h1 id="hello"></h1>
 
-
 <!-- CDM 방식: 서버에서 직접 가져오는 방식 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- <script type="text/javascript" src="../js/jquery-3.6.4.min.js"></script>-->
@@ -18,20 +17,20 @@
 
 function hello(){
 	var h1 = document.getElementById("hello"); // id 속성 호출
-	// alert(h1.tagName); // h1
 	// alert(h1); //[object HTMLHeadingElement]
 	// Tag의 최고 조상: Element
+	console.log(h1); // <h1 id="hello"></h1>
 	h1.innerHTML = 'Hello jQuery';
 	h1.innerText = 'Hello World';
 }
 
 
-jQuery(hello);
-// window.onload = function(){hello();} 와 동일
-// <body> 다 읽고 난 후 함수 실행
-
-// jQuery에 hello function 실행
-// window.jQuery = window.$ = jQuery
+//jQuery에 hello function 실행
+$(hello);
+// window.$(hello);
+// jQuery(hello);
+// window.jQuery(hello);
+// window.onload = function(){hello();}
 
 </script>
 
@@ -39,11 +38,12 @@ jQuery(hello);
 </html>
 
 <!-- 
- * aJax: 페이지 이동없이 화면 전환에 사용
- * jQuery: aJax 사용 시 중복되는 코드를 라이브러리화(jquery-3.6.4.min.js import 필요)
-
+ * aJax: 페이지 이동없는 화면 전환에 사용
+ * jQuery: aJax 사용 시 중복되는 코드를 라이브러리화
+ (jquery-3.6.4.min.js import 필요)
+ ▶ jQuery 단독 사용 가능, server와 연동 시, ajax와 함께 주로 사용
 $: $ 객체
 $(): $ 함수
-* window.jQuery = window.$ = jQuery = $
 
+* window.jQuery = window.$ = jQuery = $
 -->

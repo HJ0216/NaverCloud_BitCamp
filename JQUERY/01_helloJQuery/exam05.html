@@ -10,26 +10,25 @@ div#container { /* div tag, id: container*/
    border: 5px solid #ff00ff;
    padding: 10px;
 }
-div#container > h1#title { /* > 자식*/
+div#container > h1#title { /*>: 직계자손*/
    background-color: #d5d5d5;
    padding: 10px;
 }
-div#container div.box { /*' ' 후손, 중간 tag에 style을 적용하지 않을 수 있음*/
+div#container div.box {
+/*' ' 후손, 중간 tag에 style을 적용하지 않을 수 있음*/
    padding: 10px;
    background-color: #ffff00;
    font: 20px '굴림';
 }
 div#container > ul {
-   list-style: none;
+   list-style: none; /*li, 목록 요소 제거*/
    padding: 10px;
    margin: 0px;
-   width: auto;
+   width: auto; /*가운데 정렬*/
    border: 5px solid #00ff00;
 }
-div#container > ul > li:first-child, div#container > ul > li:last-child {
-/*div#container li:first-child, div#container li:last-child 
-후손 tag에 적용할 경우 > 생략 가능*/
-/*div#container 의 자식 ul 의 자식 li의 첫번째 자식*/
+div#container > ul > li:first-child, div#container li:last-child {
+/*div#container li:first-child, div#container li:last-child*/
    border: 3px dotted red;
    padding: 3px 10px;
 }
@@ -45,13 +44,15 @@ pre {
 
 </head>
 <body>
-<!-- jQuery: 동적 처리(실행을 통한 값 입력)
--> html form 작성 시, tag content를 비워둔 채로 작성
+<!-- 
 기존: <td align="center">${boardDTO.seq }</td>
-변경:<td align="center"></td> // 실행할 때 값을 동적으로 입력
+html: 정적 처리(source code에 직접 기재)
 
-
-html: 정적 처리(source code에 직접 기재) -->
+변경:<td align="center"></td>
+jQuery: 동적 처리(실행을 통한 값 입력)
+-> html form 작성 시, tag content를 비워둔 채로 작성
+ -->
+ 
 <div id="container">
 	<h1 id="title"></h1>
 	<div class="box"></div>
@@ -74,25 +75,26 @@ html: 정적 처리(source code에 직접 기재) -->
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
-
 <script type="text/javascript">
-// window.onload=function(){}; js 박식
+// window.onload=function(){}; js 방식
 $(function(){
-	$('h1[id="title"]').html('두번째 제목'); // () 인자 O: 값 입력
-	// 상기와 동일: $('#title').html('두번째 제목');
-
-	$('div#container > h1#title').html('제목'); // >: 직계 자식, 덮어쓰기 됨
+	$('h1[id="title"]').html('두번째 제목');
+	// $('#title').html('두번째 제목');
+	// $('div#container > h1#title').html('제목');
+	// >: 직계 자식
+	console.log($('div'))
 
 	$('div[class="box"]').html("Hello");
-	$('div#container > div.box').html("Hi");
+	// $('div#container > div.box').html("Hi");
 	
 	$('ul > li').html("목록");
-	$('ul > li:lt(3)').html("jQuery"); // lt(3): 3보다 작은 수(0, 1, 2)
+	$('ul > li:lt(3)').html("jQuery");
+	// lt(3): 3보다 작은 수(0, 1, 2)
 	// gt, lt, eq
 	
 	$('p, pre').html('다중요소 선택');
 	
-	$('pre[name="source"]').html('CSS2 선택자');
+	$('pre[name="source"]').html('CSS 선택자');
 	// name attribute의 경우, 해당 형식으로만 작성 가능
 	// style 부여 방식
 	// tag: 전체적인 스타일을 부여 > tag name 등을 부여: 세부적인 스타일 조정
@@ -108,10 +110,11 @@ $(function(){
 
 
 <!-- 
-CSS 셀렉터
-jQuery에서 제어할 대상에 접근하는 방법
-- jQuery는 제어할 요소를 획득하기 위해서 $() 함수안에 대상을 의미하는 CSS 셀렉터를 파라미터로 전달한다.
-예) var mytag = $("h1");      // h1 태그 객체 호출
-예) var mytag = $(".hello");   // "hello" 라는 class 속성값 호출
-예) var mytag = $("#hello");   // "hello" 라는 id 속성값 호출
+CSS 셀렉터 : jQuery에서 제어할 대상에 접근하는 방법
+$() 함수안에 대상을 의미하는 CSS 셀렉터를 파라미터로 전달
+
+cf. var h1 = document.getElementById("title"); // <h1 id="title"></h1>
+예) var mytag = $("h1"); // 객체 호출
+예) var mytag = $(".hello");
+예) var mytag = $("#hello");
  -->
