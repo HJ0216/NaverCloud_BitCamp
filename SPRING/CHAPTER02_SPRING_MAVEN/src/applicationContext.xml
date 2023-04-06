@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- .xml에서 일부만 error가 날 경우, 전체가 오류 발생 -->
+
+	
+	<!-- sample01 -->
+	<!-- new 생성자 = bean 설정 -->
+	<context:component-scan base-package="sample01" />
+	
+	<!-- Annotatoin
+	MessageBeanImpl.java > class 상단 Component
+	* Maven Component lombok과 충돌하므로 사용 불가
+
+	<bean id="messageBeanImpl" class="sample01.MessageBeanImpl">
+		<constructor-arg> // 생성자
+			<value>Apple</value>
+		</constructor-arg>
+		
+		<property name="cost"> // setter
+			<value>5000</value>
+		</property>cost = setCost()
+
+		qty = setQty()
+		<property name="qty" value="3" /> 
+		
+	</bean>
+	 -->
+
+
+	<!-- sample02 -->
+	<context:component-scan base-package="sample02" />
+	<!-- component 사용중임을 안내 -->
+
+
+	<!-- sample03 -->
+	<context:component-scan base-package="sample03" />
+
+
+	<context:component-scan base-package="spring.conf" />
+	<!-- Annotation이 사용되고 있는 pkg는 모두 명시 -->
+	
+</beans>

@@ -28,17 +28,20 @@
 	 생성자가 있을 경우, 기본생성자가 없으므로 나타나는 error
 	 -->
 
-	<!-- sample01 -->
+
+	<!-- sample02 -->
 	<!-- new 생성 대신 bean 설정 -->
 	<bean id="calcAdd" class="sample02.CalcAdd">
 		<constructor-arg>
-			<value>25</value> <!-- 생성자값 -->
+		<!-- 생성자 인자수만큼 constructor-arg 작성 -->
+			<value>25</value>
 		</constructor-arg>	
 		<constructor-arg value="36" />
+		<!-- value에 선언 시, value type에 맞게 변형되어 저장 -->
 
 	</bean>
 
-	<bean id="calcMul" class="sample02.CalcMul">
+	<bean id="calcMul" class="sample02.CalcMul"> <!-- Setter -->
 		<property name="x">
 			<value>25</value>
 		</property>
@@ -47,5 +50,103 @@
 
 	</bean>
 
+
+	<!-- sample03 -->
+	<bean id="sungJukDTO" class="sample03.SungJukDTO"> <!-- 시작 태그 내 종료 태그 작성 유의 -->
+	<!-- 객체 생성
+	SungJukDTO sungJukDTO = new SungJukDTO();
+	-->	
+ 		<property name="name">
+			<value>홍길동</value>
+		</property>
+		<property name="kor" value="97" />
+		<property name="eng" value="100" />
+		<property name="math" value="95" />
+
+	</bean>
+
+	<bean id="sungJukImpl" class="sample03.SungJukImpl"> <!-- Constructor -->
+		<constructor-arg ref="sungJukDTO" />
+		<!-- 객체 생성할 class에 대한 ref 사용
+		Class: sample03.SungJukDTO > variable: sungJukDTO
+		variable을 생성자의 인자로 받아서(생성자의 인자로 입력됨) 필드에 입력
+		 -->
+	</bean>
 	
+	
+	<!-- sample04 -->
+	<bean id="helloSpring" class="sample04.HelloSpring"></bean>
+
+
+	<bean id="arrayList" class="java.util.ArrayList"></bean>
+	<!-- List<SungJukDTO2> list = new ArratList<>(); -->
+
+	<bean id="sungJukDTO2" class="sample04.SungJukDTO2" scope="prototype" />
+
+<!--
+	// Using Constructor
+	<bean id="sungJukInput" class="sample04.SungJukInput" scope="prototype">
+		<constructor-arg ref="sungJukDTO2" />
+		<constructor-arg ref="list" />
+	</bean>
+ -->
+
+	
+	<!-- Using Setter -->
+ 	<bean id="sungJukInput" class="sample04.SungJukInput" scope="prototype">
+ 		<property name="sungJukDTO2" ref="sungJukDTO2"></property>
+ 		<!-- name="sunJukDTO2": setSungJukDTO2() -->
+ 		<!-- property에서 setter를 참조해야하므로 Setter에 대한 설정이 해당 파일에 되어있어야 함 -->
+ 		<!-- ref="sungJukDTO2": sungJukDTO2 주소, 객체의 주소를 가리키는 변수 -->
+ 		<property name="list" ref="arrayList"></property>
+ 	</bean>
+
+
+	<!-- 
+	SingleTon
+	1. sungJukDTO2(class@주소값1) -> sungJukDTO2[name, kor, eng, math, tot, avg]
+	1. sungJukDTO2(class@주소값1) -> sungJukDTO2[name, kor, eng, math, tot, avg]
+	1. sungJukDTO2(class@주소값1) -> sungJukDTO2[name, kor, eng, math, tot, avg]
+	list -> [sungJukDTO2, sungJukDTO2, ...]
+	SingleTon 방식의 경우, 메모리를 새롭게 생성하는 것이 아니라 이미 생성된 메모리에 값을 덮어쓰기함
+	* Spring은 singleTon 방식이 Default
+	
+	여러개의 값이 저장되지 않는 문제가 발생하므로 singleTon 방식이 아닌 protoType으로 클래스를 생성함
+	ProtoType
+	1. sungJukDTO2(class@주소값1) -> sungJukDTO2[name, kor, eng, math, tot, avg]
+	2. sungJukDTO2(class@주소값2) -> sungJukDTO2[name, kor, eng, math, tot, avg]
+	3. sungJukDTO2(class@주소값3) -> sungJukDTO2[name, kor, eng, math, tot, avg]
+	
+	* ProtoType 선언을 위한 scope 추가
+	<bean id="sungJukDTO2" class="sample04.SungJukDTO2" scope="prototype" />
+ 	<bean id="sungJukInput" class="sample04.SungJukInput" scope="prototype">
+
+	sungJukDTO2를 protoType으로 선언하더라도 sungJukDTO2를 호출하는 방법은 sungJukInput
+	sungJukInput이 singleTon으로 선언되어있다면 DTO가 singleTon으로 밖에 호출되지 않음
+	그러므로 sungJukDTO2와 함께 sungJukInput을 protoType으로 선언해야 함
+	* sungJukInput이 sungJukDTO를 감싸고 있는 형태로 생각(DTO를 생성하기 위해서는 Input를 거쳐야 하는 개념)
+	 -->
+ 
+
+<!-- 
+	Using Constructor
+ 	<bean id="sungJukOutput" class="sample04.SungJukOutput">
+		<constructor-arg ref="list" />
+	</bean>
+ -->
+
+
+	<!-- Using Setter -->
+ 	<bean id="sungJukOutput" class="sample04.SungJukOutput">
+ 		<property name="list" ref="arrayList"></property> 	
+ 	</bean>
+
+	<bean id="sungJukUpdate" class="sample04.SungJukUpdate">
+ 		<property name="list" ref="arrayList"></property> 		
+	</bean>
+
+	<bean id="sungJukDelete" class="sample04.SungJukDelete">
+	 		<property name="list" ref="arrayList"></property>
+	</bean>
+
 </beans>

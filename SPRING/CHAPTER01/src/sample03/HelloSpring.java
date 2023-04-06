@@ -10,32 +10,32 @@ public class HelloSpring {
 		// MessageBeanKo msgBeanKo = new MessageBeanKo();
 		// 1 대 1 관계: 결합도 100% ▶ 다형성을 통한 코드의 유연성 부여		
 
+
 		// MessageBean msgBean = new MessageBeanKo();
 		// msgBean: java 객체 = spring bean
-		// springBean > applicationContext.xml에서 객체 생성
-
 		// msgBean.sayHello("Spring");
-		
-		// web.xml 제외 applicationContext.xml은 자동으로 인식되지 않음
-		// .xml 호출
+
 
 		// ApplicationContext context = new FileSystemXmlApplicationContext("src/applicationContext.xml");
+		// springBean > applicationContext.xml에서 객체 생성
+		// web.xml 제외 applicationContext.xml은 자동으로 인식되지 않음 > .xml 호출
+
+		
 		// java: new 연산자를 통한 객체 생성 및 기본 생성자 호출
 		// Spring: xml 파일에서 객체 생성 및 기본 생성자 호출
+
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		// web.xml 제외 xml 파일 자동으로 읽기 X
+		// ApplicationContext context = new FileSystemXmlApplicationContext("src/applicationContext.xml");
 		MessageBean msgBean = (MessageBean) context.getBean("msgBean"); // Bean = 객체
-		// MessageBeanKo class에 method 호출 시, msgBean 사용
+		// .xml: <bean id="msgBean" class="sample03.MessageBeanKo" scope="prototype">
+		// MessageBeanKo 객체 호출 시, 변수명 msgBean 사용
 		msgBean.sayHello("Spring");
 		
-		MessageBean msgBean2 = context.getBean("msgBean", MessageBean.class); // Bean = 객체
-		// MessageBean msgBean2 = (MessageBean) context.getBean("msgBean"); // Bean = 객체
-		// MessageBeanKo class에 method 호출 시, msgBean 사용
+		MessageBean msgBean2 = context.getBean("msgBean", MessageBean.class);
 		msgBean2.sayHello("Spring");
 
-		MessageBean msgBean3 = (MessageBean) context.getBean("msgBean"); // Bean = 객체
-		// MessageBeanKo class에 method 호출 시, msgBean 사용
+		MessageBean msgBean3 = (MessageBean) context.getBean("msgBean");
 		msgBean3.sayHello("Spring");
-}
+	}
 }
