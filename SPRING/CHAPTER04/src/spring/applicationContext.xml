@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+
+
+
+<!-- Connection Pool & DataSource -->
+<!-- 
+1번
+<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	property로 설정한다는 것은 setter가 설정이 되어있다는 것을 의미
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+	<property name="username" value="c##java" />
+	<property name="password" value="1234" />
+</bean>
+
+ * Namespaces에서 jdbc와 p 선택
+ -->
+
+<!-- 
+2번
+<bean id="dataSource"
+	  class="org.apache.commons.dbcp2.BasicDataSource"
+	  p:driverClassName="oracle.jdbc.driver.OracleDriver"
+	  p:url="jdbc:oracle:thin:@localhost:1521:xe"
+	  p:username="c##java"
+	  p:password="1234"
+/>
+property 대신 p
+ -->
+
+<context:property-placeholder location="classpath:spring/db.properties"/>
+<!-- classpath: src가 기본 경로 -->
+<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<property name="driverClassName" value="${jdbc.driver}" />
+	<!-- property로 설정한다는 것은 setter가 설정이 되어있다는 것을 의미 -->
+	<property name="url" value="${jdbc.url}" />
+	<property name="username" value="${jdbc.username}" />
+	<property name="password" value="${jdbc.password}" />
+</bean>
+
+
+
+<!-- connectionPool -->
+
+<bean id="helloSpring" class="user.main.HelloSpring"></bean>
+
+<bean id="userDTO" class="user.bean.UserDTO"></bean>
+<!-- UserDTO userDTO = new UserDTO(); -->
+
+<bean id="userDAOImpl" class="user.dao.UserDAOImpl">
+	<!-- <property name="jdbcTemplate" ref="jdbcTemplate"></property> -->
+	<property name="dataSource" ref="dataSource"></property>
+	<!-- public void setDataSource(){} -->
+	<!-- UserDAOImpl에는 dataSource()가 없음
+	자식에게 method가 없을 경우, 부모에게 method가 있는지 확인
+	userDAOImpl의 조상인 JdbcDaoSupport에 dataSource()가 있음
+	 -->
+</bean>
+<!-- bean은 객체 생성 담당: new UserDAOImpl 
+<bean id="userDAO" class="user.dao.UserDAO"></bean> 객체 생성 불가능(인터페이스)
+-->
+
+
+<bean id="userInsertService" class="user.service.UserInsertService">
+	<property name="userDTO" ref="userDTO"></property>
+	<!-- property 설정 전, userDTO에 대한 Setter 설정 필요
+	setter의 인자 userDTO로 대입 -->
+	<property name="userDAO" ref="userDAOImpl"></property>
+	<!-- 생성된 객체는 userDAOImpl이므로 ref="userDAOImpl" -->
+</bean>
+
+<!--
+JdbcDaoSupport를 통한 jdbcTemplate() 구현하고자 jdbcTemplate bean 생성 X
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	<constructor-arg ref="dataSource" />
+</bean>
+ -->
+
+
+<bean id="userSelectService" class="user.service.UserSelectService">
+	<property name="userDAO" ref="userDAOImpl"></property>
+</bean>
+
+
+<bean id="userUpdateService" class="user.service.UserUpdateService"></bean>
+<bean id="userDeleteService" class="user.service.UserDeleteService"></bean>
+
+
+</beans>
