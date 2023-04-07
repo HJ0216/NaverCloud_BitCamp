@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Exam01 here</title>
+
 <link rel="stylesheet" type="text/css" href="../css/event.css">
+
 </head>
 <body>
 
@@ -12,16 +14,18 @@
 <form name="form1" id="join">
 	<div id="input">
 		<h3>ID</h3>
-		<input type="text" name="user_id"/>
+		<input type="text" name="user_id" />
 
 		<h3>PWD</h3>
-		<input type="password" name="user_pw"/>
+		<input type="password" name="user_pw" />
 
 		<h3>ID_no</h3>
-		<input type="password" name="user_id_no"/>
+		<input type="password" name="user_id_no" />
 
 		<h3>Gender</h3>
 		<label><input type="radio" name="gender" value="Male"/>Male</label>
+		<!-- label for="input_id"
+			 label tag 안에 선언된 요소 클릭 시, input 입력 영역 활성화 -->
 		<label><input type="radio" name="gender" value="Female"/>Female</label>
 
 		<h3>Email</h3>
@@ -41,6 +45,7 @@
 		<label><input type="checkbox" name="hobby" value="baseball"/>baseball</label>
 
 		<h3>Job</h3>
+		<!-- <option>은 <select>로 감싸서 사용 -->
 		<select name="job">
 			<option>Choice</option>
 			<option value="programmer">Programmer</option>
@@ -49,7 +54,7 @@
 			<option value="manager">Manager</option>
 		</select>
 		
-		<input type="submit" value="Sign in" class="myButton">
+		<input type="submit" value="SignIn" class="myButton">
 		<input type="reset" value="Reset" class="myButton">
 
 	</div>
@@ -58,17 +63,7 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="../js/member.js"></script>
+<!-- import 내용이 있을 때는 시작 tag 내 종료 tag 작성 X -->
 
 </body>
 </html>
-
-
-
-<!-- 
-jQuery 이벤트 정의
-$(function() {
-   $("셀렉터").이벤트이름(function() {
-      ... 처리 내용 ...
-   });
-});
- -->
