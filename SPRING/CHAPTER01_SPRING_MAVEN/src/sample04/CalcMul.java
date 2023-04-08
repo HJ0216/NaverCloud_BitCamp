@@ -1,14 +1,17 @@
 package sample04;
 
+import java.util.Scanner;
+
 import org.springframework.stereotype.Component;
 
 @Component
-//대소문자 구분없이 class name과 bean id가 동일하면 생략 가능
+// Component () 생략 시, className으로 bean name 지정(CalcMul ▶ calcMul)
 public class CalcMul implements Calc {
 
 	@Override
 	public void calculate(int x, int y) {
 		System.out.println(x +" * " + y + " = " + (x*y));
+		
 	}
 
 }

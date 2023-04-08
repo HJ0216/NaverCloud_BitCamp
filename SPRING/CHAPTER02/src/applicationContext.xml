@@ -5,39 +5,37 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
+	
 	<!-- sample01 -->
-	<!-- new 생성 대신 bean 설정 -->
 	<bean id="messageBeanImpl" class="sample01.MessageBeanImpl">
-		<constructor-arg>
-			<value>Apple</value> <!-- 생성자값 -->
+		<!-- using Constructor -->
+		<constructor-arg> 
+			<value>Apple</value> 
 		</constructor-arg>
 		
+		<!-- using Setter -->
 		<property name="cost">
+		<!-- cost = setCost() -->
 			<value>5000</value>
-		</property> <!-- cost = setCost() -->
+		</property>
 
-		<!-- qty = setQty() -->
 		<property name="qty" value="3" /> 
 		
 	</bean>
 	<!-- 
-	Multiple annotations found at this line:
-	- No constructor with 0 arguments defined in class 
-	 'sample01.MessageBeanImpl'
-	 
-	 생성자가 있을 경우, 기본생성자가 없으므로 나타나는 error
+	No constructor with 0 arguments defined in class 
+	생성자가 있을 경우, 기본생성자가 없으므로 나타나는 error
 	 -->
 
 
 	<!-- sample02 -->
-	<!-- new 생성 대신 bean 설정 -->
 	<bean id="calcAdd" class="sample02.CalcAdd">
-		<constructor-arg>
 		<!-- 생성자 인자수만큼 constructor-arg 작성 -->
+		<constructor-arg>
 			<value>25</value>
 		</constructor-arg>	
 		<constructor-arg value="36" />
-		<!-- value에 선언 시, value type에 맞게 변형되어 저장 -->
+		<!-- value 기재 시, constructor value type에 맞게 변형되어 저장 -->
 
 	</bean>
 
@@ -45,31 +43,33 @@
 		<property name="x">
 			<value>25</value>
 		</property>
-
 		<property name="y" value="36" /> 
 
 	</bean>
 
 
 	<!-- sample03 -->
-	<bean id="sungJukDTO" class="sample03.SungJukDTO"> <!-- 시작 태그 내 종료 태그 작성 유의 -->
-	<!-- 객체 생성
-	SungJukDTO sungJukDTO = new SungJukDTO();
-	-->	
+ 	<bean id="sungJukDTO" class="sample03.SungJukDTO">
+ 	<!-- 시작 태그 내 종료 태그 작성 유의
+	객체 생성: new SungJukDTO(); -->
+		
  		<property name="name">
 			<value>홍길동</value>
 		</property>
 		<property name="kor" value="97" />
 		<property name="eng" value="100" />
 		<property name="math" value="95" />
-
+	
 	</bean>
 
-	<bean id="sungJukImpl" class="sample03.SungJukImpl"> <!-- Constructor -->
+	<bean id="sungJukImpl" class="sample03.SungJukImpl">
 		<constructor-arg ref="sungJukDTO" />
-		<!-- 객체 생성할 class에 대한 ref 사용
-		Class: sample03.SungJukDTO > variable: sungJukDTO
-		variable을 생성자의 인자로 받아서(생성자의 인자로 입력됨) 필드에 입력
+		<!-- 
+		생성자 매개변수 타입: class → ref 선언
+		생성자 매개변수 타입: class 제외 → value 선언
+
+ 		<bean id="sungJukDTO" class="sample03.SungJukDTO">
+ 		sunkJukDTO의 주소를 갖는 sungJukDTO를 ref로 넘김
 		 -->
 	</bean>
 	
@@ -79,15 +79,18 @@
 
 
 	<bean id="arrayList" class="java.util.ArrayList"></bean>
-	<!-- List<SungJukDTO2> list = new ArratList<>(); -->
+	<!-- arrayList = new ArratList<>();
+	id="list"로 선언하지 않은 이유: Setter에 list가 있으므로 혼란 방지
+	 -->
 
 	<bean id="sungJukDTO2" class="sample04.SungJukDTO2" scope="prototype" />
+
 
 <!--
 	// Using Constructor
 	<bean id="sungJukInput" class="sample04.SungJukInput" scope="prototype">
 		<constructor-arg ref="sungJukDTO2" />
-		<constructor-arg ref="list" />
+		<constructor-arg ref="arrayList" />
 	</bean>
  -->
 
@@ -96,8 +99,8 @@
  	<bean id="sungJukInput" class="sample04.SungJukInput" scope="prototype">
  		<property name="sungJukDTO2" ref="sungJukDTO2"></property>
  		<!-- name="sunJukDTO2": setSungJukDTO2() -->
- 		<!-- property에서 setter를 참조해야하므로 Setter에 대한 설정이 해당 파일에 되어있어야 함 -->
- 		<!-- ref="sungJukDTO2": sungJukDTO2 주소, 객체의 주소를 가리키는 변수 -->
+ 		<!-- property: "선언된" Setter에 대한 값 입력, name="선언된 Setter"와 동일하게 기재-->
+ 		<!-- ref="sungJukDTO2": SungJukDTO2 주소, 객체의 주소를 가리키는 변수(bean id) -->
  		<property name="list" ref="arrayList"></property>
  	</bean>
 
@@ -119,10 +122,10 @@
 	
 	* ProtoType 선언을 위한 scope 추가
 	<bean id="sungJukDTO2" class="sample04.SungJukDTO2" scope="prototype" />
- 	<bean id="sungJukInput" class="sample04.SungJukInput" scope="prototype">
+ 	<bean id="sungJukInput" class="sample04.SungJukInput" scope="prototype" />
 
 	sungJukDTO2를 protoType으로 선언하더라도 sungJukDTO2를 호출하는 방법은 sungJukInput
-	sungJukInput이 singleTon으로 선언되어있다면 DTO가 singleTon으로 밖에 호출되지 않음
+	sungJukInput이 singleTon으로 선언되어있다면 DTO가 최종적으로 singleTon으로 밖에 호출되지 않음
 	그러므로 sungJukDTO2와 함께 sungJukInput을 protoType으로 선언해야 함
 	* sungJukInput이 sungJukDTO를 감싸고 있는 형태로 생각(DTO를 생성하기 위해서는 Input를 거쳐야 하는 개념)
 	 -->
@@ -131,14 +134,14 @@
 <!-- 
 	Using Constructor
  	<bean id="sungJukOutput" class="sample04.SungJukOutput">
-		<constructor-arg ref="list" />
+		<constructor-arg ref="arrayList" />
 	</bean>
  -->
 
 
 	<!-- Using Setter -->
  	<bean id="sungJukOutput" class="sample04.SungJukOutput">
- 		<property name="list" ref="arrayList"></property> 	
+ 		<property name="list" ref="arrayList"></property>
  	</bean>
 
 	<bean id="sungJukUpdate" class="sample04.SungJukUpdate">
@@ -148,5 +151,52 @@
 	<bean id="sungJukDelete" class="sample04.SungJukDelete">
 	 		<property name="list" ref="arrayList"></property>
 	</bean>
+
+
+
+	<!-- sample05 -->
+	<bean id="fileOutputter" class="sample05.FileOutputter">
+		<property name="filePath" value="D:/Spring/"></property>	
+		<property name="fileName" value="result.txt"></property>	
+	</bean>
+	<!-- bean 생성 시, Setter value injection -->
+
+	<bean id="messageBeanImpl2" class="sample05.MessageBeanImpl">
+	<!-- id가 동일한 bean(messageBeanImpl)이 있을 경우, 오류 발생 -->
+		<constructor-arg value="고길동"></constructor-arg>
+		<property name="phone" value="010-9876-5432"></property>
+		<property name="outputter" ref="fileOutputter"></property>
+	</bean>
+
+
+
+
+	
+	<!-- 
+	1. fileOutputter → messageBeanImpl2
+	: msgBeanImpl bean을 찾고자 fileOutputter bean 객체를 지나게되어 생성자가 호출됨
+	FileOutputter Default Constructor
+	setFilePath(String filePath)
+	setFileName(String fileName)
+	
+	MessageBeanImpl(String name)
+	setPhone(String phone)
+	setOutputter(Outputter outputter)
+	helloCall() → output(String msg)
+	
+	
+	2. messageBeanImpl2 → fileOutputter
+	MessageBeanImpl(String name)
+	bean이 다른 bean을 참조할 때, 생성 및 생성자 호출과 동시에 참조 bean도 생성 및 호출?????????
+	FileOutputter Default Constructor
+	setFilePath(String filePath)
+	setFileName(String fileName)
+	
+	setPhone(String phone)
+	setOutputter(Outputter outputter)
+	helloCall() → output(String msg)
+	
+	 -->
+	
 
 </beans>

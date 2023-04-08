@@ -5,15 +5,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-<!--
-Namespaces에서 빠진 configure 파일 추가 가능
-* beans, context
- -->
+<!-- Namespaces에서 빠진 configure 파일(beans, context 등) 추가 가능 -->
 
 
 	<!-- sample03 -->
 	<context:component-scan base-package="sample03"></context:component-scan>
-	<!-- xml 파일을 읽으러 오면 annotation 안내 -->
+	<!-- xml 파일을 읽으러 오면 Component Annotation 안내 -->
 	
 	
 	<!-- sample04 -->

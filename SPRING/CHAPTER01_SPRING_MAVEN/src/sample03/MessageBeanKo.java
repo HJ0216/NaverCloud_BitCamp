@@ -3,11 +3,11 @@ package sample03;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component("msgBean")
+@Component("msgBeanKo")
 @Scope("prototype")
-// appplicatoin.xml	<bean id="msgBean" class="sample03.MessageBeanKo" scope="prototype"></bean>
+// appplicatoinContext.xml <bean id="msgBean" class="sample03.MessageBeanKo" scope="prototype"></bean>
 public class MessageBeanKo implements MessageBean {
-	private int num; // field: 초기화 완료
+	private int num; // field default: initialized
 	
 	public MessageBeanKo() {
 		System.out.println("Defualt Constructor, 한글");
@@ -21,6 +21,5 @@ public class MessageBeanKo implements MessageBean {
 		System.out.println();
 		
 	}
-
 	
 }

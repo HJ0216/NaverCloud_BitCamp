@@ -7,18 +7,16 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 public class HelloSpring {
 	public static void main(String[] args) {		
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		// web.xml 제외 xml 파일 자동으로 읽기 X
-		MessageBean msgBean = (MessageBean) context.getBean("msgBean"); // Bean = 객체
-		// MessageBeanKo class에 method 호출 시, msgBean 사용
+		MessageBean msgBean = (MessageBean) context.getBean("msgBeanKo"); // Bean = 객체
+		// MessageBeanKo class에 method 호출 시, msgBeanKo 사용
+		// .xml에 "msBeanKo"와 일치하는 <bean/>이 없을 경우,
+		// .xml 파일 전체를 읽어서 다른 sample의 <bean/>이 읽히고 해당 bean의 생성자가 자동으로 호출됨
 		msgBean.sayHello("Spring");
 		
-		MessageBean msgBean2 = context.getBean("msgBean", MessageBean.class); // Bean = 객체
-		// MessageBean msgBean2 = (MessageBean) context.getBean("msgBean"); // Bean = 객체
-		// MessageBeanKo class에 method 호출 시, msgBean 사용
+		MessageBean msgBean2 = context.getBean("msgBeanKo", MessageBean.class);
 		msgBean2.sayHello("Spring");
 
-		MessageBean msgBean3 = (MessageBean) context.getBean("msgBean"); // Bean = 객체
-		// MessageBeanKo class에 method 호출 시, msgBean 사용
+		MessageBean msgBean3 = (MessageBean) context.getBean("msgBeanKo");
 		msgBean3.sayHello("Spring");
 }
 }

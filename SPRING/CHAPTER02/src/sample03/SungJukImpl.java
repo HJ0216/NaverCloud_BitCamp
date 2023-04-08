@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class SungJukImpl implements SungJuk { // Constructor Injection
+public class SungJukImpl implements SungJuk {
 	private SungJukDTO sungJukDTO = null;
 	
 	

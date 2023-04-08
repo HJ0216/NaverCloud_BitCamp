@@ -19,10 +19,10 @@ public class SungJukInput implements SungJuk {
 		this.sungJukDTO2 = sungJukDTO2;
 		this.list = list;
 	}
-*/	
+*/
+
 	@Override
-	public void execute() {
-		
+	public void execute() {		
 		// DATA
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		try { // Override 때문에 throws보다 try-catch 사용
@@ -50,7 +50,7 @@ public class SungJukInput implements SungJuk {
 			e.printStackTrace();
 		}
 
-		System.out.println(sungJukDTO2.getName() + " 성적 입력 완료\n");
+		System.out.println("\n" + sungJukDTO2.getName() + " 성적 입력 완료\n");
 
 	}
 

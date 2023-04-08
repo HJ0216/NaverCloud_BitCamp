@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 
 import org.springframework.stereotype.Component;
 
-@Component // 없으면 자동 소문자로 같은 글자로 인식
+@Component
 public class SungJukImpl implements SungJuk {
 	private String name;
 	private int kor;
@@ -16,9 +16,10 @@ public class SungJukImpl implements SungJuk {
 	private int total;
 	private double avg;
 	
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public SungJukImpl() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
 		System.out.print("이름 입력: ");
 		this.name = br.readLine();
 		// this: 전역변수, field
@@ -37,10 +38,11 @@ public class SungJukImpl implements SungJuk {
 		avg = (total/3.0);
 	}
 	
-	DecimalFormat df = new DecimalFormat("00.00");
 
 	@Override
 	public void display() {
+		DecimalFormat df = new DecimalFormat("00.00");
+
 		System.out.println("이름\t국어\t영어\t수학\t총점\t평균");
 		System.out.println(name 	+ "\t" 
 						  + kor 	+ "\t"

@@ -13,6 +13,7 @@ public class SungJukOutput implements SungJuk {
 		this.list = list;
 	}
 */
+
 	@Override
 	public void execute() {
 		System.out.println();
@@ -21,6 +22,9 @@ public class SungJukOutput implements SungJuk {
 			System.out.println(sungJukDTO2);
 			// toString() overriding을 통해서 주소값이 아닌 값 출력
 		}
+		
+		System.out.println();
+		
 	}
 
 }

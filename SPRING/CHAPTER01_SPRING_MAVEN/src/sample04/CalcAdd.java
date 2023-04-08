@@ -3,7 +3,7 @@ package sample04;
 import org.springframework.stereotype.Component;
 
 @Component("calcAdd")
-// 대소문자 구분없이 class name과 bean id가 동일하면 생략 가능
+// Component () 지정 시, 지정된 이름으로 bean name 지정
 public class CalcAdd implements Calc {
 
 	@Override

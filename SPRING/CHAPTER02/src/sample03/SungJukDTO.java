@@ -11,15 +11,6 @@ public class SungJukDTO{ // Setter Injection
 	private int kor, eng, math, tot;
 	private double avg;
 	
-	/*
-	public void setName(String name){
-		this.name = name;
-	}
-	public String getKor(){
-		return this.kor;
-	}
-	*/
-	
 	@Override
 	public String toString() {
 	// 객체 출력 시, 주소가 아닌 값 return하도록 override
