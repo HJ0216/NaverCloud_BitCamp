@@ -52,7 +52,7 @@ public class HelloSpring {
 			}
 			userService.execute();
 
-		}// while		
+		} // while()
 		
 	} // menu()
 
@@ -61,7 +61,7 @@ public class HelloSpring {
 		// ClassPath 기준점: src, src에 위치하지 않은 경우 절대경로 지정 필요
 		// path 설정이 잘못된 경우: class path resource [applicationContext.xml] cannot be opened because it does not exist
 		HelloSpring helloSpring = context.getBean("helloSpring", HelloSpring.class);
-		helloSpring.menu(context);
+		helloSpring.menu(context); // context 공유
 		System.out.println("Program Terminated");
 	}
 

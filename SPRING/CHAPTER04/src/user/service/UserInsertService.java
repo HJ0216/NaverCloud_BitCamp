@@ -14,15 +14,7 @@ public class UserInsertService implements UserService {
 	@Setter
 	private UserDAO userDAO = null;
 
-/* Setter
-	public void setUserDTO(UserDTO userDTO) {
-		this.userDTO = userDTO;
-	}
-
-	public void setUserDAO(UserDAO userDAO){
-		this.userDAO = userDAO;
-	}
-*/	
+	
 	@Override
 	public void execute() {
 		// 1. Data
@@ -52,7 +44,7 @@ public class UserInsertService implements UserService {
 
 		
 		// 2. DB
-		userDAO.insert(userDTO);
+		userDAO.userInsert(userDTO);
 		System.out.println(name + "님의 데이터를 저장하였습니다.");
 		
 	}
