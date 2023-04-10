@@ -93,9 +93,14 @@ public class UserUpdateService implements UserService {
 		map.put("id", id);
 		map.put("pwd", pwd);
 		
-		userDAO.update(map);
+		userDAO.userUpdate(map);
 		System.out.println("수정 완료");
 		
 	}
 
+
 }
+
+
+
+

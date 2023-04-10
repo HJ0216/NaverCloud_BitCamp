@@ -10,8 +10,7 @@
 
 
 <!-- Connection Pool & DataSource -->
-<!-- 
-1번
+<!-- 1번
 <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 	property로 설정한다는 것은 setter가 설정이 되어있다는 것을 의미
@@ -21,8 +20,7 @@
 </bean>
  -->
 
-<!-- 
-2번
+<!-- 2번 property 대신 p
 <bean id="dataSource"
 	  class="org.apache.commons.dbcp2.BasicDataSource"
 	  p:driverClassName="oracle.jdbc.driver.OracleDriver"
@@ -30,10 +28,9 @@
 	  p:username="c##java"
 	  p:password="1234"
 />
-property 대신 p
  -->
 
-<!--  3번 -->
+<!-- 3번 classpath 선언 -->
 <context:property-placeholder location="classpath:spring/db.properties"/>
 <!-- classpath: src가 기본 경로 -->
 <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -84,13 +81,14 @@ JdbcDaoSupport를 통한 jdbcTemplate() 구현하고자 jdbcTemplate bean 생성
 
 <bean id="userSelectService" class="user.service.UserSelectService">
 	<property name="userDAO" ref="userDAOImpl"></property>
+	<!-- property: setter 호출 -->
 </bean>
 
 
 <bean id="userUpdateService" class="user.service.UserUpdateService">
-	<property name="userDTO" ref="userDTO"></property>
 	<property name="userDAO" ref="userDAOImpl"></property>
 </bean>
+
 
 <bean id="userDeleteService" class="user.service.UserDeleteService">
 	<property name="userDAO" ref="userDAOImpl"></property>

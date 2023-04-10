@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-config.dtd">
+ <!-- DTD: Documentation 정의 -->
+ <configuration>
+ 	<typeAliases>
+ 		<typeAlias type="user.bean.UserDTO" alias="user" />
+ 	</typeAliases>
+
+<!-- 
+	Mappers에서 mapper file 설정 or applicationContext.xml 설정
+ 	<mappers>
+ 		<mapper resource="user/dao/userMapper.xml" />
+ 		resource 경로 지정 시, .이 아닌 / 사용
+ 	</mappers>
+-->
+</configuration>

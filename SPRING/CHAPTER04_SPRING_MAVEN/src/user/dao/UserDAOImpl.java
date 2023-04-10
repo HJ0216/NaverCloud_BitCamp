@@ -4,22 +4,55 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import lombok.Setter;
 import user.bean.UserDTO;
 
+@Repository // DB와 연동하는 객체 생성
+// implements UserDAO는 @Repository에 따라 연결
+// @Component
+// ClassName과 다른 객체 생성 시, "이름 지정" 필요
 // 3. NamedParameterJdbcDaoSupport
 public class UserDAOImpl extends NamedParameterJdbcDaoSupport implements UserDAO {
 	// NamedParameterJdbcDaoSupport
 	// SQL 구문 작성 시, ?를 입력할 경우, col을 알 수 없는 불편함을 해소
 	// NamedParameterJdbcDaoSupport 사용 시, getJdbcTemplate() 사용 가능
 	
+	// private DataSource dataSource;
+	// setter()를 통한 dataSource value injection 필요
 
+	/*
+	final method override 불가
+	public void setDataSource(DataSource dataSource){
+		this.dataSource = dataSource;
+	}
+	*/
+
+	@Autowired // 부모 method를 통해서 setter injection 가능
+	// setter injection을 위해서 이름을 변경하여 내용만 override
+	public void setDS(DataSource dataSource){
+		setDataSource(dataSource);
+		// JdbcDaoSupport method: setDataSource 호출하여 dataSource value 공유
+	}	
+
+	
+	// 2. Constructor 사용(Autowired 불요)
+	/*
+	public UserDAOImple(DataSource dataSource) {
+		setDataSource(dataSource);		
+	}
+	*/
+	
 	@Override
 	public void userInsert(UserDTO userDTO) {
 		String sql = "INSERT INTO USERTABLE VALUES(:name, :id, :pwd)";
@@ -46,7 +79,7 @@ public class UserDAOImpl extends NamedParameterJdbcDaoSupport implements UserDAO
 	}
 	
 	
-	// UserUpdateSevice ver.1 (getUser() + update())
+	// UserUpdateSevice ver.1 (getUser() + update)
 	@Override
 	public UserDTO getUser(String id){
 		String sql = "SELECT  * FROM USERTABLE WHERE ID=?";
@@ -71,7 +104,7 @@ public class UserDAOImpl extends NamedParameterJdbcDaoSupport implements UserDAO
 
 	@Override
 	public void update(Map<String, String> map) {
-		String sql = "UPDATE USERTABLE SET NAME=:name, PWD=:pwd WHERE ID=:id";
+		String sql = "UPDATE USERTABLE SET NAME=:name, PWD=:pwd WHERE ID=:id";		
 		getNamedParameterJdbcTemplate().update(sql, map);
 	}
 	
@@ -151,7 +184,7 @@ public class UserDAOImpl implements UserDAO {
 		String sql = "SELECT * FROM USERTABLE";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<UserDTO>(UserDTO.class));
 		//resultSet의 데이터를 꺼내서, DTO와 mapping 시키는 과정은 Spring이 자동으로 실행함
-		// <userDTO> 1줄에 데이터 mapping: (UserDTO.class) 기재
+		// 1줄당 userDTO에 데이터 mapping: (UserDTO.class) 기재
 	}
 }
  */

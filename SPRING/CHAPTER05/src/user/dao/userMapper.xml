@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="userSQL">  <!-- 매퍼가 중복될수있으니 namespace 로 이름을 정해주어야함. -->
+ 
+ 	<resultMap type="user" id="userResult">
+ 		<result column="NAME" property="name"></result>
+ 		<result column="ID" property="id"></result>
+ 		<result column="PWD" property="pwd"></result>
+ 	</resultMap>
+ 	
+ 	<insert id="insert" parameterType="user">     <!-- 넘어온 변수들의 파일경로 --> <!-- user : Alias로 지정해준 경로임  -->
+ 		insert into usertable values(#{name} , #{id} , #{pwd}) <!-- #{} , #{} 넘어온 dto변수들명들 -->
+ 	</insert>
+ 	<!-- 값 받아오는것을 UserDTO 에 담아! DAO에서 값을꺼내서 한줄한줄DTO에담기. -->
+ 	<!-- 같은 이름을 찾아서 매핑을 해줌.  -->
+ 	<!-- 쿼리문에 세미콜론; 붙이면 에러남 붙이지말기. !! -->
+	<!--  <select id ="getUserList" resultType="user.bean.UserDTO">
+ 	=
+ 		select * from usertable  
+ 	</select>
+ 	-->
+ 	
+ 	<!-- 
+ 	만약 UserDTO에 컬럼명과 오라클 컬럼명이 틀린 경우 resultMap사용해서 강제로 매핑함. 
+ 	 --> 
+ 	 <select id ="getUserList" resultMap="userResult">
+ 		select * from usertable  
+ 	</select>
+ 	
+ 	<select id="getUser" parameterType="String" resultMap="userResult">
+ 		select * from usertable where id=#{id}
+ 	</select>
+ 	
+ 	<select id="search" resultMap="userResult" parameterType="java.util.Map">
+ 		<!--select * from usertable where ${c} like '%' ||  #{value} || '%' -->
+ 		<!-- xml안에서 if문도 사용할수가있음. -->
+ 		
+ 		<!-- 
+ 		select * from usertable where
+ 		<if test="c=='name'">
+ 		name like '%' || #{value} || '%'
+ 		</if>
+ 		
+ 		<if test="c=='id'">
+ 		id like '%' || #{value} || '%'
+ 		</if>
+ 		 -->
+ 		 
+ 		select * from usertable where
+ 		<choose>
+ 			<when test="c=='name'">
+ 				name like '%' || #{value} || '%'
+ 			</when>
+ 			
+ 			<otherwise>
+ 				id like '%' || #{value} || '%'
+ 			</otherwise>
+ 		
+ 		</choose>
+ 		 
+ 		  
+ 		
+ 	</select>
+ 	
+ 	
+ 	<update id="update" parameterType="java.util.Map">
+ 		update usertable set name=#{name}, pwd=#{pwd} where id=#{id}
+ 	</update>
+ 
+ 	<delete id="delete" parameterType="String">
+  		delete from usertable where id=#{id}
+   </delete>  
+ 	
+ 	
+ 	
+ </mapper>

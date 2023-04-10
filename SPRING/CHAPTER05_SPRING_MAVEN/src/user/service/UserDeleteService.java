@@ -6,14 +6,18 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import lombok.Setter;
 import user.bean.UserDTO;
 import user.dao.UserDAO;
 
+@Component
 public class UserDeleteService implements UserService {
-	@Setter
+	@Autowired
 	private UserDTO userDTO = null;
-	@Setter
+	@Autowired
 	private UserDAO userDAO = null;
 	
 

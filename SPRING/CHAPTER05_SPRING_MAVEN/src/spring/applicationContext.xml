@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+<!-- connectionPool -->
+
+<!-- component 사용 중임을 안내 -->
+<context:component-scan base-package="user.bean" />
+<context:component-scan base-package="user.dao" />
+<context:component-scan base-package="user.main" />
+<context:component-scan base-package="user.service" />
+
+<context:component-scan base-package="spring.conf" />
+
+<!-- transactionManager 사용 중임을 안내
+<tx:annotation-driven transaction-manager="transactionManager" />
+SpringConfiguaration에서 선언
+ -->
+
+</beans>

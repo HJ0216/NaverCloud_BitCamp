@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+<!--  3번 -->
+<context:property-placeholder location="classpath:spring/db.properties"/>
+<!-- classpath: src가 기본 경로 -->
+<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<property name="driverClassName" value="${jdbc.driver}" />
+	<!-- property로 설정한다는 것은 setter가 설정이 되어있다는 것을 의미 -->
+	<property name="url" value="${jdbc.url}" />
+	<property name="username" value="${jdbc.username}" />
+	<property name="password" value="${jdbc.password}" />
+</bean>
+
+
+
+<!-- SqlSessionFactory -->
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<!-- setter injection: dataSource-connection pool -->
+	<property name="configLocation" value="classpath:spring/mybatis-config.xml"></property>
+	<!-- classpath: src 기준, mybatis-config.xml -->
+	<property name="mapperLocations" value="classpath:user/dao/userMapper.xml"><!-- mapper.xml 여러개 가능 -->
+	</property>
+	<!-- 
+	<mappers>
+ 		<mapper resource="user/dao/userMapper.xml" />
+ 	</mappers>	
+	 -->
+</bean>
+
+
+<!-- SqlSession -->
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="sqlSessionFactory"/>
+</bean>
+
+
+<!-- Transaction: Commit 전까지 명령어 집합 -->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<constructor-arg ref="dataSource"/>
+</bean>
+
+
+<!-- connectionPool -->
+<bean id="helloSpring" class="user.main.HelloSpring"></bean>
+
+<bean id="userDTO" class="user.bean.UserDTO"></bean>
+
+<bean id="userDAOMyBatis" class="user.dao.UserDAOMyBatis">
+	<property name="sqlSession" ref="sqlSession"></property>
+</bean>
+
+
+<bean id="userInsertService" class="user.service.UserInsertService">
+	<property name="userDTO" ref="userDTO"></property>
+	<property name="userDAO" ref="userDAOMyBatis"></property>
+</bean>
+
+<bean id="userSelectService" class="user.service.UserSelectService">
+	<property name="userDAO" ref="userDAOMyBatis"></property>
+</bean>
+
+<bean id="userUpdateService" class="user.service.UserUpdateService">
+	<property name="userDAO" ref="userDAOMyBatis"></property>
+</bean>
+
+
+<bean id="userDeleteService" class="user.service.UserDeleteService">
+	<property name="userDAO" ref="userDAOMyBatis"></property>
+</bean>
+
+
+</beans>

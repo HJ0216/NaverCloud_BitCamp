@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+<!-- Spring Bean Configuration
+: 일반 .xml과 달리 Namespaces에서 configuration file을 추가할 수 있음 -->
+
+	<!-- 어떤 파일로 view를 return할 것인지 명시 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/view/"></property>
+		<!-- setPrefix() -->
+		<property name="suffix" value=".jsp"></property>
+		<!-- 확장자 -->
+	</bean><!-- webapp/view/*.jsp -->
+	<bean id="helloController" class="com.controller.HelloController"></bean>
+	
+
+</beans>

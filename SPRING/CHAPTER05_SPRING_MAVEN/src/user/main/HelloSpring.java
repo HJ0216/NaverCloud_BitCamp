@@ -6,9 +6,11 @@ import java.io.InputStreamReader;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 import user.service.UserService;
 
+@Component
 public class HelloSpring {
 	public void menu(ApplicationContext context) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -58,8 +60,7 @@ public class HelloSpring {
 
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
-		// ClassPath 기준점: src
-		// src에 위치하지 않은 경우 절대경로 지정 필요
+		// ClassPath 기준점: src, src에 위치하지 않은 경우 절대경로 지정 필요
 		// path 설정이 잘못된 경우: class path resource [applicationContext.xml] cannot be opened because it does not exist
 		HelloSpring helloSpring = context.getBean("helloSpring", HelloSpring.class);
 		helloSpring.menu(context); // context 공유

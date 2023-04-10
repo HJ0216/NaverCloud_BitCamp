@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+<!-- Start: Connection Pool & DataSource -->
+
+<!-- 
+1번
+<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	property로 설정한다는 것은 setter가 설정이 되어있다는 것을 의미
+	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+	<property name="username" value="c##java" />
+	<property name="password" value="1234" />
+</bean>
+ -->
+
+<!-- 
+2번
+<bean id="dataSource"
+	  class="org.apache.commons.dbcp2.BasicDataSource"
+	  p:driverClassName="oracle.jdbc.driver.OracleDriver"
+	  p:url="jdbc:oracle:thin:@localhost:1521:xe"
+	  p:username="c##java"
+	  p:password="1234"
+/>
+property 대신 p
+ -->
+
+<!--  3번
+<context:property-placeholder location="classpath:spring/db.properties"/>
+classpath: src가 기본 경로
+<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+connection pool에는 ds를 통한 간접접근만 가능
+	<property name="driverClassName" value="${jdbc.driver}" />
+	property로 설정한다는 것은 setter가 설정이 되어있다는 것을 의미
+	<property name="url" value="${jdbc.url}" />
+	<property name="username" value="${jdbc.username}" />
+	<property name="password" value="${jdbc.password}" />
+</bean>
+ -->
+ 
+
+<!-- 
+ver2. spring.conf pkg > SpringConfiguration.java 활용
+
+ -->
+
+<!-- End: Connection Pool & DataSource -->
+
+
+<!-- bean 삭제하면서 @Component, @Autowired 선언하기 -->
+<!-- pkg 정렬 순서와 맞추기 -->
+<context:component-scan base-package="user.bean" />
+<context:component-scan base-package="user.dao" />
+<context:component-scan base-package="user.main" />
+<context:component-scan base-package="user.service" />
+<!-- <context:component-scan base-package="user.*" />
+	 와일드 카드 사용 금지 -->
+<context:component-scan base-package="spring.conf" />
+
+<!--
+userDAOImpl 참조
+<bean id="userDAOImpl" class="user.dao.UserDAOImpl">
+	<property name="dataSource" ref="dataSource"></property>
+	setter()를 통한 dataSource value injection 필요
+</bean>
+ -->
+<!-- 
+상속(조상)
+DaoSupport
+JdbcDaoSupport: public final void setDataSource(DataSource dataSource){}
+// final method로 인해서 override 불가
+NamedParameterJdbcDaoSupport
+UserDAOImpl
+상속(자식)
+ -->
+
+
+</beans>
