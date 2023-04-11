@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<!-- 어떤 파일로 view를 return할 것인지 명시 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/"></property>
+		<!-- 보안상의 문제로 /WEB-INF/에 저장 -->
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<context:component-scan base-package="main.controller" />
+	<!-- <bean id="mainController" class="main.controller.MainController"></bean> -->
+	<context:component-scan base-package="user.controller" />
+	<!-- no Mapping error: <bean> or <context:component> -->
+	
+	<!-- 
+	/를 만나도 controller를 요청하지 않는 경우에 대하여
+	<mvc:annotation-driven/>: Spring Web MVC를 하기 위해서 설정해야하는 값들을 자동으로 추가
+	 -->
+	<mvc:annotation-driven/>
+
+	<mvc:resources location="/WEB-INF/img/" mapping="/img/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"></mvc:resources>
+</beans>
