@@ -6,5 +6,13 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 
+	<context:component-scan base-package="user.dao" />
+	<context:component-scan base-package="user.service" />
+	<!-- <bean id="UserServiceImpl" class="user.service.UserServiceImpl"></bean> -->
+	<!-- 요청에 의한 객체 생성이 아니므로 servlet-context.xml에 기재하는 것이 아니라 root-context.xml에 기재 -->
+
+	<context:component-scan base-package="spring.conf" />
+	<!-- annotation 사용 시, component 선언 -->
+
 
 </beans>

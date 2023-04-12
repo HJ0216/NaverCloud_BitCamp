@@ -22,7 +22,8 @@ public class MainController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index() {
 		return "index";
-	} // 최종 return : /WEB-INF/index.jsp
+	}
+	// request: /
+	// 최종 return : /WEB-INF/index.jsp
 	
-
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-config.dtd">
+ <!-- DTD: Documentation 정의 -->
+ <configuration>
+ 	<typeAliases>
+ 		<typeAlias type="user.bean.UserDTO" alias="user" />
+ 	</typeAliases>
+
+<!-- 
+	1. Mappers에서 mapper file 설정
+ 	<mappers>
+ 		<mapper resource="user/dao/userMapper.xml" />
+ 		resource 경로 지정 시, .이 아닌 / 사용
+ 	</mappers>
+ 	
+ 	2. applicationContext.xml 설정
+ 		@Bean
+		public SqlSessionFactory sqlSessionFactory() throws Exception {
+			SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+			
+			sqlSessionFactoryBean.setDataSource(dataSource());
+			// <property name="dataSource" ref="dataSource"></property>
+			
+			sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("spring/mybatis-config.xml"));
+			// setConfigLocation(Resource)
+			// Resource 자리에 String이 올 수 없으므로 new ClassPathResource() 사용
+			// <property name="configLocation" value="classpath:spring/mybatis-config.xml"></property>
+			
+			sqlSessionFactoryBean.setMapperLocations(new ClassPathResource("user/dao/userMapper.xml"));
+			// ClassPathResource: ""를 1개밖에 못 받음
+			
+			return sqlSessionFactoryBean.getObject();
+			// getObject(): return sqlSessionFactory
+		}
+-->
+
+</configuration>

@@ -14,8 +14,8 @@
 /chapter06_SpringWebMaven"/"user/writeForm
 "/": dispatcherServlet과 연결
 -->
-<p><a href="#">Output</a></p>
-<p><a href="#">Modify</a></p>
-<p><a href="#">Delete</a></p>
+<p><a href="/chapter06_SpringWebMaven/user/list">Output</a></p>
+<p><a href="/chapter06_SpringWebMaven/user/updateForm">Modify</a></p>
+<p><a href="/chapter06_SpringWebMaven/user/deleteForm">Delete</a></p>
 </body>
 </html>
