@@ -47,13 +47,24 @@ $('#searchBtn').click(function(){
 
 // 수정버튼
 $('#updateBtn').click(function(){
+	$('#nameDiv').empty();
+	$('#pwdDiv').empty();
+	
+	if($('#name').val==''){
+		$('#nameDiv').text('이름 입력');
+		$('#name').focus();
+	} else if($('#pwd').val()=='') {
+		$('#pwdDiv').text('비밀번호 입력');
+		$('#pwd').focus();		
+	}
+
 	$.ajax({
 		type: 'post',
 		url: '/chapter06_SpringWebMaven/user/update',
 		data: $('#updateForm').serialize(),
 		success: function(){
 			alert("수정 완료");
-			location.href="/chapter06_SpringWebMaven/user/list";			
+			location.href="/chapter06_SpringWebMaven/user/list";						
 		},
 		error: function(err){
 			console.log(err);
@@ -65,6 +76,7 @@ $('#updateBtn').click(function(){
 
 
 // 리셋 버튼
+/*
 $('#resetBtn').click(function(){
 	$.ajax({
 	type: 'post',
@@ -100,4 +112,12 @@ $('#resetBtn').click(function(){
 	
 	});
 
+});
+*/
+
+
+// Trigger
+// 검색 버튼을 누른것과 취소 버튼을 누른 것이 같은 효과가 나타나도록 조정
+$('#resetBtn').click(function(){
+	$('#searchBtn').trigger('click'); // searchBtn 클릭으로 연결
 });

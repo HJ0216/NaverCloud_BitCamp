@@ -40,7 +40,7 @@ servlet-context.xml에서 <mvc resources> 선언
 		<tr>
 			<th>아이디</th>
 			<td>
-				<input type="text" name="id" id="id" readonly="readonly" />
+				<input type="text" name="id" id="id" />
 				<input type="hidden" name="idDuplication" id="idDuplication" value="">
 				<div id="idDiv"></div>
 			</td>

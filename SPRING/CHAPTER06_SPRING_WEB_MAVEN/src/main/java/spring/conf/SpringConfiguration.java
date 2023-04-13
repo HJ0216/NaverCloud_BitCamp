@@ -78,6 +78,35 @@ public class SpringConfiguration {
  	</mappers>
  */
 	
+	
+/*
+Mapper가 2개 이상
+Ver 1.
+sqlSessionFactoryBean.setMapperLocations(new ClassPathResource("user/dao/userMapper.xml"),
+										 new ClassPathResource("board/dao/boardMapper.xml"),
+										 new ClassPathResource("member/dao/memberMapper.xml"),
+										 ... );
+
+Ver 2.
+field 지정
+@Autowired
+private ApplicationContext context;
+
+*/
+// sqlSessionFactoryBean.steMapperLocatoins(context.getResources("classpath:*/dao/*Mapper.xml"))
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Bean
 	public SqlSessionTemplate sqlSession() throws Exception {
 		SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory());

@@ -3,11 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 
+	<!-- 웹화면 뿌리기용 resolver: viewResolver -->
 	<!-- 어떤 파일로 view를 return할 것인지 명시 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/"></property>
@@ -15,6 +17,18 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 
+
+	<!-- 파일 업로드용 resolver: viewResolver -->
+<!-- 	
+		   <bean id="multipartResolver" 
+	       class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+	       p:maxUploadSize="5000000" />	
+ -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="5000000" /> <!-- 파일 최대 용량: 5MB -->
+	</bean>
+
+	<!-- context:component-scan pkg 단위 -->
 	<context:component-scan base-package="main.controller" />
 	<!-- <bean id="mainController" class="main.controller.MainController"></bean> -->
 	<context:component-scan base-package="user.controller" />
@@ -28,4 +42,5 @@
 
 	<mvc:resources location="/WEB-INF/img/" mapping="/img/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/storage/" mapping="/storage/**"></mvc:resources>
 </beans>

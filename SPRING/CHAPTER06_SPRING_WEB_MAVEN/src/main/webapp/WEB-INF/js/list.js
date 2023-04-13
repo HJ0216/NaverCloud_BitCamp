@@ -5,9 +5,13 @@ $(function(){
 		url: '/chapter06_SpringWebMaven/user/getUserList',
 		// '/' → DispatcherServlet → Controller → UserController
 		// 시작할 때, "/" 작성 필수, dir 안내
+		data: 'pg='+$('#pg').val(),
+		// pg값을 보내주므로 userController에서는 해당 data를 받아줄 준비가 되어야 함
+		
 		dataType: 'json', // 객체는 데이터로 주고받지 못함
 		success: function(data){
-			console.log(JSON.stringify(data));			
+			console.log(JSON.stringify(data));
+			console.log(data.list[0].name);
 			/*
 			data
 			[{"name":"김둘리","id":"둘리","pwd":"123"},
@@ -19,10 +23,8 @@ $(function(){
 			 {"name":"300","id":"3","pwd":"300"},
 			 {"name":"123","id":"123","pwd":"123"}]
 			*/
-
-			console.log(data[0].name); // 김둘리
 			
-			$.each(data, function(index, items){ // ajax each 반복문
+			$.each(data.list, function(index, items){ // ajax each 반복문
 			/*
 			<tr>
 				<td></td>
@@ -42,9 +44,17 @@ $(function(){
 				})).appendTo($('#userListTable'));
 				
 			}); // each
+
+			// 페이징 처리
+			$('#userPagingDiv').html(data.userPaging.pagingHTML);
+
 		},
 		error: function(err){
 			console.log(err);
 		}
-	});
+	}); //ajax
+
+
+
+
 });

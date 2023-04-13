@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import user.bean.UserPaging;
 import user.bean.UserDTO;
 import user.dao.UserDAO;
 
@@ -14,6 +15,8 @@ import user.dao.UserDAO;
 public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private UserPaging userPaging = null;
 
 	@Override
 	public void write(UserDTO userDTO) {
@@ -21,8 +24,34 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserDTO> getUserList() {
-		return userDAO.getUserList();
+	public Map<String, Object> getUserList(String pg) {
+		// 페이지당 3명의 user 출력
+		int endNum = Integer.parseInt(pg)*3; // 3
+		int startNum = endNum-2; // 1
+
+		Map<String, Integer> map = new HashMap<>();
+		map.put("startNum", startNum); // key, value
+		map.put("endNum", endNum);
+		
+		List<UserDTO> list = userDAO.getUserList(map); // 1 2 3 
+
+		
+		// 페이징 처리
+		int totalA = userDAO.getTotalA(); // 6
+		
+		userPaging.setCurrentPage(Integer.parseInt(pg));
+		userPaging.setPageBlock(3); // 페이지당 3개
+		userPaging.setPageSize(3); // 묶음당 3페이지
+		userPaging.setTotalA(totalA);
+		
+		userPaging.makePagingHTML(); // 이전, 다음 버튼
+		
+		// return 대상은 1개만 가능하므로 list와 userPaging 모두 전달하기 위해 map 선언
+		Map<String, Object> map2 = new HashMap<>();
+		map2.put("list", list);
+		map2.put("userPaging", userPaging);
+				
+		return map2;
 	}
 
 	@Override
@@ -51,7 +80,7 @@ public class UserServiceImpl implements UserService {
 		map.put("pwd", userDTO.getPwd());
 		userDAO.update(map);
 	}
-
+	
 	@Override
 	public int delete(String id) {
 		return userDAO.delete(id);

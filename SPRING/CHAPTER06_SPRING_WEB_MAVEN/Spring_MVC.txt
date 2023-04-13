@@ -1,0 +1,78 @@
+Control: Servlet
+Java: Model
+View: JSP
+
+
+*: Spring이 제공
+
+				     ▲(DispatcherSelvet과 Controller 연결, @Controller이 선언되어 controller 인식)
+			Spring: *HandlerMapping(url, java 연결): dispatcherServlet에 요청과 일치하는 controller를 찾아서 mapping
+			MVC: command.properties(url, java 연결)
+
+				     ▲      @Controller
+client: request(url:*.do) ▶ *DispatcherServlet ▶ Controller(.java X) ▶ Java
+			    						명령을 받아서 어떤 java로 연결되는지 안내
+										▼
+									MVC: Java -(request/session)→ Servlet
+									Spring: *ModelAndView
+										▼
+									*ViewResolver: view type을 선택
+										▼
+									      View
+									*.html / *.jsp
+									
+
+
+ * Handler Mapping 처리 순서
+1. Client: 회원가입.do Request
+2. @Controller가 붙은 class 찾기
+@Controller
+class Test {
+	@RequestMapping(value="회원가입.do")
+}
+
+class Sample {
+	@RequestMapping(value="회원정보수정.do")
+
+}
+3. 요청 URL(회원가입.do)과 동일한 @Controller class 내부에 @RequestMapping(value="") 찾아서 method 호출
+(사용자가 만든 callback method를 클래스를 만들어 사용하지 않더라도 자동으로 호출됨)
+<주의사항>
+* class가 다르더라도 모든 class를 한 번에 처리하므로 동일한 @RequestMapping(value="") 작성 시, 오류
+* @RequstMapping: 중복이 불가능한 key
+* namespace를 통해 동일한 value를 사용할 수 있음
+(MVC: /member/loginForm.do=member.service.LoginFormService, namespaces: /member)
+
+4. servlet-context.xml 환경설정 파일 만들기
+* beans, context 추가
+5. Controller 생성
+com.controller > SumController 생성
+sumController: @Controller 추가
+	     : @RequestMapping 추가
+6. Controller에서 호출한 jsp 파일 생성(jsp파일로 이동할 것을 선언할 경우)
+   /WEB-INF/sum/input.jsp 파일 생성
+   /WEB-INF/sum/result.jsp
+ * @ResponseBody를 사용하여 jsp 파일로 이동없이 데이터만 불러올 수도 있음
+7. sumController 객체 설정
+ bean(객체) 선언 - <bean id="sumController" class="com.controller.SumController"></bean>
+ @(Annotation) 선언 - <context:component-scan base-package="main.controller" />	
+8. server 실행
+
+
+
+
+
+* Project 생성 후, ! 발생 시,
+우클릭 -  Spring - add Spring Project Nature 선택, java build path: 11 확인
+
+
+@Autowired
+스프링 @Autowired 어노테이션 적용시 의존 객체를 찾는 순서
+
+같은 타입의 bean 객체 검색: 같은 타입의 bean이 1개이면 해당 bean 객체 사용
+@Qualifier 명시: 같은 값을 갖는 bean 객체
+
+타입이 같은 bean 객체가 두개 이상: @Qualifier가 없는 경우, 이름이 같은 빈 객체 탐색
+타입이 같은 bean 객체가 두개 이상: @Qualifier로 지정한 bean 객체
+
+모두 해당되지 않을 경우, Exception을 발생

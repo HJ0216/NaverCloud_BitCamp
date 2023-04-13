@@ -23,8 +23,20 @@
  	</select>
  -->
 
- 	<select id ="getUserList" resultType="user">
- 		SELECT * FROM USERTABLE
+ 	<select id ="getUserList" parameterType="java.util.Map" resultType="user">
+<!-- 
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+						 FROM (SELECT * FROM USERTABLE) A) 
+		WHERE RN BETWEEN #{startNum} AND #{endNum}
+ -->
+ 		
+ 		<!-- 수식 그대로 사용할 경우-->
+		<![CDATA[
+		SELECT * FROM (SELECT ROWNUM RN, A.* 
+						 FROM (SELECT * FROM USERTABLE) A) 
+		WHERE RN >= #{startNum} AND RN <= #{endNum}
+		]]>
+		
  	</select>
 <!-- ResultMap을 DTO로 변환 시, 변수명을 resultType으로 변경 -->
 
@@ -33,6 +45,18 @@
  		SELECT * FROM USERTABLE WHERE ID=#{id}
  	</select>
  --> 	
+
+	<!-- 총 글 수 -->
+ 	<select id="getTotalA" resultType="int">
+		SELECT COUNT(*) FROM USERTABLE
+ 	</select>
+
+
+
+
+
+
+
 
 	<!-- 중복검사, 수정 -->
  	<select id="getUser" parameterType="String" resultType="user">

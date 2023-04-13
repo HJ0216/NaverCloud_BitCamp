@@ -22,12 +22,20 @@ public class UserDAOMyBatis implements UserDAO {
 	public void write(UserDTO userDTO) {
 		sqlSession.insert("userSQL.write", userDTO);
 	}
-
+	
+	// 페이징
 	@Override
-	public List<UserDTO> getUserList() {
-		return sqlSession.selectList("userSQL.getUserList");
+	public List<UserDTO> getUserList(Map<String, Integer> map) {
+		return sqlSession.selectList("userSQL.getUserList", map);
 	}
 
+	@Override
+	public int getTotalA() {
+		return sqlSession.selectOne("userSQL.getTotalA");
+	}
+
+	
+	
 	@Override
 	public UserDTO getUser(String id) {
 		return sqlSession.selectOne("userSQL.getUser", id);
@@ -43,5 +51,6 @@ public class UserDAOMyBatis implements UserDAO {
 	public int delete(String id) {
 		return sqlSession.delete("userSQL.delete", id);
 	}
+	
 	
 }
