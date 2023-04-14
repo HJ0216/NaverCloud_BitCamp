@@ -101,6 +101,20 @@
  	<delete id="delete" parameterType="String">
  		DELETE FROM USERTABLE WHERE ID=#{id}
    </delete>  
+ 
+
+
+	<!-- 파일 업로드 -->
+	<insert id="upload" parameterType="user.bean.UserImgDTO">
+		INSERT INTO USERIMAGE VALUES(SEQ_USERIMGAGE.nextval, #{imageName}, #{imageContent}, #{image})	
+	</insert> 
+ 
+ 
+ 	<select id="getUploadFormAjaxList" resultType="user.bean.UserImgDTO">
+ 		SELECT * FROM USERIMAGE ORDER BY SEQ DESC
+ 	</select>
+ 
+ 
  	
  	
  </mapper>

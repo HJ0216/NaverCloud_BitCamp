@@ -23,6 +23,7 @@
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   	<!-- http://localhost:8080/chapter06_SpringWebMaven/
   	"/"를 적을 경우, DispatcherServlet 호출 -->
+  	<!-- DispatcherServlet은 Spring에서 자체 제공으로 따로 파일 생성 X -->
   	
   	<!-- 위치 또는 이름을 변경할 때 -->
 	<!-- dispatcherServlet가 아닌 servlet-context.xml을 찾으러 다님 -->

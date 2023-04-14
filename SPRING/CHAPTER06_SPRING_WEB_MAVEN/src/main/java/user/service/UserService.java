@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import user.bean.UserDTO;
+import user.bean.UserImgDTO;
 
 public interface UserService {
 
@@ -18,5 +19,9 @@ public interface UserService {
 	public void update(UserDTO userDTO);
 
 	public int delete(String id);
+
+	public void upload(UserImgDTO userImgDTO, List<String> fileNameList);
+
+	public List<UserImgDTO> getUploadFormAjaxList();
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import user.bean.UserPaging;
 import user.bean.UserDTO;
+import user.bean.UserImgDTO;
 import user.dao.UserDAO;
 
 @Service // @Component보다 구체적으로 기재
@@ -84,6 +85,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int delete(String id) {
 		return userDAO.delete(id);
+	}
+
+	@Override
+	public void upload(UserImgDTO userImgDTO, List<String> fileNameList) {
+		userDAO.upload(userImgDTO, fileNameList);
+	}
+
+	@Override
+	public List<UserImgDTO> getUploadFormAjaxList() {
+		return userDAO.getUploadFormAjaxList();
 	}
 
 }
