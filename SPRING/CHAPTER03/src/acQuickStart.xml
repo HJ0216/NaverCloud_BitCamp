@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<!-- sample01 -->
+	<bean id="msgBeanImpl" class="sample01.MsgBeanImpl">
+		<!-- using Setter -->
+		<property name="str">
+		<!-- cost = setStr() -->
+			<value>Have a Nice Day</value>
+		</property>
+		<!-- <property name="str" value="Have a Nice Day" /> -->
+	</bean>
+	
+	<bean id="loggingAdvice" class="sample01.LoggingAdvice" />
+	
+	
+	<!-- AOP -->
+	<aop:config>
+		<!-- 여러개의 pointcut을 구분하기 위해 id 부여 -->
+		<aop:pointcut expression="execution(public void sample01.MsgBeanImpl.*Before())"
+					  		  id="beforeMethod"/>
+	    <!-- method(public void sample01.MsgBeanImpl.*Before())가 실행될 때 공통 method가 삽입 -->
+		<!-- public void: method 공통요소
+			 pkg:sample01 *pkg의 모든 위치 지정가능
+			 class: MsgBeanImp *class의 모든 위치 지정가능
+			 method_name: *Before() -->
+
+		<aop:pointcut expression="execution(public void sample01.MsgBeanImpl.*After())"
+					  		  id="afterMethod"/>
+
+		<aop:pointcut expression="execution(public * *.MsgBeanImpl.*Print(..))" id="aroundMethod"/>		
+		<!-- ..: 매개변수 개수 무제한
+		public void method1(int i){}
+		public void method2(int i, String s){}
+		
+		 -->
+
+
+
+		<aop:aspect ref="loggingAdvice">
+		<!-- 공통된 내용의 method가 저장되어있는 class -->
+			<aop:before method="beforeTrace" pointcut-ref="beforeMethod"/>
+			<!-- beforeTrace: aspect class 내 사용할 공통 method 이름
+				beforeMethod: 수행되어질 method
+				boforeTrace가 beforeMethod한테 before로 끼어듬
+			 -->
+			<aop:after method="afterTrace" pointcut-ref="afterMethod"/>
+			<aop:around method="trace" pointcut-ref="aroundMethod"/>
+		</aop:aspect>
+	</aop:config>
+		
+		
+</beans>
