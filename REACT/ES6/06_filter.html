@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06_filter</title>
+</head>
+<body>
+    <script>
+        const arr = [10, 20, 30, 40, 50, 60];
+
+        // 요소 중에서 30보다 큰 값만 추출        
+        const result = arr.filter(item => item>30);
+        console.log(result);
+
+        // 요소 중에서 40인 값만 추출
+        const result2 = arr.filter(item => item===40);
+        console.log(result2); // [40] return이 1개라도 배열 형식으로 반환
+
+        // 요소 중에서 40이 아닌 값만 추출
+        const result3 = arr.filter(item => item!==40);
+        console.log(result3); // return [40] 배열 형식
+        console.log('--------------------');
+
+        const data = [
+            {id: 1, name: '홍길동', age: 25},
+            {id: 2, name: '프로도', age: 20},
+            {id: 3, name: '라이언', age: 30}
+        ];
+
+        const data1 = data.filter(item => item.name === '홍길동');
+        console.log(data1);
+
+        // id가 2번인 값을 삭제(id가 2인 값을 제외하고 출력)
+        const data2 = data.filter(item => item.id!==2);
+        console.log(data2);
+
+    </script>
+</body>
+</html>
+
+
+<!--
+filter():
+모든 원소를 한 번씩 돌리면서 콜백함수의 몸체 부분에서 true를 반환하는 원소들만 걸러준 결과 배열
+
+[형식]
+const newArr = arr.filter( 현재값 => 조건 )
+ -->

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07_find</title>
+</head>
+<body>
+    <script>
+        const arr = [10, 20, 30, 20, 50, 60];
+
+        const result = arr.find(item => item > 30);
+        console.log('----------find----------');
+        console.log(result); // 50
+
+
+        const result2 = arr.filter(item => item > 30);
+        console.log('----------filter----------');
+        console.log(result2); // 50, 60
+
+
+        const result3 = arr.find(item => item === 20);
+        console.log('----------find----------');
+        console.log(result3); // 20
+
+
+        const result4 = arr.findIndex(item => item === 20);
+        console.log('----------findIndex----------');
+        console.log(result4); // 1, 조건에 해당하는 첫번째 요소 반환
+
+
+        const data = [
+            {id: 1, name: '홍길동', age: 25},
+            {id: 2, name: '프로도', age: 20},
+            {id: 3, name: '라이언', age: 30}
+        ];
+        const data2 = data.find(item => item.id===1);
+        console.log('----------find----------');
+        console.log(data2);
+
+        const data3 = data.find(item => item.name === '춘식');
+        console.log('----------find----------');
+        console.log(data3); // undefined
+
+        const data4 = data.findIndex(item => item.name === '춘식');
+        console.log('----------find----------');
+        console.log(data4); // -1
+
+
+    </script>
+</body>
+</html>
+
+<!--
+find
+: filter와 유사, 결과는 하나의 값(처음 만나는 값을 가져옴)
+-->

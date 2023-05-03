@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09_비구조할당</title>
+</head>
+<body>
+    <script>
+        const dog = {
+            name: '멍멍이',
+            age: 2
+        };
+
+        console.log(dog.name, dog.age);
+        console.log(dog['name'], dog['age']);
+
+
+        // 비구조할당
+        const{name, age} = dog;
+        console.log(name, age); // 멍멍이, 2
+
+
+        const data = {
+            name2: '홍길동',
+            kor: 100,
+            eng: 85,
+            math: 90
+        }
+
+        console.log(data.name2, data.kor, data.eng, data.math);
+        console.log(data['name2'], data['kor'], data['eng'], data['math']);
+
+        const {name2, kor, eng, math} = data
+        console.log(name2, kor, eng, math); // 홍길동, 100, 85, 90
+
+    </script>
+</body>
+</html>
+
+
+
+<!-- 
+비구조 할당(구조분해)
+딕셔너리의 키와 value 값을 빠르게 꺼낼 때 사용하며, 딕셔너리의 키 자체를 변수로 사용하는 방식
+예) const object = {a:1, b:2, c:3}
+    const {a, b, c} = object   낱개로 받음    
+ -->

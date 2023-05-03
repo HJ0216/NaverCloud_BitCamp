@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_operator</title>
+</head>
+<body>
+    
+    <script>
+        const a = 25;
+        const b = true;
+        const c = false;
+        const d = undefined;
+
+        const result = a > 30 ? 'true' : 'false';
+        console.log(result);
+
+        const result2 = b && '참에 대한 결과입니다.'
+        console.log(result2);
+
+        const result3 = c || '거짓에 대한 결과입니다.'
+        console.log(result3);
+
+        const result4 = d || '값이 존재하지 않습니다.'
+        console.log(result4);
+
+        const result5 = c === false ? '참' : '거짓';
+        console.log(result5); // c가 false임에도 불구하고 result가 true가 나와 혼돈
+
+
+        // 문제: 학점
+        const score = 75;
+        let grade;
+
+        //score >= 90 ? grade='A' : score >= 80 ? grade='B' : score >= 70 ? grade='C' : score >= 60 ? grade='D' : grade='F';
+        grade = score >= 90 && 'A'
+             || score >= 80 && 'B'
+             || score >= 70 && 'C'
+             || score >= 60 && 'D'
+             || 'F' 
+
+        console.log(`점수가 ${score}점이므로 ${grade}학점입니다.`)
+
+    </script>
+
+
+</body>
+</html>
+
+
+<!--
+① React 연산자
+=== 같다
+!== 다르다
+
+② 삼항 연산자
+[형식] 
+조건 ? true : false
+
+③ &&
+[형식]
+true && 참일 때 수행하는 결과
+ * &&가 and가 아닌 && 앞의 조건이 참일 때 뒤의 문장을 수행
+
+④ ||
+[형식]
+( false, null, undefined ) || 거짓일 때 수행하는 결과
+ * ||가 or가 아닌 || 앞의 조건이 거짓일 때 뒤의 문장을 수행
+ -->

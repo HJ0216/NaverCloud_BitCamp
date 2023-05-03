@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10_spread</title>
+</head>
+<body>
+    <script>
+        const arr1 = ['강아지', '고양이', '토끼', '펭귄'];
+        const arr2 = arr1.concat();
+        const arr3 = [...arr1]; // 사본
+        const arr4 = arr1.concat('코끼리', '기린');
+        const arr5 = [...arr1, '코끼리', '기린'];
+        const arr6 = ['코끼리', ...arr1, '기린']; // spread 연산자는 삽입 위치 조정이 자유로움
+        
+        console.log('arr1: ' + arr1);
+        console.log('arr2: ' + arr2);
+        console.log('arr3: ' + arr3);
+        console.log('arr4: ' + arr4);
+        console.log('arr5: ' + arr5);
+        console.log('arr6: ' + arr6);
+        console.log('--------------------')
+
+
+        const dog = {
+            name: '멍멍이',
+            age: 2
+        };
+
+        const dog2 = {...dog, name: '진돗개', age: 5}; // {} 객체, [] 배열
+        console.log(dog2);
+        console.log('--------------------');
+
+				const dog3 = [...dog, {name: '풍산개', age: 7}];
+        console.log(dog3);
+				// dog 객체는 배열이 아니므로 [] 선언하여 {} 객체를 추가하더라도 추가되지 않음
+				// 
+
+    </script>
+</body>
+</html>
+
+
+<!--
+    spread(... 전개 연산자)
+    배열에서의 spread: 추가 기능(멍멍이, 진돗개)
+		객체에서의 spread: 수정 기능(멍멍이 > 진돗개)
+-->

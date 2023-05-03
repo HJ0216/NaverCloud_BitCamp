@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_templetLiteral</title>
+</head>
+<body>
+    <script>
+        let a = 20;
+        const b = 30;
+        const str1 = a + '와' + b + '의 합은 ' + (a+b);
+        console.log(str1);
+
+        // backtic(`): 변수, 수식, 문자열을 같이 쓸 때 사용
+        const str2 = `a와 ${b}의 합은 ${a+b}`;
+        console.log(str2);
+
+        const name = '홍길동';
+        const age = 20;
+        const addr = '서울';
+        const str3 = `나의 이름은 ${name}이고 나이는 ${age}이고 사는 곳은 ${addr}입니다.`;
+        console.log(str3);
+    </script>
+</body>
+</html>
+
+<!--
+    템플릿 리터럴(Template Literal) 새로운 문자열 표기법
+    1. backick(`)
+    2. 변수 처리는 ${변수 }
+-->

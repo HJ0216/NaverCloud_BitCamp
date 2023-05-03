@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_push_concat</title>
+</head>
+<body>
+    <script>
+        const arr = [10, 20, 30];
+        arr.push(40); // append와 같은 역할
+        arr.push(50); // append와 같은 역할
+        arr.push(60); // append와 같은 역할
+        console.log(arr);
+        console.log('------------------------------');
+
+        const arr1 = [10, 20, 30];
+        const arr2 = arr1.concat(); // 사본
+        console.log(arr1);
+        console.log(arr2);
+        console.log('------------------------------');
+
+        const arr3 = arr1.concat(40, 50, 60); // 사본 + push
+        console.log(arr1);
+        console.log(arr3);
+        console.log('------------------------------');
+
+        const data = [
+            {id: 1, name: '홍길동', age: 25},
+            {id: 2, name: '프로도', age: 20},
+            {id: 3, name: '라이언', age: 30}
+        ];
+        console.log(data[0].id, data[0].name, data[0].age);
+
+        const data2 = data.concat({id: 4, name: '어피치', age:18}); // JSON 객체 추가
+        console.log(data2);
+        console.log(data2[3].id, data2[3].name, data2[3].age);
+    </script>
+</body>
+</html>
+
+
+
+<!-- 
+- 배열, 메서드() 중 불변성 유지
+① push : 배열 마지막에 값을 삽입 (배열값 변경) (append와 유사)
+② concat : 다수의 배열을 합치고 병합된 배열의 사본을 반환
+           기존의 배열은 건드리지 않음 - 불변성 유지
+ -->

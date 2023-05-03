@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03_ArrowFunction</title>
+</head>
+<body>
+    
+<script>
+    function make1(){
+        console.log('Have a nice day:)');
+    }
+    make1() // 호출
+
+    function make2(num){
+        console.log(`num = ${num}`);
+    }
+    make2(100);
+
+    function make3(a, b){
+        console.log(`${a} + ${b} = ${a+b}`);
+    }
+    make3(25, 36);
+
+    // 화살표 함수
+    const make11 = () => {
+        console.log('Have a nice day:)');
+    };
+    make11();
+
+    const make22 = (num) => {
+        console.log(`num = ${num}`);
+    }
+    make22(200);
+
+    const make33 = (num1, num2) => {
+        console.log(`${num1} + ${num2} = ${num1 + num2}`);
+    }
+    make33(36, 47);
+
+</script>
+
+</body>
+</html>
+
+
+<!-- 
+① 매개변수가 없을 경우
+function(){} → () => { ... }
+
+② 매개변수가 한 개인 경우에만 소괄호를 생략 가능
+function(x){} → (x) => { ... }
+								 x => { ... }
+
+③ 매개변수가 여러 개인 경우에는 소괄호를 생략할 수 없음
+function(x,y){} → (x, y) => { ... } 
+-->

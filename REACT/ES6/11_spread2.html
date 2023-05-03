@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11_spread2</title>
+</head>
+<body>
+
+    <script>
+        const data = [
+        {id: 1, name: '어피치', age: 5},
+        {id: 2, name: '라이언', age: 15},
+        {id: 3, name: '프로도', age: 25},
+        {id: 4, name: '죠르디', age: 10},
+        {id: 5, name: '춘식이', age: 20}
+    ];
+
+    console.log(data);
+    console.log('--------------------');
+
+    const data2 = [...data];
+    console.log(data2);
+    console.log('--------------------');
+
+    // spread - 배열: 추가
+    const data3 = [
+        ...data,
+        {
+            id: 6, 
+            name: '브라운', 
+            age: 20
+        }
+    ];
+    
+    console.log(data3);
+    console.log('--------------------');
+
+
+    // 문제: ID가 6번인 브라운을 제이지로 변경
+    const data4 = data3.map((item, index) => {
+        if(item.id===6){
+            return {...item, name: '제이지', age:35};
+        } else {
+            return item
+        };
+    });
+    // 중괄호 작성 시, return 기재
+
+    console.log(data4);
+
+    // 3항 연산자
+    const data5 = data3.map(item => item.id===6 ? {...item, name: '제이지', age:35} : item);
+    console.log(data5);
+    </script>
+</body>
+</html>

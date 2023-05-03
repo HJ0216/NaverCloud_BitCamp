@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05_map</title>
+</head>
+<body>
+    <script>
+        const arr = [10, 20, 30];
+
+        const data = [
+            {id: 1, name: '홍길동', age: 25},
+            {id: 2, name: '프로도', age: 20},
+            {id: 3, name: '라이언', age: 30}
+        ];
+
+        // $.each(arr, function(index, items){}) 와 동일
+        arr.map((item, index) => {
+            // React에서는 return이 없으면 값이 나오지 않으므로 반드시 작성해야 함
+            return(console.log(index, item));
+        });
+        
+        
+        // 만일 처리되는 문장이 하나일 때에는 {}, return 생략 가능
+        arr.map((item, index)=> console.log(index, item));
+        console.log('------------------------------');
+
+
+        data.map((item, index) => {
+            return(console.log(item.id, item.name, item.age));
+        });
+        console.log('------------------------------');
+
+    </script>
+</body>
+</html>
+
+<!-- 
+map (반복문)
+[형식]
+배열.map((요소, 인덱스) => {
+   return 요소
+});
+
+반복문
+$.each(data.list, function(index, items){});
+
+map = each
+요소 = items
+인덱스 = index
+ -->

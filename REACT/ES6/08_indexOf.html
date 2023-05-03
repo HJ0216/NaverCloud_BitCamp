@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_indexOf</title>
+</head>
+<body>
+    <script>
+        const arr = ['고구마', '감자', '김치', '고기', '고단백', '참치']
+
+        // '고'자가 들어간 단어를 모두 출력, 없으면 -1을 출력
+        const result = arr.filter(item => item.indexOf('고') !== -1);
+        console.log(result);
+
+        const data = [
+            {text: '운동을 하다'},
+            {text: '수영을 하다'},
+            {text: '저녁을 먹다'},
+            {text: '친구를 만나다'},
+            {text: '잠을 자다'},
+            {text: '공부를 하다'},
+        ];
+
+
+        // '하다'를 포함한 문자를 모두 출력
+        const result2 = data.filter(item => item.text.indexOf('하다') !== -1);
+        console.log(result2);
+
+    </script>
+</body>
+</html>
+
+
+<!-- 
+    객체를 선언할 때에는 이렇게 {} 문자 안에 원하는 값들을 넣어준다.
+    {키 : 원하는 값}
+-->
