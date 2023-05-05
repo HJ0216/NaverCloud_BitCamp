@@ -1,59 +1,62 @@
-// 파일을 읽을 경우, 데이터가 출력되어야하므로 onload function 사용
 $(function(){
 	$.ajax({
 		type: 'post',
-		url: '/user/getUserList',
-		// '/' → DispatcherServlet → UserController
-		// 시작할 때, "/" 작성 필수, dir 안내
-		data: 'pg='+$('#pg').val(),
-		// pg값을 보내주므로 userController에서는 해당 data를 받아줄 준비가 되어야 함
-		
-		dataType: 'json', // 객체는 데이터로 주고받지 못함
+		url: '/person/getPersonList',
+		dataType: 'json', // 생략가능
 		success: function(data){
 			console.log(JSON.stringify(data));
-			console.log(data.list[0].name);
-			/*
-			data
-			[{"name":"김둘리","id":"둘리","pwd":"123"},
-			 {"name":"200","id":"100","pwd":"200"},
-			 {"name":"name","id":"id","pwd":"123"},
-			 {"name":"네오","id":"neo","pwd":"111"},
-			 {"name":"스프링","id":"spring","pwd":"111"},
-			 {"name":"12","id":"12","pwd":"12"},
-			 {"name":"300","id":"3","pwd":"300"},
-			 {"name":"123","id":"123","pwd":"123"}]
-			*/
 			
-			$.each(data.list, function(index, items){ // ajax each 반복문
-			/*
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			*/
+		/*
+			$.each(data, function(index, item){ // ajax each 반복문
+			// data가 list인 경우, 자료값에 list를 따로 기재하지 않음
+			
 				$('<tr/>').append($('<td/>', {
 					align: 'center',
-					text: items.name
+					text: items.name,
+					width: 150
 				})).append($('<td/>', {
 					align: 'center',
-					text: items.id
+					text: items.age,
+					width: 150
 				})).append($('<td/>', {
-					align: 'center',
-					text: items.pwd
-				})).appendTo($('#userListTable'));
+					align: 'left',
+					text: items.photo,
+					width: 150
+				})).appendTo($('#listTable'));
+			*/
+			
+		/*	
+			$.each(data, function(index, item){ // ajax each 반복문
+			// data가 list인 경우, 자료값에 list를 따로 기재하지 않음
+			var html = `<tr>`
+					 + `<td>` + item.photo + `</td>`
+					 + `<td>` + item.name + `</td>`
+					 + `<td>` + item.age + `</td>`
+					 + `</tr>`;
+			
+			$('#listTable').append(html);
 				
 			}); // each
 
-			// 페이징 처리
-			$('#userPagingDiv').html(data.userPaging.pagingHTML);
+		*/
+		
+		for(var i=0; i<data.length; i++){
+			var html = `<tr>
+							<td align="center">
+							<img src="/storage/${data[i].photo}" width="100" height="100">
+							</td>
+							<td align="center">${data[i].name}</td>
+							<td align="center">${data[i].age}</td>
+						</tr>`;
+						
+			$('#listTable').append(html);
+		} // for
 
 		},
-		
 		error: function(err){
 			console.log(err);
-		}
-		
-	}); //ajax
+		}		
 
-});
+	}); // ajax
+	
+}); // function

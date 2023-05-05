@@ -1,81 +1,31 @@
-// 회원가입 유효성 검사
-$('#writeBtn').click(function(){
-	$('#nameDiv').empty();
-	$('#idDiv').empty();
-	$('#pwdDiv').empty();
-
-	if($('#name').val() == ''){
-		$('#nameDiv').text('Enter the name'); // 문자 입력 시, "" or '' 유의
-		$('#nameDiv').css('color', 'dodgerblue');
-		$('#name').focus();
-		return false;
-	}
-
-	if($('#id').val() == ''){
-		$('#idDiv').text('Enter the id'); // 문자 입력 시, "" or '' 유의
-		$('#idDiv').css('color', 'dodgerblue');
-		$('#id').focus();
-		return false;
-	}
-
-	if($('#pwd').val() == ''){
-		$('#pwdDiv').text('Enter the Pwd'); // 문자 입력 시, "" or '' 유의
-		$('#pwdDiv').css('color', 'dodgerblue');
-		$('#pwd').focus();
-		return false;
-	}
-	
-	else {
+$(function(){
+	$('#writeBtn').click(function(){
+			var formData = new FormData($('#writeForm')[0]);
+			// FormData 객체를 생성하고, #writeForm인 폼 요소를 선택하여 FormData 객체에 데이터를 추가
+			// FormData 객체를 사용하여 폼 데이터를 구성하면, 파일 업로드와 같은 이진 데이터를 포함한 다양한 유형의 데이터를 전송할 수 있음
+			
 		$.ajax({
 			type: 'post',
-			url: '/user/write',
-			data: $('#writeForm').serialize(),
+			url: '/person/write',
+			data: formData,
+			enctype: 'multipart/form-data',
+			// 폼 데이터가 파일 업로드를 포함하는 경우에 사용되는 인코딩 방식을 설정
+			// 파일 업로드와 함께 폼 데이터를 전송하는 데 사용
+			processData: false,
+			// ajax는 일반적인 데이터 형식을 처리하기 때문에 FormData 객체를 사용하는 경우에는 데이터를 직접 처리해야 함
+			// 이 옵션을 설정하여 데이터를 자동으로 처리하지 않도록 지정
+			contentType: false,
+			// ajax는 컨텐츠 유형을 자동으로 설정하려고 시도하지만, FormData 객체를 사용하는 경우에는 multipart/form-data를 제대로 처리하기 위해 false로 설정해야 함
 			success: function(){
-				alert("회원가입을 축하합니다!");
-				location.href="/user/list";
+				alert('등록 완료');
+				location.href='/person/list';
 			},
 			error: function(err){
 				console.log(err);
 			}
-		});
-	}
-	
-});
 
+		}); // ajax
 
-// 아이디 중복체크
-$('#id').focusout(function(){
-	if($('#id').val() == ''){
-		$('#idDiv').text('Enter the name'); // 문자 입력 시, "" or '' 유의
-		$('#idDiv').css('color', 'dodgerblue');
-		$('#id').focus();
-		return false;
-	}
+	}); // click
 
-	else {
-		$.ajax({
-			type: 'post',
-			url: '/user/isExistId',
-			data: 'id='+$('#id').val(),
-			dataType: "text",
-			// 서버로부터 받는 데이터(text, html, xml, json) 자료형
-			success: function(data){
-				data = data.trim();
-				
-				if(data == 'Exist'){
-					$('#idDiv').text('사용 불가능');
-					$('#idDiv').css('color', 'red');
-					
-				} else if(data == 'Non_Exist') {
-					$('#idDiv').text('사용 가능');
-					$('#idDiv').css('color', 'blue');
-					$('#idDuplication').val($('#id').val());
-					$('#pwd').focus();
-				}
-			},
-			error: function(err){
-				console.log(err);
-			}
-		});
-	}
-});
+}); // function
