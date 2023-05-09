@@ -1,0 +1,16 @@
+.business {width: 100%;}
+.business .inner {width: 1140px; margin: auto; padding: 100px 0;}
+.business h2 {font-size: 35px; text-align: center; font-weight: 500; margin-bottom: 10px;}
+.business h2 + p {text-align: center; font-size: 16px; margin-bottom: 40px;}
+.business .list2 {display: flex; justify-content: space-between;}
+.business .list2 li {width: 270px;}
+.business .list2 li a div {width: 270px; height: 300px; overflow: hidden;}
+.business .list2 li a div img {width: 270px; transition: 0.4s;}
+.business .list2 li:hover a div img {transform:scale(1.03);}
+.business .list2 li a h3 {padding: 20px 0; font-size: 20px; line-height: 1.4; 
+                     border-bottom: 1px solid #dcdcdc; margin-bottom: 20px;}
+.business .list2 li a h3 span {display: block;}
+.business .list2 li a p {font-size: 16px; color:#666;}
+.business .more {width: 180px; margin:45px auto;}
+.business .more a {display: block; height: 50px; border: 1px solid #999; text-align: center; 
+                  line-height: 50px; border-radius: 25px;}

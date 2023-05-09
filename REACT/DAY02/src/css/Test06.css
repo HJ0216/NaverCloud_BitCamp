@@ -1,0 +1,10 @@
+caption {position: absolute; text-indent: -9999em;} /*들여쓰기: - = 내어쓰기*/
+.list { width: 600px; margin: 10px auto;}  
+.list .seq {width: 10%;}  
+.list .name {width: 20%;}  
+.list .age {width: 25%;}  
+.list .addr {width: 20%;}  
+.list .done {width: 20%;}
+.list th, .list td {border: 1px solid #000; height: 40px; vertical-align: middle; text-align: center;}
+.list tbody  tr:nth-child(odd) {background: beige;}          
+.list tbody  tr:nth-child(even) {background: bisque;}
