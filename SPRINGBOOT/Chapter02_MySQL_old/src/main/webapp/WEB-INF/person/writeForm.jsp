@@ -64,16 +64,7 @@
 <!-- jQuery, CDM -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="/js/write.js"></script>
-<!-- 별도로 mvc:resources를 선언하지 않아도 src/main/resources/static으로 넘어감
-<script> 태그의 src 속성을 사용하여 불러온 JavaScript 파일은 클라이언트 측에서 실행되는 코드
-브라우저는 HTML 파일을 로드하면서 JavaScript 파일도 함께 다운로드하여 실행합니다.
-이때 JavaScript 파일은 브라우저에서 동작하므로 서버 측에서는 별도의 처리가 필요하지 않습니다.
-따라서 /js/write.js와 같은 정적 파일 경로는 클라이언트 측에서 불러오는 정적 파일을 찾기 위한 경로로 사용됩니다.
 
-반면, <a> 태그를 사용하여 생성한 링크는 클라이언트 측에서 서버로 요청을 보내고, 서버는 요청을 받아 해당하는 컨트롤러에서 처리합니다.
-이때 서버는 요청을 처리하고 응답을 생성해 클라이언트에게 반환합니다.
-따라서 /person/writeForm과 같은 URL은 서버에서 동작하는 컨트롤러를 찾기 위한 경로로 사용됩니다.
--->
 
 <script type="text/javascript">
 $('#uploadImg').click(function(){
@@ -91,8 +82,8 @@ function readURL(input){
 	reader.onload = function(e){
 	// onload: 파일이 성공적으로 로드되었을 때 발생하는 이벤트로 파일을 읽어서 이미지를 화면에 표시하는 역할을 수행
 		$('#showImg').attr('src', e.target.result);
-		// e.target: 이벤트가 발생한 태그(input, file)
-		// ㄷ.target.result: FileReader 객체(input 태그에서 선택한 파일의 내용을 읽어옴)가 성공적으로 읽은 후의 결과 데이터(이미지 주소)
+		// e.target: 이벤트가 발생한 요소, result: FileReader 객체가 성공적으로 읽은 후의 결과 데이터를 의미
+		// URL은 이미지 파일의 경우에는 이미지 데이터를 포함하며, e.target.result를 통해 접근할 수 있음
 		// e.target.result에 저장된 데이터 URL을 사용하여 이미지 요소의 src 속성에 할당함으로써, 해당 이미지를 화면에 표시
 	}
 	
@@ -100,10 +91,6 @@ function readURL(input){
 	// 파일을 읽어서 해당 파일의 데이터를 URL 형식으로 변환
 	// input.files[0]: input type이 file인 태그에서 첫번째로 선택받은 파일을 의미
 	// 해당 파일의 데이터를 URL 형식으로 변환하여 이미지로 표시하고자 함
-	/*
-		reader.readAsDataURL(input.files[0]) 코드를 실행하면, 해당 코드의 실행 결과로 파일의 내용이 URL 형식으로 변환되고, 변환된 URL은 reader 객체의 result 속성에 저장됩니다.
-		onload 이벤트 핸들러 함수 내부에서는 e.target.result 속성을 통해 reader 객체의 result 속성값, 즉 파일 내용이 URL 형식으로 변환된 값을 가져와서 사용합니다.
-	*/
 }
 
 </script>

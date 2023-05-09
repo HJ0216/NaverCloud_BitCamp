@@ -4,7 +4,5 @@
  "https://mybatis.org/dtd/mybatis-3-config.dtd">
  
  <configuration>
- 	<typeAliases>
- 		<typeAlias type="person.bean.PersonDTO" alias="PersonDTO"/>
- 	</typeAliases>
+ 
  </configuration>

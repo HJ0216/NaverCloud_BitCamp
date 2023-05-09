@@ -4,11 +4,11 @@
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="personSQL">
- 	<insert id="write" parameterType="PersonDTO">
+ 	<insert id="write" parameterType="person.bean.PersonDTO">
  		INSERT INTO PERSON(NAME, AGE, PHOTO) VALUES(#{name}, #{age}, #{photo})
  	</insert>
  	
- 	<select id="getPersonList" resultType="PersonDTO">
+ 	<select id="getPersonList" resultType="person.bean.PersonDTO">
  		SELECT * FROM PERSON ORDER BY SEQ DESC
  	</select>
  </mapper>

@@ -1,0 +1,32 @@
+#Server Port
+server:
+  port: 8080
+
+#JSP
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
+      
+#MySQL, spring 폴더를 공유하므로 최상위 계층 작성 필요 X
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mydb?serverTimezome=Asia/Seoul
+    username: root
+    password: 1234
+
+#File Upload, spring 폴더를 같이 공유할 경우, 위치에 함께해야 함
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5MB
+
+
+#MyBatis
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  type-aliases-package: person.bean
+  mapper-locations: classpath:mapper/**/*.xml
+
+

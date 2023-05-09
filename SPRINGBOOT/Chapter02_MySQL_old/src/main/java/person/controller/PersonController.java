@@ -54,37 +54,24 @@ public class PersonController {
 		
 		// 실제 폴더
 		String filePath = session.getServletContext().getRealPath("/storage");
+		// static/storage 폴더가 이미 프로젝트의 구조에 존재하고 있다면,
+		//파일 업로드 처리를 위한 별도의 설정이나 코드가 없어도 이미지가 해당 폴더에 저장될 수 있음???????????
+		
 		// session.getServletContext(): 현재 웹 애플리케이션의 서블릿 컨텍스트 객체를 가져오는 코드
 		// 서블릿 컨텍스트는 웹 애플리케이션의 실행 환경을 제공하는 객체로, 웹 애플리케이션의 전역 정보와 리소스에 접근할 수 있는 기능을 제공
 		// 현재 웹 애플리케이션의 서블릿 컨텍스트를 통해 상대 경로 "/storage"에 해당하는 실제 파일 시스템의 경로를 가져오는 것을 의미
-		// getRealPath("/storage"): webapp 폴더 안에 storage 폴더가 있음을 의미
-
 		String fileName = img.getOriginalFilename();
 		
 		System.out.println("실제 폴더: " + filePath);
-		// D:\SpringBoot\workSpace\Chapter02_MySQL\src\main\webapp\storage
 		
 		File file = new File(filePath, fileName);
-		// 실제 파일이 저장될 경로와 파일 이름을 결합한 File 객체를 생성, 이후 img.transferTo(file) 메소드를 통해 파일이 저장
+		// file 객체는 실제 파일이 저장될 경로와 파일 이름을 가지게 됨
 		
 		try {
 			img.transferTo(file);
-			// img에 저장된 업로드된 파일을 file 객체가 나타내는 경로에 복사하는 것
-			// fileName 변수에는 img 객체에서 추출한 원본 파일 이름이 저장되어 있으며, 이 파일 이름으로 file 객체가 가리키는 경로에 파일이 저장
-			/*
-				img.transferTo(file); filePath를 어디로 정하는지에 따라 local or server에 이미지를 저장할 수 있음
-
-				실제 경로에 저장
-				String filePath = "/var/www/html/myapp/images"; // 경로를 서버의 실제 경로로 지정
-				File file = new File(filePath, fileName);
-				
-				로컬에 저장
-				String filePath = session.getServletContext().getRealPath("/storage"); // 경로를 로컬의 실제 경로로 지정
-				File file = new File(filePath, fileName);
-
-			 */
-
-
+			// img에 저장된 업로드된 파일을 file 객체가 나타내는 경로에 복사
+			// fileName은 img의 getOriginalFilename
+			// filePath는 storage 폴더의 realpath로 지정되어있으며, 그 자리에 img 파일이 복사됨
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

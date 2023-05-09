@@ -13,8 +13,7 @@ public class PersonDAOMyBatis implements PersonDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
-	// mybatis-spring-boot-starter에서 자동으로 sqlSession과 관련된 빈 생성
-	// 따로 SqlSession 객체를 생성하거나 설정 파일에 등록할 필요가 없음
+	// mybatis-spring-boot-starter에서 sqlSession과 관련된 빈 생성
 	
 	@Override
 	public void write(PersonDTO personDTO) {
