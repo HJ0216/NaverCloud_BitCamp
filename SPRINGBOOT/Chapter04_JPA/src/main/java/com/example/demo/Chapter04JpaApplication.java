@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages= {"user.controller", "user.service"})
+@ComponentScan(basePackages= {"user.controller", "user.service"}) // @EntityScan, @EnableJpaRepositories 사용 시에도 등록이 안되면 @ComponentScan에도 추가
 @EntityScan("user.bean")
 // 어노테이션으로 엔티티 클래스를 스캔할 곳을 지정 시 사용
 // 메인 어플리케이션 패키지 내에 엔티티 클래스가 없는 경우 어노테이션을 사용해서 패키지밖에 존재하는 엔티티를 지정할 수 있음

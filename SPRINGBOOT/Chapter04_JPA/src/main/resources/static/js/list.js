@@ -1,3 +1,4 @@
+// 목록 로드
 $(function(){
 	$.ajax({
 		type: 'post',
@@ -47,3 +48,45 @@ $(function(){
 	}); // ajax
 	
 }); // onload
+
+
+
+// 검색
+$('#searchBtn').click(function(){
+		$('#listForm #keywordDiv').remove(); // 검색어가 입력되면 요소를 삭제
+
+	if($('#keyword').val()==''){
+		$('#searchForm').append('<div id="keywordDiv">검색어를 입력해주세요.</div>');
+		// alert("검색어를 입력해주세요.");
+	} else {
+		$.ajax({
+			type: 'post',
+			url: '/user/search',
+			data: {'searchOpt': $('#searchOpt').val(),
+				   'keyword': $('#keyword').val()},
+			// data: $('#searchForm').serialize(),
+			dataType: 'json',
+			success: function(data){
+				console.log(JSON.stringify(data));
+				
+				$('#listFormTable tr:gt(0)').remove();
+				// listFormTable에서 첫번째 행을 제외한 모든 행 삭제
+				
+				$.each(data, function(index, item){ // ajax each 반복문
+					var result = `<tr>`
+							 + `<td align="center">` + item.name + `</td>`
+							 + `<td align="center">` + item.id + `</td>`
+							 + `<td align="center">` + item.pwd + `</td>`
+							 + `</tr>`;
+					
+					$('#listFormTable').append(result);
+				
+				}); // each	
+				
+			},
+			error: function(err){
+				console.log(err);
+			}
+		});
+	}
+});

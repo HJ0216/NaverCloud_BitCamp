@@ -8,6 +8,7 @@ $('#writeBtn').click(function(){
 		// 'name=홍길동&id=hong&pwd=111' ▶ Controller.java로 이동
 		success: function(){
 			alert("등록 완료");
+			location.href="/user/listForm";
 		},
 		error: function(error){
 			console.log(error);

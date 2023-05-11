@@ -4,56 +4,62 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>writeForm.jsp here</title>
-<style type="text/css">
-#writeForm div{
-	color: tomato;
-	font-size: 8px;
-	font-weight: bold;
-}
-</style>
+<title>deleteForm.jsp here</title>
 </head>
 <body>
+
 
 <img src="http://localhost:8080/image/spongebob.png" width="128"
 													height="128"
 												   onclick="location.href='/'"
-												     style="cursor: pointer; margin-left: 60px;"
-												     />
+												     style="cursor: pointer; margin-left: 160px"
+												    />
 
-<form id="writeForm">
+
+<p>
+	삭제 할 아이디 입력 <input type="text" id="searchId">
+	<input type="button" id="searchBtn" value="search">
+</p>
+
+<div id="resultDiv"></div>
+
+
+
+<form id="deleteForm">
 	<table border="1">
 		<tr>
 			<th>NAME</th>
-			<td><input type="text" name="name"></td>
+			<td><input type="text" name="name" id="name"></td>
 		</tr>
 
 		<tr>
 			<th>ID</th>
 			<td>
-				<input type="text" name="id" id="id">
+				<input type="text" name="id" id="id" readonly="readonly">
 				<div id="idDiv"></div>
 			</td>
 		</tr>
 
 		<tr>
 			<th>PWD</th>
-			<td><input type="password" name="pwd"></td>
+			<td><input type="password" name="pwd" id="pwd"></td>
 		</tr>
 		
 		<tr>
 			<td colspan="2" align="center">
-				<input type="button" value="submit" id="writeBtn">
-				<input type="reset" value="cancel">
+				<input type="button" value="delete" id="deleteBtn">
+				<input type="reset" value="cancel" id="cancelBtn">
 			</td>
 		</tr>
 	</table>
 </form>
 
 
+
 <!-- CDM 방식: js파일에 대한 서버로의 직접 접근 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script type="text/javascript" src="/js/write.js"></script>
+<script type="text/javascript" src="/js/delete.js"></script>
+<!-- http://localhost8080/js/delete.js -->
 
 
 </body>
