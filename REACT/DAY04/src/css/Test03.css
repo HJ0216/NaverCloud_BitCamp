@@ -1,0 +1,5 @@
+.box {
+    width: 400px; height: 100px; margin: 20px; background: dodgerblue; border-radius: 25px;
+    box-sizing: 10px 10px 0 #dcdcdc; text-align: center; line-height: 100px; 
+    text-transform: uppercase; font-size: 40px; font-weight: 600; letter-spacing: -1px;
+}

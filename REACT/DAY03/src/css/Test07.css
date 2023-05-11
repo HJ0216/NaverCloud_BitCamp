@@ -1,0 +1,13 @@
+.wrap { width: 400px; border: 1px solid #000; padding: 30px; margin: 30px auto;  }
+.wrap p { margin-bottom: 10px; }
+.wrap p label {display: inline-block; width: 80px; }
+.wrap p input { margin-left: 10px; height: 30px; width: 200px; padding: 0 15px;
+                border: 1px solid #999; }
+.wrap p:last-child { margin-top: 30px; }
+.wrap p button { width: 150px; height: 40px; background: #333; color: #fff;
+                 border: none; margin-right: 10px; }
+.wrap ul li { border-bottom: 1px dotted #dcdcdc; line-height: 3; }
+.wrap ul li span { display: inline-block; width: 80px; }
+.wrap ul li em { margin-left: 10px; height: 30px; width: 200px; padding: 0 15px; }
+.wrap h3 { text-align: center; font-size: 35px; font-weight: 500; } 
+.wrap h3 span { display: block; }
