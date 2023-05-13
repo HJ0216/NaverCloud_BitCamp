@@ -21,7 +21,7 @@ $('#searchBtn').click(function(){
 			console.log(JSON.stringify(data));
 			if(data==null){
 			// Optional<UserDTO> 값이 있으면 DTO 객체가 JSON으로 return되고
-			// 값이 없으면, 즉 Optional.empty일 경우에는 JSON null이 반환됨
+			// 값이 없으면, 즉 Optional.empty일 경우에는 JSON 빈객체{}로 반환되지 못하고 null 리턴값이 나옴
 				/*$('#resultDiv').text('검색 결과가 없습니다.')
 							   .css('color', 'tomato')
 							   .css('font-weight', 'bold');*/

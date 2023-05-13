@@ -15,6 +15,9 @@ import user.bean.UserDTO;
 public interface UserDAO extends JpaRepository<UserDTO, String> {
 // public interface UserDAO extends CrudRepository<UserDTO, String> {
 // UserDTO: Entity class, PK type: String
+
+	
+// join의 경우, DTO가 여러개 필요하므로 JpaRepository<UserDTO, String>와 다른 선언 방식이 필요
 	
 	
 	// Query Method
@@ -44,7 +47,7 @@ public interface UserDAO extends JpaRepository<UserDTO, String> {
 	
 
 	/*
-		검색 쿼리문 생성 예시
+		검색 쿼리문 생성 예시   (boardRepository: table 선언된 DTO의 name)
 		List<Board> list = boardRepository.findByTitleContainingOrContentContaining("17", "17");
 		=> select * from board where title like '%' || #{title} || '%' or content like '%' || #{content} || '%' 
 	*/
