@@ -27,7 +27,7 @@ const Test02 = () => {
     // }, [id]) // id value 값이 바뀔 때마다 reLoad
     }, [search])
     // 버튼을 눌렀을 때마다 reLoad, 버튼 클릭 ▶ search 값 변화
-    // [onSearch] or [() => onSearch]는 왜 변경 시 작동?
+    // [onSearch] or [() => onSearch]는 왜 변경 시 작동???????????????????????????????
     // }, [search, id])
 
     return (

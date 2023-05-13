@@ -69,6 +69,7 @@ Web Storage: Local Storage, Session Storage
 
 종류
 - LocalStorage: 클라이언트에 대한 정보를 영구적으로 저장
+                브라우저가 종료되도 정보는 영구적으로 저장되나, 브라우저상에서 데이터 조회가 가능하여 보안에 취약
 - SessionStorage: 세션 종료 시(브라우저 닫을 경우) 클라이언트에 대한 정보 삭제
 
 장점

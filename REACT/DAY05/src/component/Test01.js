@@ -24,7 +24,7 @@ const Test01 = () => {
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/posts')
         .then(res => setData(res.data)) // 응답 객체(res)의 data를 주입
-    }, [])    
+    }, [])
 */
 
 
@@ -33,6 +33,12 @@ const Test01 = () => {
 /*
     useEffect(() => {
         // 비동기 통신: 요청 후 응답을 기다리지 않음
+        
+        // 동기와 비동기 차이
+        // 동기: 요청 후 응답을 받을 때까지 다른 작업을 수행하지 않음
+        // 비동기: 요청 후 응답을 받기 전에 다른 작업을 수행함
+        // 단, 비동기의 경우 응답 받기 전에도 작업을 수행하므로 응답을 받아서 할 수 있는 작업은 할 수 없음
+
         const getData = async() => {
             const res = await fetch('https://jsonplaceholder.typicode.com/posts');
             const data = await res.json();
@@ -88,13 +94,9 @@ $.ajax({
 });
 
 1. jQuery - $.ajax()
-2. js - fetch()
-        fetch() -> json 형식으로 가져온다.
-3. 설치 - axios
-          axios.get() -> object 형식으로 가져온다. 
+2. js - fetch() -> json 형식으로 가져온다.
+      -  axios.get() -> object 형식으로 가져온다. 
 
-- 외부 API 비동기 통신을 위해서 fetch()를 이용한다.
-- fetch()에 API 경로를 적어주면 promise가 반환된다.
 fetch( url, [options] )
 
 fetch(url)

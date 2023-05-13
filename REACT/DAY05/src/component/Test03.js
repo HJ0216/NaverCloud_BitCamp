@@ -18,9 +18,19 @@ const isEven = (() => {
 const isEven = useMemo(() => {
         return count1%2 === 0;
     },[count1]);
-// useMemo를 통해서 count1이 변경될 때, isEven 함수도 호출
-// const isEven = count1 % 2 === 0; 과 차이???????????
-// 
+// useMemo
+// 첫 번째 매개변수로 전달된 콜백 함수의 결과값을 캐시,
+// 두 번째 매개변수로 전달된 배열의 값이 변경될 때에만 새로운 결과값을 계산
+// count1 변경 ▶ useMemo: return 업데이트 ▶ isEven 업데이트
+
+// const isEven = count1 % 2 === 0;
+//  단순 대입으로 변수를 초기화하면, isEven 값은 count1의 초기값에 의존
+// 이후 count1 값이 변경되어도 isEven 값은 자동으로 변경되지 않음
+// 단, useMemo를 사용하여 의존성 배열을 설정하면, 배열에 전달된 값이 변경될 때마다 isEven 값이 자동으로 계산되며 업데이트됨
+
+
+// useMemo: return 값을 저장
+// useEffect: return 값을 저장하지 않으므로 setter 사용
 
 
     return (
@@ -39,12 +49,3 @@ const isEven = useMemo(() => {
 };
 
 export default Test03;
-
-/*
-useMemo
-- 리랜더링(새로고침), 최적화
-- useMemo는 컴포넌트의 성능을 최적화시킬 수 있는 대표적인 react hooks 중 하나이다.
-
-memoization?
-- 기존에 수행한 연산의 결괏값을 어딘가(Buffer)에 저장해 두고 동일한 입력이 들어오면 재활용하는 프로그래밍 기법을 말한다. 
-*/
