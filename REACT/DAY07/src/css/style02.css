@@ -1,0 +1,23 @@
+.page {width: 100%; text-align: center;}
+.page h1 {font-size: 40px; padding: 50px; font-weight: 600; color: slateblue;}
+
+.navbar {width: 100%; height: 100px; background: #dcdcdc;}
+.navbar .all-menu {color:#000; position: absolute; left: 20px; top:30px; cursor: pointer; padding: 10px;}
+nav {position: fixed; left: -310px; top: 100px; width: 300px; height: 100vh; background: #000; transition:0.4s;}
+nav ul {padding-top: 30px;}
+nav ul li {margin-bottom: 10px; text-align: center;}
+nav ul li a {font-size: 20px; color:#fff; line-height: 40px;}
+nav.on {left: 0;}
+/*left: 요소가 왼쪽으로부터 위치하는 거리를 지정하므로 0일 경우, 화면에서 제거*/
+.close {
+    position: absolute;
+    right: 0; 
+    top: 0;
+    width: 30px; 
+    height: 30px; 
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #fff;
+}
